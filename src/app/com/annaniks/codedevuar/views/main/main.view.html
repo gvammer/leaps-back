@@ -1,0 +1,10 @@
+<div class="main_content" full-width full-height>
+    <div class="main_conteiner" full-width full-height>
+        <app-toolbar></app-toolbar>
+        <app-left-menu></app-left-menu>
+
+        <div class="main_layout" [ngClass]="{'openMenu':menuService.getOpenMenu(),'closeMenu':!menuService.getOpenMenu()}" >
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

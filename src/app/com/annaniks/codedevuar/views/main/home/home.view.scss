@@ -1,0 +1,20 @@
+.table_content {
+    .top_content {
+        background: white;
+        justify-content: space-between;
+        background-image: linear-gradient(to right, #7283a7, #b1bace);
+    }
+    .table_container {
+        .container {
+            justify-content: space-between;
+            background: #b1bace;
+        }
+    }
+    .chiled_information,
+    .staffRecording_information {
+        background: white;
+        justify-content: space-between;
+        background: #7283a7;
+        border-bottom: 1px solid white;
+    }
+}

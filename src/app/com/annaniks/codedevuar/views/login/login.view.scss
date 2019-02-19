@@ -1,0 +1,59 @@
+.signIn_content {
+    .signIn_container {
+      justify-content: center;
+      .top_content {
+        margin-top: 20px;
+        color: #b1bace;
+        font-size: 35px;
+        text-align: center;
+      }
+      .data_content {
+        margin-top: 50px;
+        .login_content,
+        .password_content {
+          width: 391.3px;
+          height: 42px;
+          object-fit: contain;
+          border-radius: 4px;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.23);
+          background-color: white;
+          .icon_contet {
+            width: 47.3px;
+            height: 42px;
+            color: #b1bace;
+          }
+          .login,
+          .password {
+            width: calc(100% - 47.3px);
+            border: none;
+          }
+        }
+        .password_content {
+          margin-top: 30px;
+        }
+      }
+      .buttton_items {
+          margin-top: 60px;
+          justify-content: space-around;
+          .save_button {
+              width: 301.8px;
+              height: 42px;
+              border-radius: 30px;
+              box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+             // background-color: #7283a7;
+              background-image: linear-gradient(to right, #7283a7, #b1bace);
+              display: inline-block;
+              text-align: center;
+              border: none;
+              font-size: 12px;
+              font-style: normal;
+              font-stretch: normal;
+          }
+      }
+    }
+  }
+  
+  .opacity {
+    opacity: 0.5;
+  }
+  

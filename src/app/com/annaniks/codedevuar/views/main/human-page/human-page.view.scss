@@ -1,0 +1,17 @@
+.inner {
+    .name {
+        background: #0277bd;
+        height: 50px;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        font-size: 25px;
+    }
+    .item {
+        padding: 10px 15px;
+        .item_name {
+            font-size: 20px;
+            color: #a1bfd1;
+        }
+    }
+}

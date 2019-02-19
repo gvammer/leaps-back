@@ -1,0 +1,31 @@
+<div class="signIn_content" full-width full-height>
+    <div class="signIn_container" width-75 margin-auto>
+        <div class="top_content">
+            <span font-weight-bold>Login</span>
+        </div>
+        <div class="data_content"  margin-auto>
+            <form [formGroup]="signInGroup">
+                <div class="login_content" display-flex  margin-auto>
+                    <div class='icon_contet'  display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="login" full-height formControlName="login">
+                </div>
+                <div class="password_content" display-flex  margin-auto>
+                        <div class='icon_contet'  display-flex>
+                            <i class="material-icons" margin-auto cursor-pointer (click)="showPassword()">
+                                    visibility
+                            </i>
+                        </div>
+                        <input class="password" full-height type="password" [type]="inputType" formControlName="password">
+                    </div>
+                    <div class="buttton_items" display-flex margin-auto>
+                            <button class="save_button" cursor-pointer [ngClass]="{'opacity':signInGroup.invalid}" (click)="loginUser()"><span color-white>Log In</span></button>
+                        </div>
+            </form>
+
+        </div>
+    </div>
+</div>

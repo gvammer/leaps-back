@@ -1,5 +1,10 @@
 <div class="roles_contet" fill-width>
-    <div class="roles_conteiner" *ngFor="let item of rolesDada" display-flex>
+    <div class="top_content" display-flex full-width>
+        <div class="top_item">Index:</div>
+        <div class="top_item">Name:</div>
+    </div>
+    <div class="roles_conteiner" *ngFor="let item of rolesDada;let ind=index" display-flex>
+        <div class="item">{{ind+1}}</div>
         <div class="item">{{item.name}}</div>
     </div>
 

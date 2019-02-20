@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    { provide: "BASE_URL", useValue: "http://192.168.0.128:3000/" }
+    { provide: "BASE_URL", useValue: "http://192.168.0.128:3000/" },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

@@ -32,13 +32,13 @@ export class ListItemComponent implements OnInit {
 
     public openHumanItems() {
         console.log("jkhnk");
-        
+
         this._router.navigate(['human/' + this._listItemData._id]);
         this._getUserById();
 
     }
 
-    private _getUserById():void {
+    private _getUserById(): void {
         this._homeService.getUserById(this._listItemData._id)
             .subscribe((data) => {
                 console.log(data, "njh");

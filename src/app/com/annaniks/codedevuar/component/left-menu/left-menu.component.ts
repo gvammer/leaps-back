@@ -14,7 +14,7 @@ export class LeftMenuComponent implements OnInit {
     public menuItem: MenuItem[] =
         [
             { icon: "home", title: 'list', routerLink: "/home" },
-            // { icon: "table_chart", title: 'tabels', routerLink: "/tabels" },
+            { icon: "table_chart", title: 'Roles', routerLink: "/roles" },
             // { icon: "local_dining", title: "dishes", routerLink: "/goods" },
             // { icon: "person", title: "stuff", routerLink: "/staff" },
             // { icon: "place", title: "orders", routerLink: "#" },

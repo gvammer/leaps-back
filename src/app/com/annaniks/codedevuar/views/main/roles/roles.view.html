@@ -1,0 +1,11 @@
+<div class="roles_contet" fill-width>
+    <div class="roles_conteiner" *ngFor="let item of rolesDada" display-flex>
+        <div class="item">{{item.name}}</div>
+    </div>
+
+    <div class="add" (click)="openRolesModals()">
+        <i class="material-icons" cursor-pointer>
+            add
+            </i>
+    </div>
+</div>

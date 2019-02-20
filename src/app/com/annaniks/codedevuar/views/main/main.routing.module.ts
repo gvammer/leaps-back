@@ -6,8 +6,9 @@ const mainRoutes: Routes = [
     {
         path: "", component: MainView, children: [
             { path: "", redirectTo: "home", pathMatch: "full" },
-        { path: "home", loadChildren: "src/app/com/annaniks/codedevuar/views/main/home/home.module#HomeModule" },
-            { path: 'human/:id', loadChildren: "src/app/com/annaniks/codedevuar/views/main/human-page/human-page.module#HumanPageModule" }
+            { path: "home", loadChildren: "src/app/com/annaniks/codedevuar/views/main/home/home.module#HomeModule" },
+            { path: 'human/:id', loadChildren: "src/app/com/annaniks/codedevuar/views/main/human-page/human-page.module#HumanPageModule" },
+            { path: "roles", loadChildren: "src/app/com/annaniks/codedevuar/views/main/roles/roles.module#RolesModule" },
         ]
     },
 

@@ -1,0 +1,10 @@
+<table>
+    <tr>
+        <th>Permissions</th>
+        <th *ngFor="let item of rolesInfo">{{item.name}}</th>
+    </tr>
+    <tr *ngFor="let item of permissionsInfo">
+        <td>{{item.name}}</td>
+        <td *ngFor="let item of rolesInfo"><input type="checkbox" checked="true"></td>
+    </tr>
+</table>

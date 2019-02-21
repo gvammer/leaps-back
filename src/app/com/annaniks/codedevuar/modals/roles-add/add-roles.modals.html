@@ -1,0 +1,46 @@
+<div class="add_content" full-width>
+    <div class="add_conteiner" width-75 margin-auto>
+        <form [formGroup]="rolseGroup">
+            <div class="name_content" display-flex margin-auto>
+                <div class='icon_contet' display-flex>
+                    <i class="material-icons" margin-auto>
+                        person
+                    </i>
+                </div>
+                <input class="name" full-height formControlName="name" placeholder="name">
+            </div>
+            <div class="title_content" display-flex margin-auto>
+                <div class='icon_contet' display-flex>
+                    <i class="material-icons" margin-auto>
+                        person
+                    </i>
+                </div>
+                <input class="title" full-height formControlName="title" placeholder="title">
+            </div>
+
+            <div class="item_content" display-flex margin-auto *ngFor="let item of rolseGroup.get('items')?.controls">
+                <div class='icon_contet' display-flex>
+                    <i class="material-icons" margin-auto cursor-pointer (click)="addNewItem()">
+                        add
+                    </i>
+                </div>
+                <input class="item" full-height [formControl]="item" placeholder="item">
+
+            </div>
+            <div class="permissions_content" margin-auto>
+                <div class="permisions_item" display-flex
+                    *ngFor="let item of rolseGroup.get('permissions')?.controls;let ind = index;">
+                    <input type="checkbox" value="permissionsData[ind]._id" [formControl]="item">
+                    <div>{{permissionsData[ind].name}}</div>
+                </div>
+
+
+            </div>
+            <div class="buttton_items" display-flex margin-auto>
+                <button class="save_button" cursor-pointer [ngClass]="{'opacity':rolseGroup.invalid}"
+                    (click)="postRoles()"><span color-white>Save</span></button>
+            </div>
+
+        </form>
+    </div>
+</div>

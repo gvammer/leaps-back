@@ -1,0 +1,18 @@
+.roles_content {
+    .roles_conteiner {
+        height: 40px;
+        background: #0277bd;
+        display: flex;
+        justify-content: space-between;
+    }
+    .permissions_contnet {
+        .permissions_contneiner {
+            background: #dae4eb;
+            justify-content: space-between;
+            .name {
+                height: 50px;
+                border-bottom: 1px solid white;
+            }
+        }
+    }
+}

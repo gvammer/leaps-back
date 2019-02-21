@@ -1,16 +1,23 @@
-<div class="roles_contet" fill-width>
-    <div class="top_content" display-flex full-width>
+<div class="roles_contet" full-width>
+    <!-- <div class="top_content" display-flex full-width>
         <div class="top_item">Index:</div>
         <div class="top_item">Name:</div>
+        <div class="add_permissions">AddPermissions</div>
     </div>
-    <div class="roles_conteiner" *ngFor="let item of rolesDada;let ind=index" display-flex>
-        <div class="item">{{ind+1}}</div>
-        <div class="item">{{item.name}}</div>
-    </div>
+    <div class="roles_conteiner" *ngFor="let item of rolesDada;let ind=index">
+        <div class="item_content" display-flex>
+            <div class="item">{{ind+1}}.</div>
+            <div class="item">{{item.name}}</div>
+            <i class="material-icons" cursor-pointer color-white (click)="openAddPermissions()">
+                add
+            </i>
+        </div>
+        <div class="line"></div>
+    </div> -->
 
     <div class="add" (click)="openRolesModals()">
         <i class="material-icons" cursor-pointer>
             add
-            </i>
+        </i>
     </div>
 </div>

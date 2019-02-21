@@ -15,7 +15,7 @@ export class LeftMenuComponent implements OnInit {
         [
             { icon: "home", title: 'list', routerLink: "/home" },
             { icon: "table_chart", title: 'Roles', routerLink: "/roles" },
-            // { icon: "local_dining", title: "dishes", routerLink: "/goods" },
+            { icon: "local_dining", title: "Permissions", routerLink: "/permissions" },
             // { icon: "person", title: "stuff", routerLink: "/staff" },
             // { icon: "place", title: "orders", routerLink: "#" },
             // { icon: "signal_cellular_alt", title: "statistic", routerLink: "/statistic" },

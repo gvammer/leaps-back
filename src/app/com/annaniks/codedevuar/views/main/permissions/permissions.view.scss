@@ -1,18 +1,55 @@
-.roles_content {
-    .roles_conteiner {
-        height: 40px;
-        background: #0277bd;
-        display: flex;
-        justify-content: space-between;
-    }
-    .permissions_contnet {
-        .permissions_contneiner {
-            background: #dae4eb;
-            justify-content: space-between;
-            .name {
-                height: 50px;
-                border-bottom: 1px solid white;
-            }
+:host  ::ng-deep thead{
+    background: #0277bd;
+  
+}
+:host ::ng-deep collapsible-table-row{
+    height: 50px;
+}
+:host ::ng-deep .mat-expension-panel-header{
+    min-height: 100px !important;
+    height: 100px !important;
+}
+:host ::ng-deep .mat-expansion-indicator{
+    display: none;
+}
+.th-head{
+    color: white;
+}
+
+
+tbody{
+    collapsible-table-row{
+        .td-head{
+        background-color: white;
+        text-align: center;
+     
+        
         }
+       
+       
+    } 
+   collapsible-table-row-detail{
+        
+        collapsible-list-item{
+        collapsible-body{
+            box-shadow: none !important;
+            padding: 0px 70px !important;
+            border-bottom: none !important;
+            table{
+                margin-top: 10px;
+            }
+            div{
+                margin-top: 10px;
+                
+            }
+        }}
     }
+}
+
+collapsible-table{
+    position: relative;
+}
+
+table{
+    position: relative;
 }

@@ -1,10 +1,13 @@
+<span>{{messages}}</span>
 <table>
     <tr>
         <th>Permissions</th>
-        <th *ngFor="let item of rolesInfo">{{item.name}}</th>
+        <th *ngFor="let item of _rolesInfo">{{item.name}}</th>
     </tr>
-    <tr *ngFor="let item of permissionsInfo">
+    <tr *ngFor="let item of _permissionsInfo;let ind=index;">
         <td>{{item.name}}</td>
-        <td *ngFor="let item of rolesInfo"><input type="checkbox" checked="true"></td>
+        <td *ngFor="let role of _rolesInfo"><input type="checkbox"
+                [formControl]="rolesForm.get(role.name).controls[ind]"
+                value="rolesForm.get(role.name).controls[ind].value" (click)="onClickCheckbox(role._id,role.name)"></td>
     </tr>
 </table>

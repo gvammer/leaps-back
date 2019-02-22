@@ -1,20 +1,24 @@
 import { Component, OnInit } from "@angular/core";
 import { PermissionsService } from './permissions.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { Permission, Role } from './permissions.models';
+
 @Component({
     selector: "app-permissions",
     templateUrl: "permissions.view.html",
     styleUrls: ["permissions.view.scss"]
 })
 
+
+
 export class PermissionsView implements OnInit {
 
     private _rolesInfo: Role[] = [];
     private _permissionsInfo: Permission[] = [];
-    private _permissionForm: FormGroup;
+    private _rolesForm: FormGroup;
+    public messages:string;
 
     constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder) { }
 
@@ -24,11 +28,15 @@ export class PermissionsView implements OnInit {
     }
 
     private _formBuilder(): void {
-        this._permissionForm = this._fb.group({});
+        this._rolesForm = this._fb.group({});
+
     }
 
     private _getTableData(): void {
-        const combined = forkJoin(this._getUsersRoles(), this._getUserPermissions());
+        const combined = forkJoin(
+            this._getUsersRoles(),
+            this._getUserPermissions()
+        );
         combined.subscribe(() => {
             this._setControls();
         })
@@ -36,7 +44,24 @@ export class PermissionsView implements OnInit {
 
 
     private _setControls(): void {
-        this._
+        this._rolesInfo.forEach((element: Role, index: number) => {
+            this._rolesForm.addControl(element.name, this._setRoleControls(index))
+        })
+    }
+
+    private _setRoleControls(index: number): FormArray {
+        let roleControls = [];
+        this._permissionsInfo.forEach((element, index) => {
+            roleControls.push(new FormControl(false))
+        })
+        this._permissionsInfo.forEach((permission: Permission, permissionIndex: number) => {
+            this._rolesInfo[index].permissions.forEach((rolePermission: Permission, rolePermIndex: number) => {
+                if (permission._id === rolePermission._id) {
+                    roleControls[permissionIndex].patchValue(true);
+                }
+            })
+        })
+        return this._fb.array(roleControls);
     }
 
 
@@ -54,5 +79,32 @@ export class PermissionsView implements OnInit {
                 this._permissionsInfo = data;
             })
         )
+    }
+
+    public onClickCheckbox(roleId: string, roleName: string): void {
+        setTimeout(() => {
+            let permissions: Permission[] = [];
+            this._rolesForm.get(roleName).value.forEach((element, index) => {
+                if (element) {
+                    permissions.push(this._permissionsInfo[index]);
+                }
+            })
+            this._sendRoles(roleId, permissions);
+        })
+    }
+
+    private _sendRoles(roleId: string, permissions: Permission[]): void {
+        this._permissionsService.putUserPermissions(roleId, {
+            permissions: permissions
+        }).subscribe((data:any)=>{
+        this.messages=data.status;
+console.log(data);
+
+
+        });
+    }
+
+    get rolesForm(): FormGroup {
+        return this._rolesForm;
     }
 }

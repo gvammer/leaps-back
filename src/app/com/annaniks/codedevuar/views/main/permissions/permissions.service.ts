@@ -23,4 +23,13 @@ export class PermissionsService {
         })
         return this._httpClient.get<Permission[]>(this._baseUrl + "users/permissions", { headers });
     }
+
+    public putUserPermissions(roleId:string,body) {
+        let token = this._coolieService.get('token');
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        });
+        return this._httpClient.put(this._baseUrl + "admin/roles/" +roleId + '/permissions' ,body, {headers});
+    }
 }

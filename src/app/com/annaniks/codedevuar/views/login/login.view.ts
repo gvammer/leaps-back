@@ -23,8 +23,8 @@ export class LoginView implements OnInit {
 
     private _formBuilder(): void {
         this.signInGroup = new FormBuilder().group({
-            login: ["1021", Validators.required],
-            password: ["123456", Validators.required]
+            login: ["1027", Validators.required],
+            password: ["111111", Validators.required]
         })
     }
 

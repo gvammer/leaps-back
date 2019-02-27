@@ -11,10 +11,10 @@
                 value="rolesForm.get(role.name).controls[ind].value" (click)="onClickCheckbox(role._id,role.name)"></td>
     </tr>
 </table> -->
-
+<div>
 <collapsible-table [type]="'accordion'" bordered>
 
-    <thead style="background-color:#01675a">
+    <thead style="background-color:#0277bd">
         <collapsible-table-row >
             <th class="th-head" >Permissions</th>
             <th class="th-head" *ngFor="let item of _rolesInfo">{{item.name}}</th>
@@ -22,7 +22,7 @@
     </thead>
 
     <tbody>
-        <collapsible-table-row [detail]="detail1" *ngFor="let item of _permissionsInfo;let ind=index;">
+        <collapsible-table-row class="collapsible" [detail]="detail1" *ngFor="let item of _permissionsInfo;let ind=index;">
             <div class="permisions">
                 <td class="td-header" >{{item.name}}</td>
             </div>
@@ -33,3 +33,5 @@
 
     </tbody>
 </collapsible-table>
+<p-toast></p-toast>
+</div>

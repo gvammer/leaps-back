@@ -28,17 +28,18 @@ export class HumanPangeView implements OnInit {
             .subscribe((data: any) => {
                 let listItemData = data;
                 console.log(listItemData);
-                for (let i of Object.keys(listItemData)) {
+                let listItemDatKeys: string[] = Object.keys(listItemData.information);
+                console.log(listItemDatKeys);
 
-                    if (typeof listItemData[i] === 'object') {
+                for (let i of listItemDatKeys) {
+                    if (typeof listItemData.information[i] === 'object') {
                         let object = {};
                         object['name'] = i;
                         object['value'] = [];
-                        console.log(object);
-                        for (let j of Object.keys(listItemData[i])) {
+                        for (let j of Object.keys((listItemData.information[i]) ? listItemData.information[i] : {})) {
                             let obj = {}
                             obj['name'] = j;
-                            obj['value'] = listItemData[i][j];
+                            obj['value'] = listItemData.information[i][j];
                             object['value'].push(obj);
 
                         }
@@ -46,7 +47,6 @@ export class HumanPangeView implements OnInit {
                     }
                 }
             })
-
     }
 
 

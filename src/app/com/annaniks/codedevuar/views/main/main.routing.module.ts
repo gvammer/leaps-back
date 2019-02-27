@@ -10,6 +10,9 @@ const mainRoutes: Routes = [
             { path: 'human/:id', loadChildren: "src/app/com/annaniks/codedevuar/views/main/human-page/human-page.module#HumanPageModule" },
             { path: "roles", loadChildren: "src/app/com/annaniks/codedevuar/views/main/roles/roles.module#RolesModule" },
             { path: "permissions", loadChildren: "src/app/com/annaniks/codedevuar/views/main/permissions/permissions.module#PermissionsModule" },
+            { path: "organization", loadChildren: "src/app/com/annaniks/codedevuar/views/main/organization/organization.module#OrganizationModule" },
+            { path: "statuses", loadChildren: "src/app/com/annaniks/codedevuar/views/main/statuses/statuses.module#StatusesModule" },
+            { path: "users", loadChildren: "src/app/com/annaniks/codedevuar/views/main/users/users.module#UsersModule" }
         ]
     },
 

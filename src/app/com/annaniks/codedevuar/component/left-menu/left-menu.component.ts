@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from '../../models/models';
 import { MenuService } from '../../service/menu.service';
-MenuService
+
 @Component({
     selector: "app-left-menu",
     templateUrl: "left-menu.component.html",
@@ -16,9 +16,9 @@ export class LeftMenuComponent implements OnInit {
             { icon: "home", title: 'list', routerLink: "/home" },
             { icon: "table_chart", title: 'Roles', routerLink: "/roles" },
             { icon: "local_dining", title: "Permissions", routerLink: "/permissions" },
-            // { icon: "person", title: "stuff", routerLink: "/staff" },
-            // { icon: "place", title: "orders", routerLink: "#" },
-            // { icon: "signal_cellular_alt", title: "statistic", routerLink: "/statistic" },
+            { icon: "person", title: "Organizations", routerLink: "/organization" },
+            { icon: "place", title: "Statuses", routerLink: "/statuses" },
+             { icon: "signal_cellular_alt", title: "users", routerLink: "/users" },
             { icon: "exit_to_app", title: "logout", routerLink: "/login" },
 
         ]

@@ -26,9 +26,9 @@ export class AddRolesModals implements OnInit {
         this.rolseGroup = new FormBuilder().group({
             name: ["", Validators.required],
             title: ["", Validators.required],
-            items: new FormArray([
-                new FormControl('', Validators.required)
-            ])
+            // items: new FormArray([
+            //     new FormControl('', Validators.required)
+            // ])
         })
     }
 
@@ -58,8 +58,8 @@ export class AddRolesModals implements OnInit {
         this._rolesService.postRoles({
             name: this.rolseGroup.value.name,
             title: this.rolseGroup.value.title,
-            items: items,
-            permissions: permissionIds
+            // items: items,
+            //permissions: permissionIds
         }).subscribe((data) => {
             this._dialogRef.close();
             window.location.reload();
@@ -77,5 +77,18 @@ export class AddRolesModals implements OnInit {
         })
 
         return new FormBuilder().array(permissionsArray);
+    }
+
+
+    public addRoles() {
+        
+        this._rolesService.postRoles({
+            name: this.rolseGroup.value.name,
+            title: this.rolseGroup.value.title,
+        }).subscribe((data) => {
+            console.log(data);
+            this._dialogRef.close();
+            window.location.reload();
+        })
     }
 }

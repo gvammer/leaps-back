@@ -1,21 +1,68 @@
-.roles_contet {
-    .top_content {
-        height: 50px;
-        background: #a4afb6;
-        color: white;
-        justify-content: space-around;
+:host  ::ng-deep thead{
+    background: #0277bd;
+  
+}
+:host ::ng-deep collapsible-table-row{
+    height: 50px;
+}
+:host ::ng-deep .mat-expension-panel-header{
+    min-height: 100px !important;
+    height: 100px !important;
+}
+:host ::ng-deep .mat-expansion-indicator{
+    display: none;
+}
+.th-head{
+    color: white;
+}
+
+
+tbody{
+    collapsible-table-row{
+        .td-head{
+        background-color: white;
+        text-align: center;
+     
+        
+        }
+       
+       
+    } 
+   collapsible-table-row-detail{
+        
+        collapsible-list-item{
+        collapsible-body{
+            box-shadow: none !important;
+            padding: 0px 70px !important;
+            border-bottom: none !important;
+            table{
+                margin-top: 10px;
+            }
+            div{
+                margin-top: 10px;
+                
+            }
+        }}
     }
-    .roles_conteiner {
-        .item_content{
-            justify-content: space-around;
-        }
-        height: 40px;
-        background: #0277bd;
-        .item {
-            color: white;
-        }
-        .line {
-            border: 1px solid white;
-        }
-    }
+}
+
+collapsible-table{
+    position: relative;
+}
+
+table{
+    position: relative;
+}
+
+.permisions{
+    flex-direction: column;
+    display: flex;
+}
+.td-header{
+    text-align: center;
+}
+
+.collapsible{
+    background: #f6f0e6;
+    border-bottom: 1px solid #aea5a5;
 }

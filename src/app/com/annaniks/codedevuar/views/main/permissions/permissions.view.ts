@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { Permission, Role } from './permissions.models';
+import {MessageService} from 'primeng/api';
 
 @Component({
     selector: "app-permissions",
@@ -20,7 +21,7 @@ export class PermissionsView implements OnInit {
     private _rolesForm: FormGroup;
     public messages:string;
 
-    constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder) { }
+    constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder,private messageService: MessageService) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -98,6 +99,7 @@ export class PermissionsView implements OnInit {
             permissions: permissions
         }).subscribe((data:any)=>{
         this.messages=data.status;
+       this.messageService.add({severity:'success', summary:'Service Message', detail:this.messages});
 console.log(data);
 
 

@@ -15,11 +15,11 @@
                 </div>
                 <div class="password_content" display-flex  margin-auto>
                         <div class='icon_contet'  display-flex>
-                            <i class="material-icons" margin-auto cursor-pointer (click)="showPassword()">
+                            <i class="material-icons" margin-auto cursor-pointer>
                                     visibility
                             </i>
                         </div>
-                        <input class="password" full-height type="password" [type]="inputType" formControlName="password">
+                        <input class="password" full-height type="password" formControlName="password">
                     </div>
                     <div class="buttton_items" display-flex margin-auto>
                             <button class="save_button" cursor-pointer [ngClass]="{'opacity':signInGroup.invalid}" (click)="loginUser()"><span color-white>Log In</span></button>

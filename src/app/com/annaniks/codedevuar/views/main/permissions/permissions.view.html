@@ -17,16 +17,16 @@
     <thead style="background-color:#0277bd">
         <collapsible-table-row >
             <th class="th-head" >Permissions</th>
-            <th class="th-head" *ngFor="let item of _rolesInfo">{{item.name}}</th>
+            <th class="th-head" *ngFor="let item of rolesInfo">{{item.name}}</th>
         </collapsible-table-row>
     </thead>
 
     <tbody>
-        <collapsible-table-row class="collapsible" [detail]="detail1" *ngFor="let item of _permissionsInfo;let ind=index;">
+        <collapsible-table-row class="collapsible" [detail]="detail1" *ngFor="let item of permissionsInfo;let ind=index;">
             <div class="permisions">
                 <td class="td-header" >{{item.name}}</td>
             </div>
-            <td class="td-header" *ngFor="let role of _rolesInfo"><input type="checkbox"
+            <td class="td-header" *ngFor="let role of rolesInfo"><input type="checkbox"
                 [formControl]="rolesForm.get(role.name).controls[ind]"
                 value="rolesForm.get(role.name).controls[ind].value" (click)="onClickCheckbox(role._id,role.name)"></td>
         </collapsible-table-row>

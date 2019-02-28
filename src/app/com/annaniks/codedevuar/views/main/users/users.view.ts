@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from './users.service';
+import { AddUserModal } from '../../../modals/add-user/add-user.modals';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -12,7 +14,7 @@ export class UsersView implements OnInit {
 
     public usersInfo: any;
 
-    constructor(private _usersService: UsersService) { }
+    constructor(private _usersService: UsersService,private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._getUsers();
@@ -34,9 +36,16 @@ export class UsersView implements OnInit {
         this._usersService.addUsersactive(userId, {
 
         }).subscribe((data) => {
-            console.log(data);
+          //  console.log(data);
 
 
+        })
+    }
+
+    public openAddUser(): void {
+        const dialogRef = this._dialog.open(AddUserModal, {
+            width: "686px",
+            height: "686px",
         })
     }
 }

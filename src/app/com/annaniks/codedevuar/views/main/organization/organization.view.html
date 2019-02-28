@@ -15,14 +15,18 @@
             </collapsible-table-row>
         </thead>
 
-        <tbody>
-            <collapsible-table-row class="collapsible" [detail]="detail1"
-                *ngFor="let item of organizationsData;let ind=index">
+        <tbody   *ngFor="let item of organizationsData;let ind=index">
+            <collapsible-table-row class="collapsible" [detail]="detail1">
                 <td class="td-header">{{ind+1}}</td>
                 <td class="td-header">{{item.name}}</td>
                 <td class="td-header">{{item.title}}</td>
-            </collapsible-table-row>
-
+                </collapsible-table-row>
+                <collapsible-table-row-detail #detail1>
+                    <div *ngFor="let dep of item.departments">
+                            <td  class="td-header">{{dep.name}}</td>
+                    </div>
+                 
+                </collapsible-table-row-detail>
         </tbody>
     </collapsible-table>
 </div>

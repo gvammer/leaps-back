@@ -1,0 +1,81 @@
+<div class="signIn_content" full-width full-height>
+    <div class="signIn_container" width-75 margin-auto>
+        <div class="top_content">
+            <span font-weight-bold>SignIn</span>
+        </div>
+        <div class="data_content" margin-auto>
+            <form [formGroup]="usersGroup">
+                <div class="firstName_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="firstName" full-height formControlName="firstName" placeholder="firstName">
+                </div>
+
+                <div class="lastName_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="lastName" full-height formControlName="lastName" placeholder="lastName">
+                </div>
+
+
+                <div class="title_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="title" full-height formControlName="title" placeholder="title">
+                </div>
+
+                <div class="name_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="name" full-height formControlName="name" placeholder="name">
+                </div>
+                <div class="password_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="password" full-height formControlName="password" placeholder="password">
+                </div>
+                <div class="roles_content">
+                    <span>Roles:</span>
+                    <div *ngFor="let item of rolesInfo">
+                        <input formControlName="roles" [value]="item._id" type="radio">
+                        <span>{{item.name}}</span>
+
+                    </div>
+                </div>
+                <div class="oganization_content">
+                    <span>oganization:</span>
+                    <div *ngFor="let item of organizationInfo">
+                        <input formControlName="organization" type="radio" [value]="item._id">
+                        <span>{{item.name}}</span>
+                        <div class="department_content">
+                            <div *ngFor="let dep of item.departments">
+                            <input formControlName="department" type="radio" [value]="dep._id">
+                            <span >{{dep.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttton_items" display-flex margin-auto>
+                    <button class="save_button" cursor-pointer [ngClass]="{'opacity':usersGroup.invalid}"
+                        (click)="postUsers()"><span color-white>SignIn In</span></button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

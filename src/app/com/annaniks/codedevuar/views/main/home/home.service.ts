@@ -17,7 +17,7 @@ export class HomeService {
             'token': token,
         })
 
-        return this._httpClient.get(this._baseUrl + "users/certificates", { headers });
+        return this._httpClient.get(this._baseUrl + "admin/certificates", { headers });
     }
 
     public getUserById(id: string): Observable<object> {
@@ -26,6 +26,6 @@ export class HomeService {
             'Content-type': 'application/json',
             'token': token,
         })
-        return this._httpClient.get(this._baseUrl + "users/certificates/" + id, { headers })
+        return this._httpClient.get(this._baseUrl + "admin/certificates/" + id, { headers })
     }
 }

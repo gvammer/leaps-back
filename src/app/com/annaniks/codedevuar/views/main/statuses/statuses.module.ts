@@ -7,12 +7,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {ReactiveFormsModule,FormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { CollapsibleModule } from 'angular2-collapsible';
+import { UpdateStatusesModals } from '../../../modals/update-statuses/update-statuses.modals';
 
 @NgModule({
-    declarations: [StausesView,AddStatusesModals],
+    declarations: [StausesView,AddStatusesModals,UpdateStatusesModals],
     imports: [StatusesRoutingModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
     providers: [StatusesService],
-    entryComponents:[AddStatusesModals]
+    entryComponents:[AddStatusesModals,UpdateStatusesModals]
 })
 
 export class StatusesModule {

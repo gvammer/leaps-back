@@ -55,6 +55,7 @@ export class AddStatusesModals implements OnInit {
             canGoTo: selectedStatuses
         }).subscribe(data => {
             this._dialogRef.close();
+            location.reload();
         })
     }
 

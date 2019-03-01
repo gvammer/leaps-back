@@ -1,0 +1,41 @@
+<div class="add_content" full-width>
+    <div class="add_conteiner" width-75 margin-auto>
+        <div class="wrapper">
+            <form [formGroup]="statusesGroup">
+                <div class="name_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="name" full-height formControlName="name" placeholder="name">
+                </div>
+                <div class="description_content" display-flex margin-auto>
+                    <div class='icon_contet' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="description" full-height formControlName="description" placeholder="description">
+                </div>
+                <!-- <label>Roles</label>
+                <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
+                    <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
+                </div>
+                <div class="line" full-width></div>
+                
+                <label>Statuses</label>
+                <div class="congo" *ngFor="let status of statusesGroup.get('statuses')?.controls;let ind=index;">
+                    <input placholder="statuses" type="checkbox" [formControl]="status"
+                        value="item._id"><span>{{statusData[ind].name}}</span>
+                </div> -->
+
+                <div class="buttton_items" display-flex margin-auto>
+                    <button class="save_button" cursor-pointer [ngClass]="{'opacity':statusesGroup.invalid}"
+                        (click)="updateStutuses()"><span color-white>Save</span></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

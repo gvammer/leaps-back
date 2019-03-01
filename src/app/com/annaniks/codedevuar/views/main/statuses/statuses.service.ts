@@ -25,10 +25,19 @@ export class StatusesService {
             'Content-type': 'application/json',
             'token': token,
         });
-        return this._httpClient.get(this._baseUrl + "users/statuses", { headers })
+        return this._httpClient.get(this._baseUrl + "users/statuses?limit=1000", { headers })
     }
 
     public getUserRoles() {
         return this._httpClient.get(this._baseUrl + "users/roles?limit=1000");
+    }
+
+    public updateStutuses(statusId: string, body) {
+        let token = this._cookieService.get('token');
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        });
+        return this._httpClient.put(this._baseUrl + "admin/statuses/" + statusId, body, { headers })
     }
 }

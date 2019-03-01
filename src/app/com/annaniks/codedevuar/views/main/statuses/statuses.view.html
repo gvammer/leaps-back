@@ -12,7 +12,8 @@
                 <collapsible-table-row>
                     <th class="th-head">index</th>
                     <th class="th-head">name</th>
-                    <th class="th-head">title</th>
+                    <th class="th-head">description</th>
+                    <th class="th-head">edit</th>
                 </collapsible-table-row>
             </thead>
 
@@ -21,7 +22,10 @@
                     *ngFor="let item of statusesItems;let ind=index">
                     <td class="td-header">{{ind+1}}</td>
                     <td class="td-header">{{item.name}}</td>
-                    <td class="td-header">{{item.title}}</td>
+                    <td class="td-header">{{item.description}}</td>
+                    <td class="td-header"><i class="material-icons" cursor-pointer (click)="openUpdateStatusModals(item)">
+                        create
+                        </i></td>
                 </collapsible-table-row>
 
 

@@ -76,7 +76,7 @@ export class AddUserModal implements OnInit {
             department: this.usersGroup.value.department,
         }).subscribe((data) => {
             console.log(data);
-            this._dialogRef.close();
+            this._dialogRef.close('login');
 
         })
     }

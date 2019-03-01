@@ -29,6 +29,12 @@ export class StausesView implements OnInit {
             data: {
                 data: this.statusesItems,
             }
+        });
+        dialogRef.afterClosed()
+        .subscribe(data=>{
+            if(data=='add'){
+                this._getStatuses();
+            }
         })
     }
 

@@ -46,6 +46,12 @@ export class UsersView implements OnInit {
         const dialogRef = this._dialog.open(AddUserModal, {
             width: "686px",
             height: "686px",
+        });
+        dialogRef.afterClosed()
+        .subscribe(data=>{
+            if(data=="login"){
+                this._getUsers();
+            }
         })
     }
 }

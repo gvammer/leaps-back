@@ -54,8 +54,7 @@ export class AddStatusesModals implements OnInit {
             allowRoles: selectedRoles,
             canGoTo: selectedStatuses
         }).subscribe(data => {
-            this._dialogRef.close();
-            location.reload();
+            this._dialogRef.close('add');
         })
     }
 

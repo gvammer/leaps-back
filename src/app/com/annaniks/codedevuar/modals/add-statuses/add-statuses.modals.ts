@@ -55,8 +55,6 @@ export class AddStatusesModals implements OnInit {
             canGoTo: selectedStatuses
         }).subscribe(data => {
             this._dialogRef.close();
-            console.log(data);
-
         })
     }
 
@@ -65,7 +63,6 @@ export class AddStatusesModals implements OnInit {
             .subscribe((data: any) => {
                 this.rolesData = data;
                 this._setControls();
-
             })
     }
 

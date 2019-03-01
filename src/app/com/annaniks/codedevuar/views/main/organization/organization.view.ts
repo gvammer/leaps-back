@@ -37,4 +37,18 @@ export class OrganizationView implements OnInit {
         })
     }
 
+    public onClickEdit(item): void {
+        const dialogRef = this._dialog.open(AddOrganization, {
+            width: "686px",
+            height: "444px",
+            data: {
+                editable: true,
+                item: item
+            }
+        })
+        dialogRef.afterClosed().subscribe((data) => {
+            console.log(data);
+        })
+    }
+
 }

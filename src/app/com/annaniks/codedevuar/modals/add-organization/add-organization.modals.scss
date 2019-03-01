@@ -3,7 +3,8 @@
         margin-top: 20px;
         .name_content,
         .title_content,
-        .item_content,.item_congo {
+        .item_content,
+        .item_congo {
             width: 391.3px;
             height: 42px;
             object-fit: contain;
@@ -41,12 +42,22 @@
             }
         }
     }
+    .form_group {
+        width: 391.3px;
+        margin: 0 auto;
+        .label {
+            font-size: 13px;
+            color: darkblue;
+            margin: 10px 0;
+            display: block;
+        }
+    }
 }
 
 .title_content,
 .item_content,
 .permissions_content {
-    margin-top: 20px;
+ 
 }
 
 .permissions_content {

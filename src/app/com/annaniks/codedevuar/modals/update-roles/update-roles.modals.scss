@@ -2,7 +2,8 @@
     .add_conteiner {
         margin-top: 20px;
         .name_content,
-        .description_content {
+        .title_content,
+        .item_content {
             width: 391.3px;
             height: 42px;
             object-fit: contain;
@@ -15,7 +16,9 @@
                 color: #b1bace;
             }
             .name,
-            .description {
+            .title,
+            .item,
+            .permissions {
                 width: calc(100% - 47.3px);
                 border: none;
             }
@@ -40,7 +43,9 @@
     }
 }
 
-.description_content {
+.title_content,
+.item_content,
+.permissions_content {
     margin-top: 20px;
 }
 
@@ -50,17 +55,4 @@
 
 .opacity {
     opacity: 0.5;
-}
-
-.congo {
-    display: flex;
-}
-
-.line {
-    border: 1px solid black;
-}
-
-.wrapper{
-    width: 391px;
-    margin:0 auto;
 }

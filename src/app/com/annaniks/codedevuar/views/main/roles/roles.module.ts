@@ -8,13 +8,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CollapsibleModule } from 'angular2-collapsible';
 import { AddPermissions } from '../../../modals/add-permissions/add-permissions.component';
+import { UpdateRolesModals } from '../../../modals/update-roles/update-roles.modals';
+
 
 
 @NgModule({
-    declarations: [RolesView, AddRolesModals,AddPermissions],
+    declarations: [RolesView, AddRolesModals,AddPermissions,UpdateRolesModals],
     imports: [RolesRoutingModule, CommonModule,MatDialogModule,FormsModule,ReactiveFormsModule,CollapsibleModule],
     providers: [RolesService],
-    entryComponents: [AddRolesModals,AddPermissions]
+    entryComponents: [AddRolesModals,AddPermissions,UpdateRolesModals]
 })
 
 export class RolesModule {

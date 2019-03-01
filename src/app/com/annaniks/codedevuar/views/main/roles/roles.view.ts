@@ -3,6 +3,7 @@ import { RolesService } from './roles.service';
 import { AddRolesModals } from '../../../modals/roles-add/roles-add.modals';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPermissions } from '../../../modals/add-permissions/add-permissions.component';
+import { UpdateRolesModals } from '../../../modals/update-roles/update-roles.modals';
 
 @Component({
     selector: "app-roles",
@@ -42,5 +43,20 @@ export class RolesView implements OnInit {
             height: "400px",
         })
 
+    }
+    public openCreatRoles(item): void {
+        const dialogRef = this._matDialog.open(UpdateRolesModals, {
+            width: "686px",
+            height: "444px",
+            data: {
+                data: item,
+            }
+        });
+        dialogRef.afterClosed()
+            .subscribe(data => {
+                if (data == "update") {
+                    this._getUsersRoles();
+                }
+            })
     }
 }

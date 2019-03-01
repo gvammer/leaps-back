@@ -23,4 +23,13 @@ export class OrganizationService {
         })
         return this._httpClient.post(this._baseUrl + "admin/organizations", body, { headers })
     }
+
+    putOrganization(id: string, body) {
+        let token = this._cookieService.get('token')
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        })
+        return this._httpClient.put(this._baseUrl + "admin/organizations/" + id, body, { headers })
+    }
 }

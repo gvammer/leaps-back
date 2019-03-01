@@ -21,7 +21,7 @@ export class PermissionsView implements OnInit {
     private _rolesForm: FormGroup;
     public messages: string;
 
-    constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder, private messageService: MessageService) { }
+    constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder, private _messageService: MessageService) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -99,7 +99,7 @@ export class PermissionsView implements OnInit {
             permissions: permissions
         }).subscribe((data: any) => {
             this.messages = data.status;
-            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: this.messages });
+            this._messageService.add({ severity: 'success', summary: 'Service Message', detail: this.messages });
             console.log(data);
 
 

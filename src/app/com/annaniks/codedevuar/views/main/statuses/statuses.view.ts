@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { StatusesService } from './statuses.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddStatusesModals } from '../../../modals/add-statuses/add-statuses.modals';
-import { UpdateStatusesModals } from '../../../modals/update-statuses/update-statuses.modals';
+import { UpdateStatusesModals,AddStatusesModals } from '../../../modals';
+
 
 
 @Component({

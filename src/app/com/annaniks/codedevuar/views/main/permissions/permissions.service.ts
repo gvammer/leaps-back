@@ -1,8 +1,8 @@
 import { Injectable, Inject } from "@angular/core";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Permission, Role } from './permissions.models';
 import { Observable } from 'rxjs';
+import { Role, Permission } from '../../../models/models';
 
 @Injectable()
 

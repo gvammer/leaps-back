@@ -3,8 +3,8 @@ import { PermissionsService } from './permissions.service';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
-import { Permission, Role } from './permissions.models';
 import { MessageService } from 'primeng/api';
+import { Role, Permission } from '../../../models/models';
 
 @Component({
     selector: "app-permissions",

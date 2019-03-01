@@ -17,7 +17,7 @@ export class HomeService {
             'token': token,
         })
 
-        return this._httpClient.get(this._baseUrl + "admin/certificates", { headers });
+        return this._httpClient.get(this._baseUrl + "admin/certificates?limit=1000", { headers });
     }
 
     public getUserById(id: string): Observable<object> {

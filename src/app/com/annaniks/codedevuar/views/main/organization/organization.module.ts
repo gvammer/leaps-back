@@ -4,9 +4,9 @@ import { OrganizationRoutingModule } from './organization.routing.module';
 import { OrganizationService } from './organization.service';
 import { CommonModule } from '@angular/common';
 import { CollapsibleModule } from 'angular2-collapsible';
-import { AddOrganization } from '../../../modals/add-organization/add-organization.modals';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { AddOrganization } from '../../../modals';
 
 
 

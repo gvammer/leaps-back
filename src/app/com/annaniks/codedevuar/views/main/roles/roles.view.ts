@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
-import { AddRolesModals } from '../../../modals/roles-add/roles-add.modals';
 import { MatDialog } from '@angular/material/dialog';
-import { AddPermissions } from '../../../modals/add-permissions/add-permissions.component';
-import { UpdateRolesModals } from '../../../modals/update-roles/update-roles.modals';
+import { UpdateRolesModals, AddPermissions, AddRolesModals } from '../../../modals';
 
 @Component({
     selector: "app-roles",

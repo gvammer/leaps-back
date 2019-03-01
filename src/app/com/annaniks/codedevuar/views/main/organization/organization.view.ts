@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { OrganizationService } from './organization.service';
-import { AddOrganization } from '../../../modals/add-organization/add-organization.modals';
 import { MatDialog } from '@angular/material/dialog';
+import { AddOrganization } from '../../../modals';
 
 @Component({
     selector: "app-organization",

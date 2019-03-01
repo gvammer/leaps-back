@@ -7,8 +7,8 @@ import { AddRolesModals } from '../../../modals/roles-add/roles-add.modals';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CollapsibleModule } from 'angular2-collapsible';
-import { AddPermissions } from '../../../modals/add-permissions/add-permissions.component';
-import { UpdateRolesModals } from '../../../modals/update-roles/update-roles.modals';
+import { UpdateRolesModals, AddPermissions } from '../../../modals';
+
 
 
 

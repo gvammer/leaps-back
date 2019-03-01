@@ -9,9 +9,11 @@ import { CollapsibleModule } from 'angular2-collapsible';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 
+
 @NgModule({
     declarations: [PermissionsView],
     imports: [PermissionsRoutingModule, CommonModule, ReactiveFormsModule,MatTableModule,CollapsibleModule,ToastModule],
+    entryComponents:[],
     providers: [PermissionsService,MessageService]
 })
 

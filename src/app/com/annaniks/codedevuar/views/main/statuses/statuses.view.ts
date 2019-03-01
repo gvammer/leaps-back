@@ -52,7 +52,7 @@ export class StausesView implements OnInit {
             width: "686px",
             height: "444px",
             data: {
-                data: item
+                data: item,
             }
         });
         dialogRef.afterClosed()

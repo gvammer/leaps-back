@@ -18,7 +18,7 @@
                     </div>
                     <input class="description" full-height formControlName="description" placeholder="description">
                 </div>
-                <!-- <label>Roles</label>
+                <label>Roles</label>
                 <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
                     <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="congo" *ngFor="let status of statusesGroup.get('statuses')?.controls;let ind=index;">
                     <input placholder="statuses" type="checkbox" [formControl]="status"
                         value="item._id"><span>{{statusData[ind].name}}</span>
-                </div> -->
+                </div>
 
                 <div class="buttton_items" display-flex margin-auto>
                     <button class="save_button" cursor-pointer [ngClass]="{'opacity':statusesGroup.invalid}"

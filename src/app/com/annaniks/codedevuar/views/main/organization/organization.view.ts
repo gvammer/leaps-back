@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { OrganizationService } from './organization.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddOrganization } from '../../../modals';
+import { Organization, Departments } from '../../../models/models';
 
 @Component({
     selector: "app-organization",
@@ -11,8 +12,8 @@ import { AddOrganization } from '../../../modals';
 
 export class OrganizationView implements OnInit {
 
-    public organizationsData: any;
-    public departments: any;
+    public organizationsData: Organization;
+    public departments:Departments;
     constructor(private _organizationService: OrganizationService, private _dialog: MatDialog) { }
 
     ngOnInit() {
@@ -22,7 +23,7 @@ export class OrganizationView implements OnInit {
 
     private _gtusersOrganizations() {
         this._organizationService.getusersOrganization()
-            .subscribe((data: any) => {
+            .subscribe((data:Organization) => {
                 this.organizationsData = data;
                 console.log(data);
 

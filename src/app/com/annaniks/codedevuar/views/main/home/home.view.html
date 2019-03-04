@@ -1,5 +1,25 @@
 <div class="table_content" full-width>
-    <app-list>
-        <app-list-item *ngFor="let item of certificates" [item]="item"></app-list-item>
-    </app-list>
+    <collapsible-table [type]="'accordion'" bordered>
+
+        <thead style="background-color:#0277bd">
+            <collapsible-table-row style="height:50px">
+                <th class="th-head">index</th>
+                <th class="th-head">firstName</th>
+                <th class="th-head">sex</th>
+                <th class="th-head">country</th>
+                <th class="th-head"> plurality</th>
+            </collapsible-table-row>
+        </thead>
+
+        <tbody>
+            <collapsible-table-row class="collapsible" [detail]="detail1"  *ngFor="let item of certificates;let ind=index"  (click)="openHumanItems(item._id)">
+                <td class="td-header">{{ind+1}}</td>
+                <td class="td-header"> {{item.information.child?.firstName}}</td>
+                <td class="td-header"> {{item.information.child?.sex}}</td>
+                <td class="td-header"> {{item.information.child?.country}}</td>
+                <td class="td-header"> {{item.information.child?.plurality}}</td>
+            </collapsible-table-row>
+
+        </tbody>
+    </collapsible-table>
 </div>

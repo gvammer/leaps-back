@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HomeService } from './home.service';
+import { Certificates } from '../../../models/models';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,9 +11,10 @@ import { HomeService } from './home.service';
 })
 
 export class HomeView implements OnInit {
-    public certificates: Array<any>;
+    public certificates: Certificates;
+    private _isInnerOpen: boolean = false;
 
-    constructor(private _homeService: HomeService) { }
+    constructor(private _homeService: HomeService,private _router:Router) { }
 
 
     ngOnInit() {
@@ -20,11 +23,30 @@ export class HomeView implements OnInit {
 
     private _getUser() {
         this._homeService.getUser()
-            .subscribe((data: any) => {
+            .subscribe((data: Certificates) => {
                 this.certificates = data;
-                console.log(this.certificates);
+                console.log(this.certificates, "certificates");
 
             })
+    }
+
+
+    toggleInner(): void {
+        this._isInnerOpen = !this._isInnerOpen;
+    }
+
+    get listItemData() {
+        return this.certificates;
+    }
+
+    get isInnerOpen(): boolean {
+        return this._isInnerOpen;
+    }
+
+    public openHumanItems(_id:string) {
+        console.log(_id);
+        
+        this._router.navigate(['human/' + _id]);
     }
 
 }

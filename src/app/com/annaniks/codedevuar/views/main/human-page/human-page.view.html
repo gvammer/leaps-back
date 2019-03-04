@@ -1,10 +1,13 @@
 <div class="inner">
     <div class="back">
-            <i class="material-icons" cursor-pointer routerLink="/home">
-                    reply
-                    </i>
+        <i class="material-icons" cursor-pointer routerLink="/home">
+            reply
+        </i>
     </div>
+
     <div class="inner_content">
+        <p><b>Id: </b>{{id}}</p>
+        <p><b>Status: </b>{{status}}</p>
         <div class="container" *ngFor="let item of listItemData">
             <div class="name" font-family-Roboto>{{item.name}}:</div>
             <div class="item" *ngFor="let value of item.value"> <span class="item_name">{{value.name}}: </span>

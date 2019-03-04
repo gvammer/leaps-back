@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateRolesModals, AddPermissions, AddRolesModals } from '../../../modals';
+import { Role } from '../../../models/models';
 
 @Component({
     selector: "app-roles",
@@ -11,7 +12,7 @@ import { UpdateRolesModals, AddPermissions, AddRolesModals } from '../../../moda
 
 export class RolesView implements OnInit {
 
-    public rolesDada: any;
+    public rolesDada: Role;
     constructor(private _rolesService: RolesService, private _matDialog: MatDialog) { }
 
     ngOnInit() {
@@ -21,7 +22,7 @@ export class RolesView implements OnInit {
 
     private _getUsersRoles() {
         this._rolesService.getUserRoles()
-            .subscribe((data: any) => {
+            .subscribe((data:Role) => {
                 this.rolesDada = data;
                 console.log(this.rolesDada);
 

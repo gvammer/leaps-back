@@ -1,0 +1,20 @@
+.content {
+    position: relative;
+    .close{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .top_content{
+        flex-direction: column;
+    .conteiner {
+        .uniqueId_text {
+            color: #0277bd;
+            font-size: 30px;
+        }
+    }
+    .uniqueId{
+        font-size: 30px;
+    }
+}
+}

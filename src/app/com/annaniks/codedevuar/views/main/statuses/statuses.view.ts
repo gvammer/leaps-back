@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { StatusesService } from './statuses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateStatusesModals,AddStatusesModals } from '../../../modals';
+import { Statuses } from '../../../models/models';
 
 
 
@@ -13,7 +14,7 @@ import { UpdateStatusesModals,AddStatusesModals } from '../../../modals';
 
 export class StausesView implements OnInit {
 
-    public statusesItems: any;
+    public statusesItems: Statuses;
 
     constructor(private _statusesService: StatusesService, private _dialog: MatDialog) { }
 
@@ -40,7 +41,7 @@ export class StausesView implements OnInit {
 
     private _getStatuses() {
         this._statusesService.getStatuses()
-            .subscribe((data) => {
+            .subscribe((data:Statuses) => {
                 this.statusesItems = data;
                 console.log(data);
 

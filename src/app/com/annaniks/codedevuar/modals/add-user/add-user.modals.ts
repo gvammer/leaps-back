@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../views/main/users/users.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { UniqueIdModal } from '..';
 
 
 
@@ -21,7 +22,7 @@ export class AddUserModal implements OnInit {
     public selectedRole: string;
 
 
-    constructor(private _usersService: UsersService, private _dialogRef: MatDialogRef<AddUserModal>) { }
+    constructor(private _usersService: UsersService, private _dialogRef: MatDialogRef<AddUserModal>, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -63,8 +64,6 @@ export class AddUserModal implements OnInit {
 
 
     public postUsers() {
-        console.log(this.usersGroup.value);
-
         this._usersService.postUsers({
             firstName: this.usersGroup.value.firstName,
             lastName: this.usersGroup.value.lastName,
@@ -74,9 +73,16 @@ export class AddUserModal implements OnInit {
             role: this.usersGroup.value.roles,
             organization: this.usersGroup.value.organization,
             department: this.usersGroup.value.department,
-        }).subscribe((data) => {
+        }).subscribe((data: any) => {
             console.log(data);
             this._dialogRef.close('login');
+            const _dialogRef = this._dialog.open(UniqueIdModal, {
+                width: "444px",
+                height: "350px",
+                data: {
+                    data: data.uniqueID,
+                }
+            })
 
         })
     }

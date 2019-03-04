@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../home/home.service';
+import { Certificates } from '../../../models/models';
 
 @Component({
     selector: "app-human-page",
@@ -9,7 +10,7 @@ import { HomeService } from '../home/home.service';
 })
 
 export class HumanPangeView implements OnInit {
-
+    public status: string;
     private _id: string;
     public listItemData: any[] = [];
 
@@ -25,12 +26,10 @@ export class HumanPangeView implements OnInit {
 
     private _userScertificatesById() {
         this._homeService.getUserById(this._id)
-            .subscribe((data: any) => {
+            .subscribe((data: Certificates) => {
                 let listItemData = data;
-                console.log(listItemData);
+                this.status = listItemData.information['status'];
                 let listItemDatKeys: string[] = Object.keys(listItemData.information);
-                console.log(listItemDatKeys);
-
                 for (let i of listItemDatKeys) {
                     if (typeof listItemData.information[i] === 'object') {
                         let object = {};
@@ -47,6 +46,10 @@ export class HumanPangeView implements OnInit {
                     }
                 }
             })
+    }
+
+    get id(): string {
+        return this._id
     }
 
 

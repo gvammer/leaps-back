@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'primeng/api';
 import { AddUserModal } from '../../../modals';
+import { Users } from '../../../models/models';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { AddUserModal } from '../../../modals';
 
 export class UsersView implements OnInit {
 
-    public usersInfo: any;
-    private _messages:any;
+    public usersInfo: Users[];
+    private _messages;
 
     constructor(private _usersService: UsersService,private _dialog: MatDialog,private _messageService:MessageService) { }
 
@@ -24,9 +25,11 @@ export class UsersView implements OnInit {
 
     private _getUsers() {
         this._usersService.getUsers()
-            .subscribe(data => {
+            .subscribe((data:Users[])=>{
                 this.usersInfo = data;
+            console.log(this.usersInfo);
             })
+         
     }
 
     public addUsersactive(index) {
@@ -37,11 +40,11 @@ export class UsersView implements OnInit {
 
         this._usersService.addUsersactive(userId, {
 
-        }).subscribe((data:any) => {
-            this._messages = data.status;
+        }).subscribe((data) => {
+            this._messages = data;
             this._messageService.add({ severity: 'success', summary: 'Service Message', detail: this._messages });
             this._getUsers();
-           console.log(data);
+           console.log(this._messages,"messages");
 
 
         })

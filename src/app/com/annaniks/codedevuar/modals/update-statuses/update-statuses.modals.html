@@ -22,12 +22,26 @@
                 <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
                     <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
                 </div>
+
                 <div class="line" full-width></div>
-                
+
                 <label>Statuses</label>
                 <div class="congo" *ngFor="let status of statusesGroup.get('statuses')?.controls;let ind=index;">
                     <input placholder="statuses" type="checkbox" [formControl]="status"
                         value="item._id"><span>{{statusData[ind].name}}</span>
+                </div>
+                <div>
+                    <span>allowRoles</span>
+
+                    <div class="allowRoles_content" display-flex margin-auto>
+
+                        <div class='icon_contet' display-flex>
+                            <i class="material-icons" margin-auto cursor-pointer (click)="addNewItem()">
+                                add
+                            </i>
+                        </div>
+                        <input class="allowRoles" full-height formControlName="allowRoles" placeholder="allowRoles">
+                    </div>
                 </div>
 
                 <div class="buttton_items" display-flex margin-auto>

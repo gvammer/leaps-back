@@ -28,6 +28,7 @@ export class HomeView implements OnInit {
                 console.log(this.certificates, "certificates");
 
             })
+            
     }
 
 
@@ -44,8 +45,6 @@ export class HomeView implements OnInit {
     }
 
     public openHumanItems(_id:string) {
-        console.log(_id);
-        
         this._router.navigate(['human/' + _id]);
     }
 

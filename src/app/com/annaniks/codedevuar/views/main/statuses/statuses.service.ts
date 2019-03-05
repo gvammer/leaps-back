@@ -43,6 +43,8 @@ export class StatusesService {
     }
 
     public updateStutuses(statusId: string, body) {
+        console.log(body, '------');
+        
         let token = this._cookieService.get('token');
         let headers = new HttpHeaders({
             'Content-type': 'application/json',

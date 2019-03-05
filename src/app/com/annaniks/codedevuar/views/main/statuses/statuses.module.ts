@@ -7,10 +7,11 @@ import {ReactiveFormsModule,FormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { CollapsibleModule } from 'angular2-collapsible';
 import { UpdateStatusesModals, AddStatusesModals } from '../../../modals';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
     declarations: [StausesView,AddStatusesModals,UpdateStatusesModals],
-    imports: [StatusesRoutingModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
+    imports: [StatusesRoutingModule,MultiSelectModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
     providers: [StatusesService],
     entryComponents:[AddStatusesModals,UpdateStatusesModals]
 })

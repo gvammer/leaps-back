@@ -16,8 +16,8 @@ import { Role, Permission } from '../../../models/models';
 
 export class PermissionsView implements OnInit {
 
-    private _rolesInfo: Role[] = [];
-    private _permissionsInfo: Permission[] = [];
+    private _rolesInfo: Role[];
+    private _permissionsInfo: Permission[];
     private _rolesForm: FormGroup;
     public messages: string;
 
@@ -39,6 +39,7 @@ export class PermissionsView implements OnInit {
             this._getUserPermissions()
         );
         combined.subscribe(() => {
+            
             this._setControls();
         })
     }

@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { StatusesService } from '../../views/main/statuses/statuses.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Permission } from '../../models/models';
 
 @Component({
     selector: "add-statuses",
@@ -11,10 +12,29 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export class AddStatusesModals implements OnInit {
 
+    // public statusesGroup: FormGroup;
+    // constructor() { }
+
+    // ngOnInit() {
+    //     this._formBuilder();
+    // }
+
+    // private _formBuilder() {
+    //     this.statusesGroup = new FormBuilder().group({
+    //         name: ["", Validators.required],
+    //         description: ["", Validators.required],
+    //     })
+    // }
+
     public statusesGroup: FormGroup;
     public statusData: any;
-    public rolesData: any;
-
+    public rolesData: {id:string, permissions:string[]}[] = [];
+    public roles = [];
+    public permisions : {label:string, value:string}[] = [
+        {label:"Write", value:'status:write'},
+        {label:"Read", value:'status:read'},
+        {label:"Set", value:'status:set'},
+    ]
 
     constructor(@Inject(MAT_DIALOG_DATA) private data, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<AddStatusesModals>) {
         this.statusData = this.data.data;
@@ -33,6 +53,9 @@ export class AddStatusesModals implements OnInit {
         })
     }
 
+    public addNewRole(){
+        this.rolesData.push({id:"", permissions:[]})
+    }
     public postAdminStatuses() {
         let rolecontrols = this.statusesGroup.get('roles')['controls'];
         let statuscontrols = this.statusesGroup.get('statuses')['controls'];
@@ -40,7 +63,7 @@ export class AddStatusesModals implements OnInit {
         let selectedStatuses = [];
         for (var i = 0; i < rolecontrols.length; i++) {
             if (rolecontrols[i].value == true) {
-                selectedRoles.push(this.rolesData[i]._id);
+                selectedRoles.push(this.rolesData[i].id);
             }
         }
         for (var i = 0; i < statuscontrols.length; i++) {
@@ -52,7 +75,7 @@ export class AddStatusesModals implements OnInit {
             name: this.statusesGroup.value.name,
             description: this.statusesGroup.value.description,
             allowRoles: selectedRoles,
-            canGoTo: selectedStatuses
+            canComeFrom: selectedStatuses
         }).subscribe(data => {
             this._dialogRef.close('add');
         })
@@ -61,7 +84,10 @@ export class AddStatusesModals implements OnInit {
     private _getUserRoles() {
         this._statusesService.getUserRoles()
             .subscribe((data: any) => {
-                this.rolesData = data;
+                console.log(data);
+                this.roles  = data.map((item)=>({id:item._id,name:item.name}))
+             //  this.rolesData = data;
+
                 this._setControls();
             })
     }

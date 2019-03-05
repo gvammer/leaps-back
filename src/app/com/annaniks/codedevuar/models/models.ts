@@ -15,9 +15,9 @@ export interface Permission {
 
 export interface Role {
     createdAt: string;
-    items: Item[]
     name: string;
-    permissions: Permission[]
+    permissions: Permission[];
+    items: Item[];
     title: string;
     updatedAt: string;
     _id: string;
@@ -174,7 +174,7 @@ interface System {
 
 export interface Organization {
     createdAt: string;
-    departments: Departments;
+    departments: Departments[];
     name: string;
     title: string;
     updatedAt: string;
@@ -190,7 +190,7 @@ export interface Departments {
 
 export interface Statuses {
     allowRoles: Role[];
-    canGoTo: CanGoTo[];
+    canComeFrom: canComeFrom[];
     createdAt: string;
     description: string;
     name: string;
@@ -199,9 +199,9 @@ export interface Statuses {
 }
 
 
-interface CanGoTo {
+interface canComeFrom {
     allowRoles: object;
-    canGoTo: Object;
+    canComeFrom: Object;
     createdAt: string;
     description: string;
     name: string;

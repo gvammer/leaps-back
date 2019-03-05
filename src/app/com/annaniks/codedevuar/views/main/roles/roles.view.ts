@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateRolesModals, AddPermissions, AddRolesModals } from '../../../modals';
-import { Role } from '../../../models/models';
+import { Role, Permission } from '../../../models/models';
+
 
 @Component({
     selector: "app-roles",
@@ -22,9 +23,9 @@ export class RolesView implements OnInit {
 
     private _getUsersRoles() {
         this._rolesService.getUserRoles()
-            .subscribe((data:Role) => {
+            .subscribe((data: Role) => {
                 this.rolesDada = data;
-                console.log(this.rolesDada);
+                console.log(this.rolesDada.name);
 
             })
     }

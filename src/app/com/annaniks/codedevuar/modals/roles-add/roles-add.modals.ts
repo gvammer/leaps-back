@@ -38,7 +38,8 @@ export class AddRolesModals implements OnInit {
             .subscribe((data: any) => {
                 this.permissionsData = data;
                 this.rolseGroup.addControl('permissions', this._buildPermisions())
-            })
+            });
+            
     }
 
     public postRoles() {

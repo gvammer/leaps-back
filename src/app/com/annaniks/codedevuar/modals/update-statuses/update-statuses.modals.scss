@@ -2,7 +2,7 @@
     .add_conteiner {
         margin-top: 20px;
         .name_content,
-        .description_content {
+        .description_content,.allowRoles_content {
             width: 391.3px;
             height: 42px;
             object-fit: contain;
@@ -15,7 +15,7 @@
                 color: #b1bace;
             }
             .name,
-            .description {
+            .description,.allowRoles {
                 width: calc(100% - 47.3px);
                 border: none;
             }

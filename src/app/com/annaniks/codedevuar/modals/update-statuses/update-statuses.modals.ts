@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { Validators, FormGroup, FormBuilder, FormArray } from "@angular/forms"
+import { Validators, FormGroup, FormBuilder, FormArray, FormControl } from "@angular/forms"
 import { StatusesService } from '../../views/main/statuses/statuses.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { forkJoin, } from 'rxjs';
@@ -16,6 +16,8 @@ export class UpdateStatusesModals implements OnInit {
     public statusesGroup: FormGroup;
     public statusData: any;
     public rolesData: any;
+    public allRoles;
+    
 
 
     constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<UpdateStatusesModals>) { }
@@ -30,6 +32,7 @@ export class UpdateStatusesModals implements OnInit {
         this.statusesGroup = new FormBuilder().group({
             name: ["", Validators.required],
             description: [""],
+            allowRoles:[""]
         })
     }
 
@@ -49,7 +52,7 @@ export class UpdateStatusesModals implements OnInit {
         let selectedStatuses = [];
         for (var i = 0; i < rolecontrols.length; i++) {
             if (rolecontrols[i].value == true) {
-                selectedRoles.push(this.rolesData[i]._id);
+                selectedRoles.push({id : this.rolesData[i]._id, permisions:[]});
             }
         }
         for (var i = 0; i < statuscontrols.length; i++) {
@@ -61,7 +64,7 @@ export class UpdateStatusesModals implements OnInit {
             name: this.statusesGroup.value.name,
             description: this.statusesGroup.value.description,
             allowRoles: selectedRoles,
-            canGoTo: selectedStatuses,
+            canComeFrom: selectedStatuses,
         }).subscribe((data) => {
             this._dialogRef.close('update');
         })
@@ -78,6 +81,7 @@ export class UpdateStatusesModals implements OnInit {
         return this._statusesService.getStatuses()
             .pipe(map((data) => {
                 this.statusData = data;
+                this.allRoles=this.statusData.allowRoles;
             }))
     }
 
@@ -86,7 +90,9 @@ export class UpdateStatusesModals implements OnInit {
             .subscribe(data => {
                 this._setControls();
 
-            })
+            });
+            console.log(this.statusData,"statusData");
+            
     }
 
 
@@ -113,14 +119,18 @@ export class UpdateStatusesModals implements OnInit {
         let statusesArray = [];
         for (var i = 0; i < this.statusData.length; i++) {
             let isequally = false;
-            for (var j = 0; j < this._data.data.canGoTo.length; j++) {
-                if (this.statusData[i]._id == this._data.data.canGoTo[j]._id) {
+            for (var j = 0; j < this._data.data.canComeFrom.length; j++) {
+                if (this.statusData[i]._id == this._data.data.canComeFrom[j]._id) {
                     isequally = true;
                 }
             }
             statusesArray.push(new FormBuilder().control(isequally))
         }
         return new FormBuilder().array(statusesArray);
+    }
+
+    public addNewItem(): void {
+        this.statusesGroup.get('items')['controls'].push(new FormControl('', Validators.required))
     }
 
 }

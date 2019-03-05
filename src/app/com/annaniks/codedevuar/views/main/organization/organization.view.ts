@@ -13,7 +13,7 @@ import { Organization, Departments } from '../../../models/models';
 export class OrganizationView implements OnInit {
 
     public organizationsData: Organization;
-    public departments:Departments;
+    public departments:Departments[];
     constructor(private _organizationService: OrganizationService, private _dialog: MatDialog) { }
 
     ngOnInit() {

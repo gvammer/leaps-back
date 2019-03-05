@@ -15,9 +15,14 @@ export class UpdateStatusesModals implements OnInit {
 
     public statusesGroup: FormGroup;
     public statusData: any;
-    public rolesData: any;
-    public allRoles;
-    
+
+    public rolesData: {id:string, permissions:string[]}[] = [];
+    public roles = [];
+    public permissions : {label:string, value:string}[] = [
+        {label:"Write", value:'status:write'},
+        {label:"Read", value:'status:read'},
+        {label:"Set", value:'status:set'},
+    ]
 
 
     constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<UpdateStatusesModals>) { }
@@ -26,6 +31,13 @@ export class UpdateStatusesModals implements OnInit {
         this._formBuilder();
         this._setPatchValue();
         this._getJoin();
+        this.rolesData = []
+        for (let i = 0; i < this._data.data.allowRoles.length; i++) {
+            const element = this._data.data.allowRoles[i];
+            this.rolesData.push({id:element.id._id,permissions:element.permissions})
+            
+        }
+      //  this._data.data.allowRoles;
     }
 
     private _formBuilder() {
@@ -44,7 +56,9 @@ export class UpdateStatusesModals implements OnInit {
         console.log(this._data);
 
     }
-
+    public addNewRole(){
+        this.rolesData.push({id:"", permissions:[]})
+    }
     public updateStutuses() {
         let rolecontrols = this.statusesGroup.get('roles')['controls'];
         let statuscontrols = this.statusesGroup.get('statuses')['controls'];
@@ -52,7 +66,7 @@ export class UpdateStatusesModals implements OnInit {
         let selectedStatuses = [];
         for (var i = 0; i < rolecontrols.length; i++) {
             if (rolecontrols[i].value == true) {
-                selectedRoles.push({id : this.rolesData[i]._id, permisions:[]});
+                selectedRoles.push({id : this.rolesData[i].id, permisions:[]});
             }
         }
         for (var i = 0; i < statuscontrols.length; i++) {
@@ -63,7 +77,7 @@ export class UpdateStatusesModals implements OnInit {
         this._statusesService.updateStutuses(this._data.data._id, {
             name: this.statusesGroup.value.name,
             description: this.statusesGroup.value.description,
-            allowRoles: selectedRoles,
+            allowRoles: this.rolesData,
             canComeFrom: selectedStatuses,
         }).subscribe((data) => {
             this._dialogRef.close('update');
@@ -73,15 +87,21 @@ export class UpdateStatusesModals implements OnInit {
     private _getUserRoles() {
         return this._statusesService.getUserRoles()
             .pipe(map((data: any) => {
-                this.rolesData = data;
+               // this.rolesData = data;
+               this.roles = [];
+               for (let i = 0; i < data.length; i++) {
+                const item = data[i];
+                this.roles.push({value:item._id,label:item.name})
+            }
             }))
     }
 
     private _getStatuses() {
         return this._statusesService.getStatuses()
-            .pipe(map((data) => {
+            .pipe(map((data:any[]) => {
                 this.statusData = data;
-                this.allRoles=this.statusData.allowRoles;
+              
+             
             }))
     }
 
@@ -106,7 +126,7 @@ export class UpdateStatusesModals implements OnInit {
         for (var i = 0; i < this.rolesData.length; i++) {
             let isEqually: boolean = false;
             for (var j = 0; j < this._data.data.allowRoles.length; j++) {
-                if (this.rolesData[i]._id == this._data.data.allowRoles[j]._id) {
+                if (this.rolesData[i].id == this._data.data.allowRoles[j]._id) {
                     isEqually = true;
                 }
             }

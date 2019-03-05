@@ -23,24 +23,26 @@
                     <div class="hin">
                 <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
                     <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
-                </div> -->
+                </div>
             </div>
-               
-                <button (click)="addNewRole()">add</button>
+                -->
+                <button pButton  label="Add Role" (click)="addNewRole()"></button>
+
                 <div *ngFor="let role of rolesData">
-                    <select [(ngModel)]="role.id" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let r of roles" [value]="r._id">{{r.name}}</option>
-                    </select>
-                    <p-multiSelect [options]="permisions" [(ngModel)]="role.permisions" [ngModelOptions]="{standalone: true}"></p-multiSelect>
-
-
+                    <div class="roles___container">
+                            <p-dropdown [options]="roles" [(ngModel)]="role.id" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                    
+                            <p-multiSelect [filter]="false" [ngModelOptions]="{standalone: true}" [panelStyle]="{minWidth:'345px'}" [options]="permissions" [(ngModel)]="role.permissions" [ngModelOptions]="{standalone: true}"></p-multiSelect>
+        
+        
+                    </div>
+                   
                 </div>
 
                 <div class="line" full-width></div>
                 <label>Statuses</label>
                 <div class="congo" *ngFor="let status of statusesGroup.get('statuses')?.controls;let ind=index;">
-                    <input placholder="statuses" type="checkbox" [formControl]="status"
-                        value="item._id"><span>{{statusData[ind].name}}</span>
+                    <input placholder="statuses" type="checkbox" [formControl]="status" value="item._id"><span>{{statusData[ind].name}}</span>
                 </div>
 
                 <div class="buttton_items" display-flex margin-auto>

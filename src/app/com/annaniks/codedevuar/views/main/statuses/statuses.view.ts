@@ -48,6 +48,14 @@ export class StausesView implements OnInit {
             })
     }
 
+    public deleteStatus(item){
+        this._statusesService.delete(item._id).subscribe(
+            data=>{
+                console.log(data);
+                this._getStatuses();
+            }
+        )
+    }
     public openUpdateStatusModals(item): void {
         const dialogRef = this._dialog.open(UpdateStatusesModals, {
             width: "686px",

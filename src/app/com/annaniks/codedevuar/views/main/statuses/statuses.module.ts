@@ -8,10 +8,14 @@ import { CommonModule } from '@angular/common';
 import { CollapsibleModule } from 'angular2-collapsible';
 import { UpdateStatusesModals, AddStatusesModals } from '../../../modals';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {DropdownModule} from 'primeng/dropdown';
+import {ButtonModule} from 'primeng/button';
+
+
 
 @NgModule({
     declarations: [StausesView,AddStatusesModals,UpdateStatusesModals],
-    imports: [StatusesRoutingModule,MultiSelectModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
+    imports: [StatusesRoutingModule,MultiSelectModule,DropdownModule,ButtonModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
     providers: [StatusesService],
     entryComponents:[AddStatusesModals,UpdateStatusesModals]
 })

@@ -19,10 +19,25 @@
                     <input class="description" full-height formControlName="description" placeholder="description">
                 </div>
                 <label>Roles</label>
+                <!--
                 <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
                     <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
                 </div>
+            -->
+                <button pButton label="Add Role" (click)="addNewRole()"></button>
+                <div *ngFor="let role of rolesData">
+                    <div class="roles___container">
+                        <p-dropdown [options]="roles" [(ngModel)]="role.id" [ngModelOptions]="{standalone: true}">
+                        </p-dropdown>
 
+                        <p-multiSelect [filter]="false" [ngModelOptions]="{standalone: true}"
+                            [panelStyle]="{minWidth:'345px'}" [options]="permissions" [(ngModel)]="role.permissions"
+                            [ngModelOptions]="{standalone: true}"></p-multiSelect>
+
+
+                    </div>
+
+                </div>
                 <div class="line" full-width></div>
 
                 <label>Statuses</label>
@@ -30,7 +45,7 @@
                     <input placholder="statuses" type="checkbox" [formControl]="status"
                         value="item._id"><span>{{statusData[ind].name}}</span>
                 </div>
-                <div>
+                <!-- <div>
                     <span>allowRoles</span>
 
                     <div class="allowRoles_content" display-flex margin-auto>
@@ -42,7 +57,7 @@
                         </div>
                         <input class="allowRoles" full-height formControlName="allowRoles" placeholder="allowRoles">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="buttton_items" display-flex margin-auto>
                     <button class="save_button" cursor-pointer [ngClass]="{'opacity':statusesGroup.invalid}"

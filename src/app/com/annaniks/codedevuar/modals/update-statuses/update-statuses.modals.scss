@@ -64,3 +64,13 @@
     width: 391px;
     margin:0 auto;
 }
+.roles___container{
+    .dropdown-label{
+        margin-bottom: 30px;
+    }
+  
+    margin-top: 20px;
+    &:last-child{
+        margin-bottom: 20px;
+    }
+}

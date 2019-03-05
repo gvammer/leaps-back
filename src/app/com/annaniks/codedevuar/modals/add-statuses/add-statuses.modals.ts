@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { StatusesService } from '../../views/main/statuses/statuses.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -7,7 +7,8 @@ import { Permission } from '../../models/models';
 @Component({
     selector: "add-statuses",
     templateUrl: "add-statuses.modals.html",
-    styleUrls: ["add-statuses.modals.scss"]
+    styleUrls: ["add-statuses.modals.scss"],
+    encapsulation:ViewEncapsulation.None
 })
 
 export class AddStatusesModals implements OnInit {
@@ -30,7 +31,7 @@ export class AddStatusesModals implements OnInit {
     public statusData: any;
     public rolesData: {id:string, permissions:string[]}[] = [];
     public roles = [];
-    public permisions : {label:string, value:string}[] = [
+    public permissions : {label:string, value:string}[] = [
         {label:"Write", value:'status:write'},
         {label:"Read", value:'status:read'},
         {label:"Set", value:'status:set'},
@@ -71,10 +72,12 @@ export class AddStatusesModals implements OnInit {
                 selectedStatuses.push(this.statusData[i]._id);
             }
         }
+        console.log(this.rolesData);
+        
         this._statusesService.postAdminStatuses({
             name: this.statusesGroup.value.name,
             description: this.statusesGroup.value.description,
-            allowRoles: selectedRoles,
+            allowRoles: this.rolesData,
             canComeFrom: selectedStatuses
         }).subscribe(data => {
             this._dialogRef.close('add');
@@ -85,7 +88,7 @@ export class AddStatusesModals implements OnInit {
         this._statusesService.getUserRoles()
             .subscribe((data: any) => {
                 console.log(data);
-                this.roles  = data.map((item)=>({id:item._id,name:item.name}))
+                this.roles  = data.map((item)=>({value:item._id,label:item.name}))
              //  this.rolesData = data;
 
                 this._setControls();

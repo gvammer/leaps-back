@@ -13,7 +13,8 @@
                     <th class="th-head">index</th>
                     <th class="th-head">name</th>
                     <th class="th-head">description</th>
-                    <th class="th-head">edit</th>
+                    <th class="th-head">Edit</th>
+                    <th class="th-head">Delete</th>
                 </collapsible-table-row>
             </thead>
 
@@ -26,6 +27,9 @@
                     <td class="td-header"><i class="material-icons" cursor-pointer (click)="openUpdateStatusModals(item)">
                         create
                         </i></td>
+                    <td class="td-header"><i class="material-icons" cursor-pointer (click)="deleteStatus(item)">
+                            delete
+                    </i></td>
                 </collapsible-table-row>
 
 

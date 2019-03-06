@@ -44,4 +44,13 @@ export class HomeService {
             this._router.navigate(['/login'])
         }
     }
+
+    public certificatesStatuses(certificatesId:string,body){
+        let token = this._cookieService.get('token');
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        })
+        return this._httpClient.put(this._baseUrl+'users/certificates/' +certificatesId+"/status",body,{headers})
+    }
 }

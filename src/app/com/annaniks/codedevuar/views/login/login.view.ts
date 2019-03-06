@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: "app-login",
@@ -14,7 +15,7 @@ export class LoginView implements OnInit {
 
     public signInGroup: FormGroup;
 
-    constructor(private _loginService: LoginService, private _router: Router, private _cookieService: CookieService) { }
+    constructor(private _loginService: LoginService, private _router: Router, private _cookieService: CookieService, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -33,10 +34,11 @@ export class LoginView implements OnInit {
             uniqueID: this.signInGroup.value.login,
             password: this.signInGroup.value.password,
         }).subscribe((data: any) => {
-this._cookieService.put('token', data.token)
+            this._cookieService.put('token', data.token)
             this._router.navigate(["/home"])
             console.log(data);
 
         })
     }
+
 }

@@ -14,7 +14,7 @@ import { SharedModule } from '../../../shared/shared.module';
         HomeViewRoutingModule,
         CollapsibleModule,
         CommonModule,
-        SharedModule
+        SharedModule,
     ],
     providers: [HomeService],
     exports: [],

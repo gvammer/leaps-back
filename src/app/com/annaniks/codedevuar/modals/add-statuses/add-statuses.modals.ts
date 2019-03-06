@@ -2,13 +2,13 @@ import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { StatusesService } from '../../views/main/statuses/statuses.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Permission } from '../../models/models';
+import { Permission, Role } from '../../models/models';
 
 @Component({
     selector: "add-statuses",
     templateUrl: "add-statuses.modals.html",
     styleUrls: ["add-statuses.modals.scss"],
-    encapsulation:ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None
 })
 
 export class AddStatusesModals implements OnInit {
@@ -29,14 +29,13 @@ export class AddStatusesModals implements OnInit {
 
     public statusesGroup: FormGroup;
     public statusData: any;
-    public rolesData: {id:string, permissions:string[]}[] = [];
+    public rolesData: Role[] = [];
     public roles = [];
-    public permissions : {label:string, value:string}[] = [
-        {label:"Write", value:'status:write'},
-        {label:"Read", value:'status:read'},
-        {label:"Set", value:'status:set'},
+    public permissions: { label: string, value: string }[] = [
+        { label: "Write", value: 'status:write' },
+        { label: "Read", value: 'status:read' },
+        { label: "Set", value: 'status:set' },
     ]
-
     constructor(@Inject(MAT_DIALOG_DATA) private data, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<AddStatusesModals>) {
         this.statusData = this.data.data;
     }
@@ -53,10 +52,6 @@ export class AddStatusesModals implements OnInit {
             description: [""],
         })
     }
-
-    public addNewRole(){
-        this.rolesData.push({id:"", permissions:[]})
-    }
     public postAdminStatuses() {
         let rolecontrols = this.statusesGroup.get('roles')['controls'];
         let statuscontrols = this.statusesGroup.get('statuses')['controls'];
@@ -64,7 +59,7 @@ export class AddStatusesModals implements OnInit {
         let selectedStatuses = [];
         for (var i = 0; i < rolecontrols.length; i++) {
             if (rolecontrols[i].value == true) {
-                selectedRoles.push(this.rolesData[i].id);
+                selectedRoles.push(this.rolesData[i]._id);
             }
         }
         for (var i = 0; i < statuscontrols.length; i++) {
@@ -73,7 +68,6 @@ export class AddStatusesModals implements OnInit {
             }
         }
         console.log(this.rolesData);
-        
         this._statusesService.postAdminStatuses({
             name: this.statusesGroup.value.name,
             description: this.statusesGroup.value.description,
@@ -84,12 +78,20 @@ export class AddStatusesModals implements OnInit {
         })
     }
 
+
+    public addNewRole() {
+        this.rolesData.push({ _id: "", permissions: [], createdAt: '', items: [], name: '', title: '', updatedAt: '' })
+
+
+
+    }
+
     private _getUserRoles() {
         this._statusesService.getUserRoles()
             .subscribe((data: any) => {
                 console.log(data);
-                this.roles  = data.map((item)=>({value:item._id,label:item.name}))
-             //  this.rolesData = data;
+                this.roles = data.map((item) => ({ value: item._id, label: item.name }))
+                //  this.rolesData = data;
 
                 this._setControls();
             })

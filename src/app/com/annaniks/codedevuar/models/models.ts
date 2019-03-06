@@ -31,11 +31,17 @@ export interface Certificates {
     createdAt: string,
     created_by: string,
     history: History[];
+    buttons: Button[];
     information: Information;
     _id: string;
 }
 
 interface History { }
+
+export interface Button {
+    name: string;
+    _id: string;
+}
 
 interface Information {
     attendantInformation: AttendantInformation,

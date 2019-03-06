@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../home/home.service';
-import { Certificates } from '../../../models/models';
+import { Certificates, Button } from '../../../models/models';
+
 
 @Component({
     selector: "app-human-page",
@@ -14,9 +15,12 @@ export class HumanPangeView implements OnInit {
     private _id: string;
     public listItemData: any[] = [];
 
+    public buttons: Button[];
+    public ststuseId: string;
+
     constructor(private _activeRouter: ActivatedRoute, private _homeService: HomeService) {
         this._activeRouter.params.subscribe((params) => {
-            this._id = params.id
+            this._id = params.id;
         })
     }
 
@@ -29,6 +33,9 @@ export class HumanPangeView implements OnInit {
             .subscribe((data: Certificates) => {
                 let listItemData = data;
                 this.status = listItemData.information['status'];
+                this.ststuseId = data._id;
+
+                this.buttons = listItemData.buttons;
                 let listItemDatKeys: string[] = Object.keys(listItemData.information);
                 for (let i of listItemDatKeys) {
                     if (typeof listItemData.information[i] === 'object') {
@@ -46,11 +53,21 @@ export class HumanPangeView implements OnInit {
                     }
                 }
             })
+        console.log(this.listItemData);
+
     }
 
     get id(): string {
         return this._id
     }
 
+    public certificatesStatuses(_id) {
+        this._homeService.certificatesStatuses(this._id, {
+            status:_id,
+        }).subscribe((data) => {
+            console.log(data);
+
+        })
+    }
 
 }

@@ -25,8 +25,8 @@
                 </div>
             -->
                 <button pButton label="Add Role" (click)="addNewRole()"></button>
-                <div *ngFor="let role of rolesData">
-                    <div class="roles___container">
+                <div *ngFor="let role of rolesData; let i = index" >
+                    <div class="roles___container" display-flex>
                         <p-dropdown [options]="roles" [(ngModel)]="role.id" [ngModelOptions]="{standalone: true}">
                         </p-dropdown>
 
@@ -36,6 +36,9 @@
 
 
                     </div>
+                    <i class="material-icons" cursor-pointer margin-auto (click)="deleteAllRoles(i)">
+                            delete
+                    </i>
 
                 </div>
                 <div class="line" full-width></div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from "@angular/forms"
 import { RolesService } from '../../views/main/roles/roles.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -15,11 +15,12 @@ export class AddRolesModals implements OnInit {
     public rolseGroup: FormGroup;
     public permissionsData: any[];
     public itemsArray = [];
-    constructor(private _rolesService: RolesService, private _dialogRef: MatDialogRef<AddRolesModals>) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data, private _rolesService: RolesService, private _dialogRef: MatDialogRef<AddRolesModals>) { }
 
     ngOnInit() {
         this._formBuilder();
         this._usersPermissions();
+       this. _setPatchValue();
     }
 
     private _formBuilder(): void {
@@ -32,6 +33,15 @@ export class AddRolesModals implements OnInit {
         })
     }
 
+    private _setPatchValue(): void {
+        console.log(this.data);
+
+        this.rolseGroup.patchValue({
+            name: this.data.data.name,
+            title: this.data.data.title,
+        })
+    }
+
 
     private _usersPermissions() {
         this._rolesService.getUserPermissions()
@@ -39,7 +49,7 @@ export class AddRolesModals implements OnInit {
                 this.permissionsData = data;
                 this.rolseGroup.addControl('permissions', this._buildPermisions())
             });
-            
+
     }
 
     public postRoles() {
@@ -82,14 +92,28 @@ export class AddRolesModals implements OnInit {
 
 
     public addRoles() {
-        
-        this._rolesService.postRoles({
-            name: this.rolseGroup.value.name,
-            title: this.rolseGroup.value.title,
-        }).subscribe((data) => {
-            console.log(data);
-            this._dialogRef.close();
-            window.location.reload();
-        })
+        if (this.data && this.data.editable) {
+            this._rolesService.updateRoles(this.data.data._id, {
+                name: this.rolseGroup.value.name,
+                title: this.rolseGroup.value.title,
+            }).subscribe((data) => {
+                this._dialogRef.close('update');
+                console.log(data);
+    
+            })
+console.log("edit");
+
+        }
+        else {
+
+            this._rolesService.postRoles({
+                name: this.rolseGroup.value.name,
+                title: this.rolseGroup.value.title,
+            }).subscribe((data) => {
+                console.log(data);
+                this._dialogRef.close();
+                window.location.reload();
+            })
+        }
     }
 }

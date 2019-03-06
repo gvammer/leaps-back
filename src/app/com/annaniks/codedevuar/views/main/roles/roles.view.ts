@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UpdateRolesModals, AddPermissions, AddRolesModals } from '../../../modals';
+import {  AddRolesModals } from '../../../modals';
 import { Role, Permission } from '../../../models/models';
 
 
@@ -36,20 +36,14 @@ export class RolesView implements OnInit {
             height: "444px",
         })
     }
-
-    public openAddPermissions(): void {
-        const dialogRef = this._matDialog.open(AddPermissions, {
-            width: "500px",
-            height: "400px",
-        })
-
-    }
     public openCreatRoles(item): void {
-        const dialogRef = this._matDialog.open(UpdateRolesModals, {
+        const dialogRef = this._matDialog.open(AddRolesModals, {
             width: "686px",
             height: "444px",
             data: {
+                editable: true,
                 data: item,
+
             }
         });
         dialogRef.afterClosed()

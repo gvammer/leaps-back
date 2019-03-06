@@ -43,7 +43,7 @@ export class StausesView implements OnInit {
         this._statusesService.getStatuses()
             .subscribe((data:Statuses) => {
                 this.statusesItems = data;
-                console.log(data);
+                console.log(this.statusesItems);
 
             })
     }

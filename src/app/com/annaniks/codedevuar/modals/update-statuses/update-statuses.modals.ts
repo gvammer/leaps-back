@@ -15,14 +15,15 @@ export class UpdateStatusesModals implements OnInit {
 
     public statusesGroup: FormGroup;
     public statusData: any;
-
-    public rolesData: {id:string, permissions:string[]}[] = [];
+    public statusId: string;
+    public rolesData: { id: string, permissions: string[] }[] = [];
     public roles = [];
-    public permissions : {label:string, value:string}[] = [
-        {label:"Write", value:'status:write'},
-        {label:"Read", value:'status:read'},
-        {label:"Set", value:'status:set'},
-    ]
+    public permissions:
+        { label: string, value: string }[] = [
+            { label: "Write", value: 'status:write' },
+            { label: "Read", value: 'status:read' },
+            { label: "Set", value: 'status:set' },
+        ]
 
 
     constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<UpdateStatusesModals>) { }
@@ -34,17 +35,17 @@ export class UpdateStatusesModals implements OnInit {
         this.rolesData = []
         for (let i = 0; i < this._data.data.allowRoles.length; i++) {
             const element = this._data.data.allowRoles[i];
-            this.rolesData.push({id:element.id._id,permissions:element.permissions})
-            
+            this.rolesData.push({ id: element.id._id, permissions: element.permissions })
+
         }
-      //  this._data.data.allowRoles;
+        //  this._data.data.allowRoles;
     }
 
     private _formBuilder() {
         this.statusesGroup = new FormBuilder().group({
             name: ["", Validators.required],
             description: [""],
-            allowRoles:[""]
+            allowRoles: [""]
         })
     }
 
@@ -53,11 +54,11 @@ export class UpdateStatusesModals implements OnInit {
             name: this._data.data.name,
             description: this._data.data.description,
         });
-        console.log(this._data);
+        console.log(this._data,"vfvbfb");
 
     }
-    public addNewRole(){
-        this.rolesData.push({id:"", permissions:[]})
+    public addNewRole() {
+        this.rolesData.push({ id: "", permissions: [] })
     }
     public updateStutuses() {
         let rolecontrols = this.statusesGroup.get('roles')['controls'];
@@ -66,7 +67,7 @@ export class UpdateStatusesModals implements OnInit {
         let selectedStatuses = [];
         for (var i = 0; i < rolecontrols.length; i++) {
             if (rolecontrols[i].value == true) {
-                selectedRoles.push({id : this.rolesData[i].id, permisions:[]});
+                selectedRoles.push({ id: this.rolesData[i].id, permisions: [] });
             }
         }
         for (var i = 0; i < statuscontrols.length; i++) {
@@ -80,6 +81,7 @@ export class UpdateStatusesModals implements OnInit {
             allowRoles: this.rolesData,
             canComeFrom: selectedStatuses,
         }).subscribe((data) => {
+            //this.statusId=
             this._dialogRef.close('update');
         })
     }
@@ -87,21 +89,21 @@ export class UpdateStatusesModals implements OnInit {
     private _getUserRoles() {
         return this._statusesService.getUserRoles()
             .pipe(map((data: any) => {
-               // this.rolesData = data;
-               this.roles = [];
-               for (let i = 0; i < data.length; i++) {
-                const item = data[i];
-                this.roles.push({value:item._id,label:item.name})
-            }
+                // this.rolesData = data;
+                this.roles = [];
+                for (let i = 0; i < data.length; i++) {
+                    const item = data[i];
+                    this.roles.push({ value: item._id, label: item.name })
+                }
             }))
     }
 
     private _getStatuses() {
         return this._statusesService.getStatuses()
-            .pipe(map((data:any[]) => {
+            .pipe(map((data: any[]) => {
                 this.statusData = data;
-              
-             
+
+
             }))
     }
 
@@ -111,8 +113,8 @@ export class UpdateStatusesModals implements OnInit {
                 this._setControls();
 
             });
-            console.log(this.statusData,"statusData");
-            
+        console.log(this.statusData, "statusData");
+
     }
 
 
@@ -151,6 +153,19 @@ export class UpdateStatusesModals implements OnInit {
 
     public addNewItem(): void {
         this.statusesGroup.get('items')['controls'].push(new FormControl('', Validators.required))
+    }
+
+
+    public deleteAllRoles(index) {
+        this.rolesData.splice(index,1);
+   
+        /*
+        this._statusesService.deleteStatusRole(this.statusData[i]._id, roleId)
+            .subscribe(data => {
+                console.log(data);
+
+            })
+*/
     }
 
 }

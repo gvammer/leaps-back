@@ -19,13 +19,13 @@
                     <input class="description" full-height formControlName="description" placeholder="description">
                 </div>
                 <label>Roles</label>
-<!--                 
-                    <div class="hin">
+                
+                    <!-- <div class="hin">
                 <div class="roles" *ngFor="let roles of statusesGroup.get('roles')?.controls;let ind=index;">
                     <input placholder="roles" type="checkbox" [formControl]="roles"><span>{{rolesData[ind].name}}</span>
                 </div>
-            </div>
-                -->
+            </div> -->
+               
                 <button pButton  label="Add Role" (click)="addNewRole()"></button>
 
                 <div *ngFor="let role of rolesData">
@@ -33,9 +33,8 @@
                             <p-dropdown [options]="roles" [(ngModel)]="role.id" [ngModelOptions]="{standalone: true}"></p-dropdown>
                     
                             <p-multiSelect [filter]="false" [ngModelOptions]="{standalone: true}" [panelStyle]="{minWidth:'345px'}" [options]="permissions" [(ngModel)]="role.permissions" [ngModelOptions]="{standalone: true}"></p-multiSelect>
-        
-        
                     </div>
+                   
                    
                 </div>
 
@@ -54,6 +53,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- <div class="add_content" full-width>
     <div class="add_conteiner" width-75 margin-auto>

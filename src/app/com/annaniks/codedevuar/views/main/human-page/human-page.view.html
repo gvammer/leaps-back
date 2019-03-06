@@ -8,6 +8,10 @@
     <div class="inner_content">
         <p><b>Id: </b>{{id}}</p>
         <p><b>Status: </b>{{status}}</p>
+        <div  style="padding:15px">
+            <button mat-raised-button color="primary" *ngFor="let item of  buttons" style="margin-left: 20px" (click)="certificatesStatuses(item._id)">{{item.name}}</button>
+        </div>
+    
         <div class="container" *ngFor="let item of listItemData">
             <div class="name" font-family-Roboto>{{item.name}}:</div>
             <div class="item" *ngFor="let value of item.value"> <span class="item_name">{{value.name}}: </span>

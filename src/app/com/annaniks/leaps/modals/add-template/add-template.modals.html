@@ -1,0 +1,129 @@
+<div class="add_contnet" full-width full-height>
+    <div class="add_conteiner" width-75 margin-auto>
+        <form [formGroup]="titleGroup" class="templateForm">
+            <div class="form_group">
+                <span class="label">type:</span>
+                <div class="form_container" display-flex margin-auto>
+                    <div class='icon' display-flex>
+                        <i class="material-icons" margin-auto>
+                            person
+                        </i>
+                    </div>
+                    <input class="form_input" full-height formControlName="title">
+                </div>
+            </div>
+            <div class="add_button" margin-auto>
+                <p-button icon="pi pi-check" label="Add Section" (click)="addSelector()"></p-button>
+            </div>
+            <div class="selector_content" width-90 margin-auto *ngFor="let item of selectorItems">
+                <div class="form_group">
+                    <span margin-auto class="label">key:</span>
+                    <div class="form_container" display-flex margin-auto>
+                        <div class='icon' display-flex>
+                            <i class="material-icons" margin-auto>
+                                person
+                            </i>
+                        </div>
+                        <input class="form_input" full-height [(ngModel)]="item.key"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+                <div class="form_group">
+                    <span margin-auto class="label">title:</span>
+                    <div class="form_container" display-flex margin-auto>
+                        <div class='icon' display-flex>
+                            <i class="material-icons" margin-auto>
+                                person
+                            </i>
+                        </div>
+                        <input class="form_input" full-height [(ngModel)]="item.title"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+                <div class="add_button" margin-auto>
+                    <p-button icon="pi pi-check" label="Add Field" (click)="addFilder(item)"></p-button>
+                </div>
+
+                <div class="selector_content" width-90 margin-auto *ngFor="let field of item.fields">
+                    <div class="form_group">
+                        <span margin-auto class="label">filds_key:</span>
+                        <div class="form_container" display-flex margin-auto>
+                            <div class='icon' display-flex>
+                                <i class="material-icons" margin-auto>
+                                    person
+                                </i>
+                            </div>
+                            <input class="form_input" full-height [(ngModel)]="field.key"
+                                [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">filds_title:</span>
+                        <div class="form_container" display-flex margin-auto>
+                            <div class='icon' display-flex>
+                                <i class="material-icons" margin-auto>
+                                    person
+                                </i>
+                            </div>
+                            <input class="form_input" full-height [(ngModel)]="field.title"
+                                [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">filds_type:</span>
+                        <div class="form_container" display-flex margin-auto>
+                            <div class='icon' display-flex>
+                                <i class="material-icons" margin-auto>
+                                    person
+                                </i>
+                            </div>
+                            <select class="form_input" [(ngModel)]="field.type" [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let item of fildType" [value]="item.type">{{item.type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">filds_width:</span>
+                        <div class="form_container" display-flex margin-auto>
+                            <div class='icon' display-flex>
+                                <i class="material-icons" margin-auto>
+                                    person
+                                </i>
+                            </div>
+                            <input class="form_input" type="number" full-height [(ngModel)]="field.width"
+                                [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">priority:</span>
+                        <div class="form_container" display-flex margin-auto>
+                            <div class='icon' display-flex>
+                                <i class="material-icons" margin-auto>
+                                    person
+                                </i>
+                            </div>
+                            <input class="form_input" type="number" full-height [(ngModel)]="field.priority"
+                                [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">required:</span>
+                        <input class="checkbox_input" type="checkbox" full-heigh [(ngModel)]="field._required"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form_group">
+                        <span margin-auto class="label">rightSight:</span>
+                        <input class="checkbox_input" type="checkbox" full-heigh [(ngModel)]="field.rightSight"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="buttton_items" display-flex margin-auto>
+                <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
+                    (click)="addDoctemplates()"><span color-white>Save</span></button>
+            </div>
+        </form>
+
+    </div>
+</div>

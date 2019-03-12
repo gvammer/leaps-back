@@ -6,6 +6,10 @@
     height: 100%;
 }
 
+*[width-90] {
+    width: 90%;
+}
+
 *[width-75] {
     width: 75%;
 }
@@ -37,14 +41,15 @@
 *[color-white] {
     color: white;
 }
-*[margin-auto]{
+
+*[margin-auto] {
     margin: auto;
 }
 
-*[text-align-center]{
+*[text-align-center] {
     text-align: center;
 }
 
-*[cursor-pointer]{
+*[cursor-pointer] {
     cursor: pointer;
 }

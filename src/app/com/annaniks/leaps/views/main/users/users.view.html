@@ -13,6 +13,7 @@
             <th class="th-head">active</th>
             <th class="th-head">firstName</th>
             <th class="th-head">lastName</th>
+            <th class="th-head">delete</th>
         </collapsible-table-row>
     </thead>
 
@@ -22,6 +23,7 @@
             <td class="td-header"><input type="checkbox"  [checked]="item.active" [disabled]="item.active" (click)="addUsersactive(ind)"></td>
             <td class="td-header">{{item.firstName}}</td>
             <td class="td-header">{{item.lastName}}</td>
+            <td class="td-header"></td>
         </collapsible-table-row>
 
     </tbody>

@@ -34,12 +34,12 @@ export class AddRolesModals implements OnInit {
     }
 
     private _setPatchValue(): void {
-        console.log(this.data);
-
+        if (this.data && this.data.editable) {
         this.rolseGroup.patchValue({
             name: this.data.data.name,
             title: this.data.data.title,
         })
+    }
     }
 
 
@@ -98,10 +98,8 @@ export class AddRolesModals implements OnInit {
                 title: this.rolseGroup.value.title,
             }).subscribe((data) => {
                 this._dialogRef.close('update');
-                console.log(data);
     
             })
-console.log("edit");
 
         }
         else {
@@ -110,7 +108,6 @@ console.log("edit");
                 name: this.rolseGroup.value.name,
                 title: this.rolseGroup.value.title,
             }).subscribe((data) => {
-                console.log(data);
                 this._dialogRef.close();
                 window.location.reload();
             })

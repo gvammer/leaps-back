@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
+import { TemplateService } from './template.service';
 import { AddTemplateModals } from '../../../modals';
 
 @Component({
@@ -10,15 +11,61 @@ import { AddTemplateModals } from '../../../modals';
 
 export class TemplateView implements OnInit {
 
-    constructor(private _matDialog: MatDialog) { }
+    public templateItems: any;
 
-    ngOnInit() { }
+    constructor(private _matDialog: MatDialog, private _templateService: TemplateService) { }
+
+    ngOnInit() {
+        this._getTemplates();
+    }
 
     public openAddTemplateModal() {
         const dialogRef = this._matDialog.open(AddTemplateModals, {
-            maxHeight:'80vh',
-            width:'600px'
-        })
+            maxHeight: '80vh',
+            width: '600px',
+        });
+        dialogRef.afterClosed()
+            .subscribe(data => {
+                if (data == "add") {
+                    this._getTemplates();
+                }
+            })
     }
 
+    public openEditTemplateModal(item) {
+        const dialogRef = this._matDialog.open(AddTemplateModals, {
+            maxHeight: '80vh',
+            width: '600px',
+            data: {
+                data:item,
+                editable: true,
+            }
+        });
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data == "edit") {
+                this._getTemplates();
+            }
+        })
+        console.log(item);
+        
+    }
+
+
+
+    private _getDoctemplatesTypes() {
+        this._templateService.getDoctemplatesTypes()
+            .subscribe((data) => {
+                console.log(data);
+
+            })
+    }
+    private _getTemplates() {
+
+        this._templateService.getTemplates()
+            .subscribe((data) => {
+                this.templateItems = data;
+                console.log(this.templateItems);
+
+            })
+    }
 }

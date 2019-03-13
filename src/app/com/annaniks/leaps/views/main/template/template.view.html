@@ -1,3 +1,34 @@
-<i class="material-icons" cursor-pointer (click)="openAddTemplateModal()">
-    add
+<div class="templste_contnet">
+    <i class="material-icons" cursor-pointer (click)="openAddTemplateModal()">
+        add
     </i>
+
+    <collapsible-table [type]="'accordion'" bordered>
+
+        <thead style="background-color:#0277bd">
+            <collapsible-table-row>
+                <th class="th-head">index</th>
+                <th class="th-head">type</th>
+                <th class="th-head">edit</th>
+                <th class="th-head">delete</th>
+
+            </collapsible-table-row>
+        </thead>
+
+        <tbody>
+            <collapsible-table-row class="collapsible" [detail]="detail1"
+                *ngFor="let item of templateItems;let ind=index">
+                <td class="td-header">{{ind+1}}</td>
+                <td class="td-header">{{item.type}}</td>
+                <td class="td-header"><i class="material-icons" (click)="openEditTemplateModal(item)">
+                        create
+                    </i></td>
+                <td class="td-header"><i class="material-icons">
+                        delete
+                    </i></td>
+            </collapsible-table-row>
+
+        </tbody>
+
+    </collapsible-table>
+</div>

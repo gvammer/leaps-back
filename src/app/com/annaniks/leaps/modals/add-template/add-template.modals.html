@@ -9,10 +9,11 @@
                             person
                         </i>
                     </div>
-                    <input class="form_input" full-height formControlName="title">
+                    <input class="form_input" full-height formControlName="type">
                 </div>
             </div>
-            <div class="add_button" margin-auto>
+            <!-- <div  *ngIf="!data"> -->
+            <div class="add_button" margin-auto *ngIf="!data">
                 <p-button icon="pi pi-check" label="Add Section" (click)="addSelector()"></p-button>
             </div>
             <div class="selector_content" width-90 margin-auto *ngFor="let item of selectorItems">
@@ -40,7 +41,7 @@
                             [ngModelOptions]="{standalone: true}">
                     </div>
                 </div>
-                <div class="add_button" margin-auto>
+                <div class="add_button" margin-auto *ngIf="!data">
                     <p-button icon="pi pi-check" label="Add Field" (click)="addFilder(item)"></p-button>
                 </div>
 
@@ -77,10 +78,31 @@
                                     person
                                 </i>
                             </div>
-                            <select class="form_input" [(ngModel)]="field.type" [ngModelOptions]="{standalone: true}">
+                            <select class="form_input" [(ngModel)]="field.type" (ngModelChange)="onChange($event)"
+                                [ngModelOptions]="{standalone: true}">
                                 <option *ngFor="let item of fildType" [value]="item.type">{{item.type}}</option>
                             </select>
                         </div>
+                        <div class="add_button" margin-auto *ngIf="addValue">
+                            <p-button icon="pi pi-check" label="Add Value" (click)="addValueItem(field)"></p-button>
+                        </div>
+                        <div class="form_group" *ngFor="let fieldValue of  field.values">
+                            <span margin-auto class="label">value:</span>
+                            <div class="form_container" display-flex margin-auto>
+                                <div class='icon' display-flex>
+                                    <i class="material-icons" margin-auto>
+                                        person
+                                    </i>
+                                </div>
+                                <input class="form_input" full-height [(ngModel)]="fieldValue.value"
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+
+
+
+
+
                     </div>
                     <div class="form_group">
                         <span margin-auto class="label">filds_width:</span>
@@ -117,6 +139,9 @@
                             [ngModelOptions]="{standalone: true}">
                     </div>
                 </div>
+
+                <!-- </div> -->
+
 
             </div>
             <div class="buttton_items" display-flex margin-auto>

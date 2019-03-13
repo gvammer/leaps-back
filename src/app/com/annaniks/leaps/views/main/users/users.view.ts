@@ -17,7 +17,7 @@ export class UsersView implements OnInit {
     public usersInfo: Users[];
     private _messages;
 
-    constructor(private _usersService: UsersService,private _dialog: MatDialog,private _messageService:MessageService) { }
+    constructor(private _usersService: UsersService, private _dialog: MatDialog, private _messageService: MessageService) { }
 
     ngOnInit() {
         this._getUsers();
@@ -25,11 +25,11 @@ export class UsersView implements OnInit {
 
     private _getUsers() {
         this._usersService.getUsers()
-            .subscribe((data:Users[])=>{
+            .subscribe((data: Users[]) => {
                 this.usersInfo = data;
-            console.log(this.usersInfo);
+                console.log(this.usersInfo);
             })
-         
+
     }
 
     public addUsersactive(index) {
@@ -44,7 +44,7 @@ export class UsersView implements OnInit {
             this._messages = data;
             this._messageService.add({ severity: 'success', summary: 'Service Message', detail: this._messages });
             this._getUsers();
-           console.log(this._messages,"messages");
+            console.log(this._messages, "messages");
 
 
         })
@@ -56,10 +56,16 @@ export class UsersView implements OnInit {
             height: "686px",
         });
         dialogRef.afterClosed()
-        .subscribe(data=>{
-            if(data=="login"){
-                this._getUsers();
-            }
-        })
+            .subscribe(data => {
+                if (data == "login") {
+                    this._getUsers();
+                }
+            })
+    }
+
+    public deleteUsers(item) {
+        this.usersInfo.splice(item, 1)
+        console.log(this.usersInfo);
+        
     }
 }

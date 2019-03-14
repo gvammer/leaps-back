@@ -42,4 +42,13 @@ export class TemplateService {
         return this._httpClient.put(this._baseUrl + "admin/doctemplates/" + id, body, { headers })
     }
 
+    public deleteTemplate(id: string) {
+        let token = this._cookieService.get('token')
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        });
+        return this._httpClient.delete(this._baseUrl + "admin/doctemplates/" + id, { headers })
+    }
+
 }

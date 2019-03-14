@@ -28,3 +28,5 @@ import { BaseCookieOptions, CookieOptions } from 'angular2-cookie/services/base-
 export class AppModule { }
 
 //http://annaniks.com:10327/
+
+//http://192.168.0.128:3000/

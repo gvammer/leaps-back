@@ -13,7 +13,7 @@
                 </div>
             </div>
             <!-- <div  *ngIf="!data"> -->
-            <div class="add_button" margin-auto *ngIf="!data">
+            <div class="add_button" margin-auto>
                 <p-button icon="pi pi-check" label="Add Section" (click)="addSelector()"></p-button>
             </div>
             <div class="selector_content" width-90 margin-auto *ngFor="let item of selectorItems">
@@ -41,7 +41,7 @@
                             [ngModelOptions]="{standalone: true}">
                     </div>
                 </div>
-                <div class="add_button" margin-auto *ngIf="!data">
+                <div class="add_button" margin-auto>
                     <p-button icon="pi pi-check" label="Add Field" (click)="addFilder(item)"></p-button>
                 </div>
 

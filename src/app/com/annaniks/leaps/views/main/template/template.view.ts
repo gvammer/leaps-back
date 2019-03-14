@@ -37,7 +37,7 @@ export class TemplateView implements OnInit {
             maxHeight: '80vh',
             width: '600px',
             data: {
-                data:item,
+                data: item,
                 editable: true,
             }
         });
@@ -47,7 +47,7 @@ export class TemplateView implements OnInit {
             }
         })
         console.log(item);
-        
+
     }
 
 
@@ -67,5 +67,15 @@ export class TemplateView implements OnInit {
                 console.log(this.templateItems);
 
             })
+    }
+
+    public deleteTemplate(item) {
+        this._templateService.deleteTemplate(item._id)
+            .subscribe((data) => {
+                this._getTemplates();
+                console.log(data);
+
+            })
+
     }
 }

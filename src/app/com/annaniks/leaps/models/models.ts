@@ -225,3 +225,37 @@ export interface Users {
     _id: string;
 
 }
+
+export interface Template {
+    sections: Section[],
+    type: string,
+    _id: string,
+}
+
+export interface Section {
+    fields: Fields[];
+    key: string,
+    title: string,
+}
+
+
+export interface Fields {
+    key: string,
+    priority: number,
+    rightSight: boolean,
+    title: string,
+    type: string,
+    values: Values;
+    width: number,
+    _id: string,
+    _required: boolean,
+
+}
+
+interface Values {
+    value: string,
+}
+
+export interface FildType {
+    type: string;
+}

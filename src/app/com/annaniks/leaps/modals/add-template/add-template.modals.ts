@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TemplateService } from '../../views/main/template/template.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Section, Fields, FildType } from '../../models/models';
 
 @Component({
     selector: "add-template",
@@ -12,10 +13,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddTemplateModals implements OnInit {
 
     public titleGroup: FormGroup;
-    public selectorItems: Array<object> = [];
-    public filderItems: Array<object> = [];
+    public selectorItems: Section[] = [];
+    public filderItems: Fields[] = [];
     public addValue: boolean = false;
-    public fildType: any = [
+    public fildType:FildType[] = [
         { type: "password" },
         { type: "text" },
         { type: "date" },

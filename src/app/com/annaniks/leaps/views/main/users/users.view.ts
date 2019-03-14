@@ -64,8 +64,11 @@ export class UsersView implements OnInit {
     }
 
     public deleteUsers(item) {
-        this.usersInfo.splice(item, 1)
-        console.log(this.usersInfo);
-        
+        this._usersService.deleteUsers(item._id)
+        .subscribe((data)=>{
+            console.log(data);
+            this._getUsers();
+        })
+     
     }
 }

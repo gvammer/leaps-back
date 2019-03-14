@@ -44,7 +44,6 @@
                 <div class="add_button" margin-auto>
                     <p-button icon="pi pi-check" label="Add Field" (click)="addFilder(item)"></p-button>
                 </div>
-
                 <div class="selector_content" width-90 margin-auto *ngFor="let field of item.fields">
                     <div class="form_group">
                         <span margin-auto class="label">filds_key:</span>
@@ -98,11 +97,6 @@
                                     [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
-
-
-
-
-
                     </div>
                     <div class="form_group">
                         <span margin-auto class="label">filds_width:</span>
@@ -138,11 +132,11 @@
                         <input class="checkbox_input" type="checkbox" full-heigh [(ngModel)]="field.rightSight"
                             [ngModelOptions]="{standalone: true}">
                     </div>
+                    <div class="line" width-100 margin-auto></div>
                 </div>
 
                 <!-- </div> -->
-
-
+             
             </div>
             <div class="buttton_items" display-flex margin-auto>
                 <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"

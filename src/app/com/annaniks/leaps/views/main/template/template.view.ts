@@ -70,6 +70,7 @@ export class TemplateView implements OnInit {
     }
 
     public deleteTemplate(item) {
+    
         this._templateService.deleteTemplate(item._id)
             .subscribe((data) => {
                 this._getTemplates();

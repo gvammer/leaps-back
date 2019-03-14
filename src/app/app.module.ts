@@ -19,7 +19,7 @@ import { BaseCookieOptions, CookieOptions } from 'angular2-cookie/services/base-
     HttpClientModule,
   ],
   providers: [
-    { provide: "BASE_URL", useValue: "http://192.168.0.128:3000/" },
+    { provide: "BASE_URL", useValue: "http://annaniks.com:10327/" },
     CookieService,
     { provide: CookieOptions, useValue: BaseCookieOptions }
   ],

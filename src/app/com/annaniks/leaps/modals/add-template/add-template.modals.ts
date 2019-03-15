@@ -16,7 +16,7 @@ export class AddTemplateModals implements OnInit {
     public selectorItems: Section[] = [];
     public filderItems: Fields[] = [];
     public addValue: boolean = false;
-    public fildType:FildType[] = [
+    public fildType: FildType[] = [
         { type: "password" },
         { type: "text" },
         { type: "date" },
@@ -109,5 +109,12 @@ export class AddTemplateModals implements OnInit {
 
     }
 
+    public deleteSelector(index,item){
+     this.selectorItems.splice(index,1)
+    }
+
+    public deleteFild(index,item) {
+        item.fields.splice(index, 1)
+    }
 
 }

@@ -1,4 +1,9 @@
-<div class="add_content" full-width>
+<div class="add_content" full-width position-releative>
+        <div class="top_content" position-absolute>
+                <i class="material-icons" cursor-pointer (click)="closeModal()">
+                    clear
+                </i>
+            </div>
     <div class="add_conteiner" width-75 margin-auto>
         <form [formGroup]="rolseGroup">
             <div class="name_content" display-flex margin-auto>

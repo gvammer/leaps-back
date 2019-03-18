@@ -113,4 +113,8 @@ export class AddRolesModals implements OnInit {
             })
         }
     }
+
+  public  closeModal():void{
+this._dialogRef.close();
+    }
 }

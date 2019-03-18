@@ -22,11 +22,13 @@ export class TemplateView implements OnInit {
     public openAddTemplateModal() {
         const dialogRef = this._matDialog.open(AddTemplateModals, {
             maxHeight: '100vh',
-            width: '750px',
+            width: '1000px',
         });
         dialogRef.afterClosed()
             .subscribe(data => {
                 if (data == "add") {
+                    console.log(data);
+                    
                     this._getTemplates();
                 }
             })
@@ -35,7 +37,7 @@ export class TemplateView implements OnInit {
     public openEditTemplateModal(item) {
         const dialogRef = this._matDialog.open(AddTemplateModals, {
             maxHeight: '80vh',
-            width: '686px',
+            width: '100vw',
             data: {
                 data: item,
                 editable: true,

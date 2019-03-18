@@ -53,12 +53,13 @@ export class AddTemplateModals implements OnInit {
 
     }
 
-    public onChange($event) {
+    public onChange($event,field) {
         console.log($event);
         if ($event == "select") {
             this.addValue = true;
         }
         else {
+            field.values=[]
             this.addValue = false;
         }
 
@@ -109,12 +110,21 @@ export class AddTemplateModals implements OnInit {
 
     }
 
-    public deleteSelector(index,item){
-     this.selectorItems.splice(index,1)
+    public closeModal(){
+        this._dialogRef.close();
     }
 
-    public deleteFild(index,item) {
+    public deleteSelector(index, item) {
+        this.selectorItems.splice(index, 1)
+    }
+
+    public deleteFild(index, item) {
         item.fields.splice(index, 1)
+    }
+
+    deleteValue(field, index) {
+        field.values.splice(index,1);
+
     }
 
 }

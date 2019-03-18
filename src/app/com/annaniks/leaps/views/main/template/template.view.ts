@@ -81,4 +81,5 @@ export class TemplateView implements OnInit {
             })
 
     }
+
 }

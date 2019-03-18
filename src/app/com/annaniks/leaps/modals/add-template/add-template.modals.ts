@@ -20,9 +20,9 @@ export class AddTemplateModals implements OnInit {
         { type: "password" },
         { type: "text" },
         { type: "date" },
-        { type: "number" },
+        { type: "numberic" },
         { type: "time" },
-        { type: "email" },
+        { type: "email-address" },
         { type: "phone" },
         { type: "select" },
     ]

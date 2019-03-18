@@ -62,13 +62,30 @@ export class UsersView implements OnInit {
                 }
             })
     }
-
-    public deleteUsers(item) {
-        this._usersService.deleteUsers(item._id)
+    public editUserModal(item): void {
+        const dialogRef = this._dialog.open(AddUserModal, {
+            width: "686px",
+            height: "686px",
+            data: {
+                editable: true,
+                data: item,
+            }
+        });
+        dialogRef.afterClosed()
         .subscribe((data)=>{
-            console.log(data);
-            this._getUsers();
+            if(data=="update"){
+                this._getUsers();
+            }
         })
-     
+        
+    }
+
+    public deleteUsers(item): void {
+        this._usersService.deleteUsers(item._id)
+            .subscribe((data) => {
+                console.log(data);
+                this._getUsers();
+            })
+
     }
 }

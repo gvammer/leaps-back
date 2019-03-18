@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../views/main/users/users.service';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UniqueIdModal } from '..';
 
 
@@ -22,12 +22,13 @@ export class AddUserModal implements OnInit {
     public selectedRole: string;
 
 
-    constructor(private _usersService: UsersService, private _dialogRef: MatDialogRef<AddUserModal>, private _dialog: MatDialog) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data, private _usersService: UsersService, private _dialogRef: MatDialogRef<AddUserModal>, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
         this.getRoles();
         this._getOrganization();
+        this._setPutchValue();
     }
 
 
@@ -42,6 +43,22 @@ export class AddUserModal implements OnInit {
             organization: [],
             department: [],
         })
+    }
+
+    private _setPutchValue() {
+if(this.data && this.data.editable){
+    console.log(this.data.data);
+    
+    this.usersGroup.patchValue({
+        firstName:this.data.data.firstName,
+        lastName:this.data.data.lastName,
+      //  title:this.data.data.title,
+        roles:this.data.data.role,
+        organization:this.data.data.organization,
+        department: this.data.data.department,
+
+    })
+}
     }
 
     private getRoles() {

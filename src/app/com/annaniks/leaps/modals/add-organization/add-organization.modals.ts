@@ -88,4 +88,9 @@ export class AddOrganization implements OnInit {
     public addNewItem(): void {
         this.organizationGroup.get('items')['controls'].push(new FormControl('', Validators.required))
     }
+
+    public closeModal(): void {
+        this._dialogRef.close();
+    }
+    
 }

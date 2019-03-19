@@ -115,7 +115,7 @@ export class AddTemplateModals implements OnInit {
     }
 
     public deleteSelector(index, item) {
-        item.splice(index, 1)
+        this.sections.splice(index, 1)
     }
 
     public deleteField(index, item) {

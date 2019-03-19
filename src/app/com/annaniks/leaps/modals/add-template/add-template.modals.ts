@@ -13,7 +13,7 @@ import { Section, Fields, FildType } from '../../models/models';
 export class AddTemplateModals implements OnInit {
 
     public titleGroup: FormGroup;
-    public selectorItems: Section[] = [];
+    public sections: Section[] = [];
     public filderItems: Fields[] = [];
     public addValue: boolean = false;
     public fildType: FildType[] = [
@@ -48,18 +48,18 @@ export class AddTemplateModals implements OnInit {
             this.titleGroup.patchValue({
                 type: this.data.data.type,
             })
-            this.selectorItems = this.data.data.sections;
+            this.sections = this.data.data.sections;
         }
 
     }
 
-    public onChange($event,field) {
+    public onChange($event, field) {
         console.log($event);
         if ($event == "select") {
             this.addValue = true;
         }
         else {
-            field.values=[]
+            field.values = []
             this.addValue = false;
         }
 
@@ -73,12 +73,12 @@ export class AddTemplateModals implements OnInit {
     }
 
 
-    public addSelector() {
-        this.selectorItems.push({ key: "", title: "", fields: [] })
+    public addSection(): void {
+        this.sections.push({ key: "", title: "", fields: [] })
 
     }
 
-    public addFilder(item) {
+    public addField(item): void {
         item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, values: [] });
     }
 
@@ -87,7 +87,7 @@ export class AddTemplateModals implements OnInit {
         if (this.data && this.data.editable) {
             this._templateService.editTemplates(this.data.data._id, {
                 type: this.titleGroup.value.type,
-                sections: this.selectorItems
+                sections: this.sections
             }).subscribe((data) => {
                 console.log(data);
 
@@ -96,11 +96,11 @@ export class AddTemplateModals implements OnInit {
 
         }
         else {
-            console.log(this.selectorItems);
+            console.log(this.sections);
 
             this._templateService.addDoctemplates({
                 type: this.titleGroup.value.type,
-                sections: this.selectorItems
+                sections: this.sections
             }).subscribe((data) => {
                 this._dialogRef.close('add');
                 console.log(data);
@@ -110,20 +110,20 @@ export class AddTemplateModals implements OnInit {
 
     }
 
-    public closeModal(){
+    public closeModal() {
         this._dialogRef.close();
     }
 
     public deleteSelector(index, item) {
-        this.selectorItems.splice(index, 1)
+        item.splice(index, 1)
     }
 
-    public deleteFild(index, item) {
+    public deleteField(index, item) {
         item.fields.splice(index, 1)
     }
 
     deleteValue(field, index) {
-        field.values.splice(index,1);
+        field.values.splice(index, 1);
 
     }
 

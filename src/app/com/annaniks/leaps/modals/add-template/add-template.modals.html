@@ -4,8 +4,7 @@
             clear
         </i>
     </div>
-    <div class="add_conteiner" width-75 display-flex margin-auto>
-
+    <div class="add_conteiner" display-flex margin-auto>
         <form [formGroup]="titleGroup" class="templateForm">
             <div class="form_group">
                 <span class="label">type:</span>
@@ -18,80 +17,72 @@
                     <input class="form_input" full-height formControlName="type">
                 </div>
             </div>
-            <div class="add_button" margin-auto>
-                <p-button icon="pi pi-check" label="Add Section" (click)="addSelector()"></p-button>
-            </div>
-
-            <div class="selector_content">
-                <div class="selector_items" full-width *ngFor="let item of selectorItems;let ind=index">
-                    <div class="selector_group" display-flex full-width>
-                        <div class="form_group">
-                            <span margin-auto class="label">key:</span>
-                            <div class="form_container" display-flex margin-auto>
-                                <div class='icon' display-flex>
-                                    <i class="material-icons" margin-auto>
-                                        person
-                                    </i>
+            <div class="tree">
+                <ul no-padding *ngFor="let item of sections;let ind=index">
+                    <li>
+                        <div class="section_group">
+                            <div class="form_group_tree" full-width>
+                                <span margin-auto class="label">key:</span>
+                                <div class="form_container" display-flex margin-auto>
+                                    <div class='icon' display-flex>
+                                        <i class="material-icons" margin-auto>
+                                            person
+                                        </i>
+                                    </div>
+                                    <input class="form_input" full-height [(ngModel)]="item.key"
+                                        [ngModelOptions]="{standalone: true}">
                                 </div>
-                                <input class="form_input" full-height [(ngModel)]="item.key"
-                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form_group_tree" full-width>
+                                <span margin-auto class="label">title:</span>
+                                <div class="form_container" display-flex margin-auto>
+                                    <div class='icon' display-flex>
+                                        <i class="material-icons" margin-auto>
+                                            person
+                                        </i>
+                                    </div>
+                                    <input class="form_input" full-height [(ngModel)]="item.title"
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="delete">
+                                <i class="material-icons" (click)="deleteSelector(ind,item)" cursor-pointer>
+                                    delete
+                                </i>
                             </div>
                         </div>
-                        <div class="form_group">
-                            <span margin-auto class="label">title:</span>
-                            <div class="form_container" display-flex margin-auto>
-                                <div class='icon' display-flex>
-                                    <i class="material-icons" margin-auto>
-                                        person
-                                    </i>
-                                </div>
-                                <input class="form_input" full-height [(ngModel)]="item.title"
-                                    [ngModelOptions]="{standalone: true}">
-                            </div>
+                        <div class="add_button">
+                            <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
                         </div>
-                        <div class="delete_section">
-                            <i class="material-icons" (click)="deleteSelector(ind,item)">
-                                delete
-                            </i>
-                        </div>
-                    </div>
-                    <div class="fild_content">
-                        <div class="add_button" margin-auto>
-                            <p-button icon="pi pi-check" label="Add Field" (click)="addFilder(item)"></p-button>
-                        </div>
-                    </div>
-
-                    <div class="fild_content">
-                        <div class="fild_conteiner" full-width *ngFor="let field of item.fields;let ind=index">
-                            <div div class="fild_group" display-flex>
-                                <div class="form_group">
-                                    <span margin-auto class="label">filds_key:</span>
-                                    <div class="form_container" display-flex margin-auto>
-                                        <div class='icon' display-flex>
-                                            <i class="material-icons" margin-auto>
-                                                person
-                                            </i>
+                        <ul *ngFor="let field of item.fields;let ind=index">
+                            <li>
+                                <div class="form_box">
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">field key:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <input class="form_input" full-height [(ngModel)]="field.key"
+                                                [ngModelOptions]="{standalone: true}">
                                         </div>
-                                        <input class="form_input" full-height [(ngModel)]="field.key"
-                                            [ngModelOptions]="{standalone: true}">
                                     </div>
-                                </div>
-                                <div class="form_group">
-                                    <span margin-auto class="label">filds_title:</span>
-                                    <div class="form_container" display-flex margin-auto>
-                                        <div class='icon' display-flex>
-                                            <i class="material-icons" margin-auto>
-                                                person
-                                            </i>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">field title:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <input class="form_input" full-height [(ngModel)]="field.title"
+                                                [ngModelOptions]="{standalone: true}">
                                         </div>
-                                        <input class="form_input" full-height [(ngModel)]="field.title"
-                                            [ngModelOptions]="{standalone: true}">
                                     </div>
-                                </div>
-
-                                <div class="form_group">
-                                    <div class="form_type_group" width-75 margin-auto>
-                                        <span margin-auto class="label">filds_type:</span>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">field type:</span>
                                         <div class="form_container" display-flex margin-auto>
                                             <div class='icon' display-flex>
                                                 <i class="material-icons" margin-auto>
@@ -105,86 +96,96 @@
                                                 </option>
                                             </select>
                                         </div>
-                                        <div class="add_button" margin-auto *ngIf="addValue">
-                                            <p-button icon="pi pi-check" label="Add Value"
-                                                (click)="addValueItem(field)">
-                                            </p-button>
-                                        </div>
-
-                                        <div class="form_type_group"
-                                            *ngFor="let fieldValue of  field.values;let ind=index">
-                                            <span margin-auto class="label">value:</span>
-                                            <div class="form_container" display-flex margin-auto>
-                                                <div class='icon' display-flex>
-                                                    <i class="material-icons" margin-auto cursor-pointer
-                                                        (click)="deleteValue(field,ind)">
-                                                        delete
-                                                    </i>
-                                                </div>
-                                                <input class="form_input" full-height [(ngModel)]="fieldValue.value"
-                                                    [ngModelOptions]="{standalone: true}">
+                                        <div *ngIf="addValue">
+                                            <div class="add_button">
+                                                <p-button icon="pi pi-check" label="Add Field"
+                                                    (click)="addValueItem(field)"></p-button>
                                             </div>
+                                            <div *ngFor="let fieldValue of  field.values;let ind=index">
+                                                <ul>
+                                                    <li>
+                                                        <div class="form_group_tree" full-width>
+                                                            <span margin-auto class="label">value:</span>
+                                                            <div class="form_container" display-flex margin-auto>
+                                                                <div class='icon' display-flex>
+                                                                    <i class="material-icons" margin-auto cursor-pointer
+                                                                        (click)="deleteValue(field,ind)">
+                                                                        delete
+                                                                    </i>
+                                                                </div>
+                                                                <input class="form_input" full-height
+                                                                    [(ngModel)]="fieldValue.value"
+                                                                    [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">field width:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <input class="form_input" full-height [(ngModel)]="field.width"
+                                                [ngModelOptions]="{standalone: true}">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-
-
-                            <div div class="fild_group" display-flex>
-                                <div class="form_group">
-                                    <span margin-auto class="label">filds_width:</span>
-                                    <div class="form_container" display-flex margin-auto>
-                                        <div class='icon' display-flex>
-                                            <i class="material-icons" margin-auto>
-                                                person
-                                            </i>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">field priority:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <input class="form_input" full-height [(ngModel)]="field.priority"
+                                                [ngModelOptions]="{standalone: true}">
                                         </div>
-                                        <input class="form_input" type="number" full-height [(ngModel)]="field.width"
-                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                    <div class="form_group_tree">
+                                        <span margin-auto class="label">field is required:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <input class="checkbox_input" type="checkbox" full-heigh margin-auto
+                                                [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
+                                        </div>
+
+                                    </div>
+                                    <div class="form_group_tree">
+                                        <span margin-auto class="label">field is right side:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <input class="checkbox_input" type="checkbox" full-heigh margin-auto
+                                                [(ngModel)]="field.rightSight" [ngModelOptions]="{standalone: true}">
+                                        </div>
+
+                                    </div>
+                                    <div class="delete" display-flex>
+                                        <i class="material-icons" margin-auto (click)="deleteField(ind,item)"
+                                            cursor-pointer>
+                                            delete
+                                        </i>
                                     </div>
                                 </div>
-                                <div class="form_group">
-                                    <span margin-auto class="label">priority:</span>
-                                    <div class="form_container" display-flex margin-auto>
-                                        <div class='icon' display-flex>
-                                            <i class="material-icons" margin-auto>
-                                                person
-                                            </i>
-                                        </div>
-                                        <input class="form_input" type="number" full-height [(ngModel)]="field.priority"
-                                            [ngModelOptions]="{standalone: true}">
-                                    </div>
-                                </div>
-                                <div class="form_group" display-flex flex-diraction-colum text-align-center>
-                                    <span margin-auto class="label">required:</span>
-                                    <input class="checkbox_input" type="checkbox" full-heigh margin-auto
-                                        [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="form_group">
-                                    <span margin-auto class="label">rightSight:</span>
-                                    <input class="checkbox_input" type="checkbox" full-heigh
-                                        [(ngModel)]="field.rightSight" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="fild_button">
-                                    <i class="material-icons" margin-auto cursor-pointer (click)="deleteFild(ind,item)">
-                                        delete
-                                    </i>
-                                </div>
-
-                            </div>
-                            <div class="line" width-100 margin-auto></div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="buttton_items" display-flex margin-auto>
-                    <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
-                        (click)="addDoctemplates()"><span color-white>Save</span></button>
-                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-
+            <div class="add_button" margin-auto>
+                <p-button icon="pi pi-check" label="Add Section" (click)="addSection()"></p-button>
+            </div>
+            <div class="buttton_items" display-flex margin-auto>
+                <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
+                    (click)="addDoctemplates()"><span color-white>Save</span></button>
+            </div>
 
         </form>
 

@@ -47,14 +47,14 @@ export class AddUserModal implements OnInit {
 
     private _setPutchValue() {
 if(this.data && this.data.editable){
-    console.log(this.data.data);
+    console.log(this.data.data,"dsdsad");
     
     this.usersGroup.patchValue({
         firstName:this.data.data.firstName,
         lastName:this.data.data.lastName,
       //  title:this.data.data.title,
-        roles:this.data.data.role,
-        organization:this.data.data.organization,
+        roles:this.data.data.role._id,
+       organization:this.data.data.organization._id,
         department: this.data.data.department,
 
     })

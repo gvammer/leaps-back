@@ -21,7 +21,7 @@
                 <ul no-padding *ngFor="let item of sections;let ind=index">
                     <li>
                         <div class="section_group">
-                            <div class="form_group_tree" full-width>
+                            <div class="form_group_tree" width-30>
                                 <span margin-auto class="label">key:</span>
                                 <div class="form_container" display-flex margin-auto>
                                     <div class='icon' display-flex>
@@ -33,7 +33,7 @@
                                         [ngModelOptions]="{standalone: true}">
                                 </div>
                             </div>
-                            <div class="form_group_tree" full-width>
+                            <div class="form_group_tree" width-30>
                                 <span margin-auto class="label">title:</span>
                                 <div class="form_container" display-flex margin-auto>
                                     <div class='icon' display-flex>
@@ -45,15 +45,15 @@
                                         [ngModelOptions]="{standalone: true}">
                                 </div>
                             </div>
-                            <div class="delete">
+                            <div class="delete_select">
                                 <i class="material-icons" (click)="deleteSelector(ind,item)" cursor-pointer>
                                     delete
                                 </i>
                             </div>
                         </div>
-                        <div class="add_button">
+                        <!-- <div class="add_button">
                             <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
-                        </div>
+                        </div> -->
                         <ul *ngFor="let field of item.fields;let ind=index">
                             <li>
                                 <div class="form_box">
@@ -135,8 +135,15 @@
                                                     person
                                                 </i>
                                             </div>
-                                            <input class="form_input" full-height [(ngModel)]="field.width"
+                                            <!-- <input class="form_input" full-height [(ngModel)]="field.width"
+                                                [ngModelOptions]="{standalone: true}" minlength="0" maxlength="100" type="number"> -->
+
+                                                <select class="form_input"  full-height [(ngModel)]="field.width"
+                                                (ngModelChange)="onChange($event,field)"
                                                 [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let item of widthType" [value]="item.type">{{item.type}}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form_group_tree" full-width>
@@ -148,12 +155,12 @@
                                                 </i>
                                             </div>
                                             <input class="form_input" full-height [(ngModel)]="field.priority"
-                                                [ngModelOptions]="{standalone: true}">
+                                                [ngModelOptions]="{standalone: true}" type="number">
                                         </div>
                                     </div>
                                     <div class="form_group_tree">
                                         <span margin-auto class="label">field is required:</span>
-                                        <div class="form_container" display-flex margin-auto>
+                                        <div  display-flex margin-auto>
                                             <input class="checkbox_input" type="checkbox" full-heigh margin-auto
                                                 [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
                                         </div>
@@ -161,7 +168,7 @@
                                     </div>
                                     <div class="form_group_tree">
                                         <span margin-auto class="label">field is right side:</span>
-                                        <div class="form_container" display-flex margin-auto>
+                                        <div  display-flex margin-auto>
                                             <input class="checkbox_input" type="checkbox" full-heigh margin-auto
                                                 [(ngModel)]="field.rightSight" [ngModelOptions]="{standalone: true}">
                                         </div>
@@ -173,15 +180,21 @@
                                             delete
                                         </i>
                                     </div>
+                                    
                                 </div>
                             </li>
                         </ul>
                     </li>
+                    <div class="add_button">
+                            <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
+                        </div>
                 </ul>
             </div>
+            
             <div class="add_button" margin-auto>
                 <p-button icon="pi pi-check" label="Add Section" (click)="addSection()"></p-button>
             </div>
+            
             <div class="buttton_items" display-flex margin-auto>
                 <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
                     (click)="addDoctemplates()"><span color-white>Save</span></button>

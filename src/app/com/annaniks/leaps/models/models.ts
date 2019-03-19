@@ -259,3 +259,7 @@ interface Values {
 export interface FildType {
     type: string;
 }
+
+export interface WidthType{
+    type:number;
+}

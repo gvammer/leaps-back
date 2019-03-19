@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TemplateService } from '../../views/main/template/template.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Section, Fields, FildType } from '../../models/models';
+import { Section, Fields, FildType, WidthType } from '../../models/models';
+
 
 @Component({
     selector: "add-template",
@@ -25,6 +26,11 @@ export class AddTemplateModals implements OnInit {
         { type: "email-address" },
         { type: "phone" },
         { type: "select" },
+    ]
+    public widthType:WidthType[]=[
+        {type:50},
+        {type:100}
+
     ]
     public selector: any = { key: "", title: "", fields: [] }
 
@@ -115,7 +121,7 @@ export class AddTemplateModals implements OnInit {
     }
 
     public deleteSelector(index, item) {
-        item.splice(index, 1)
+        this.sections.splice(index, 1)
     }
 
     public deleteField(index, item) {

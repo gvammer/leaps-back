@@ -45,6 +45,15 @@
         }
         .delete{
             margin-top: 15px;
+            i{
+                font-size: 30px;
+            }
+        }
+        .delete_select{
+            margin-top: 30px;
+            i{
+                font-size: 30px;
+            }
         }
     }
 }
@@ -56,7 +65,7 @@
 }
 
 .checkbox_input {
-    height: 42px;
+    height: 30px;
     width: 42px;
 }
 

@@ -27,7 +27,7 @@ export class UsersView implements OnInit {
         this._usersService.getUsers()
             .subscribe((data: Users[]) => {
                 this.usersInfo = data;
-                console.log(this.usersInfo);
+           //     console.log(this.usersInfo);
             })
 
     }
@@ -36,7 +36,7 @@ export class UsersView implements OnInit {
         for (var i = 0; i < this.usersInfo.length; i++) {
             var userId = this.usersInfo[index]._id
         }
-        console.log(userId);
+   //     console.log(userId);
 
         this._usersService.addUsersactive(userId, {
 
@@ -44,7 +44,7 @@ export class UsersView implements OnInit {
             this._messages = data;
             this._messageService.add({ severity: 'success', summary: 'Service Message', detail: this._messages });
             this._getUsers();
-            console.log(this._messages, "messages");
+           // console.log(this._messages, "messages");
 
 
         })
@@ -83,7 +83,7 @@ export class UsersView implements OnInit {
     public deleteUsers(item): void {
         this._usersService.deleteUsers(item._id)
             .subscribe((data) => {
-                console.log(data);
+             //   console.log(data);
                 this._getUsers();
             })
 

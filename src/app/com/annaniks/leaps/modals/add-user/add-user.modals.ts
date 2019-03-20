@@ -46,26 +46,25 @@ export class AddUserModal implements OnInit {
     }
 
     private _setPutchValue() {
-if(this.data && this.data.editable){
-    console.log(this.data.data,"dsdsad");
-    
-    this.usersGroup.patchValue({
-        firstName:this.data.data.firstName,
-        lastName:this.data.data.lastName,
-      //  title:this.data.data.title,
-        roles:this.data.data.role._id,
-       organization:this.data.data.organization._id,
-        department: this.data.data.department,
+        if (this.data && this.data.editable) {
 
-    })
-}
+            this.usersGroup.patchValue({
+                firstName: this.data.data.firstName,
+                lastName: this.data.data.lastName,
+                // title:this.data.data.title,
+                roles: this.data.data.role._id,
+                organization: this.data.data.organization._id,
+                department: this.data.data.department,
+
+            })
+        }
     }
 
     private getRoles() {
         this._usersService.getRoles()
             .subscribe((data) => {
                 this.rolesInfo = data;
-                console.log(data);
+                // console.log(data);
 
             })
     }
@@ -74,33 +73,53 @@ if(this.data && this.data.editable){
         this._usersService.getOrganization()
             .subscribe((data: any) => {
                 this.organizationInfo = data;
-                console.log(this.organizationInfo);
+                //  console.log(this.organizationInfo);
 
             })
     }
 
 
     public postUsers() {
-        this._usersService.postUsers({
-            firstName: this.usersGroup.value.firstName,
-            lastName: this.usersGroup.value.lastName,
-            title: this.usersGroup.value.title,
-            name: this.usersGroup.value.name,
-            password: this.usersGroup.value.password,
-            role: this.usersGroup.value.roles,
-            organization: this.usersGroup.value.organization,
-            department: this.usersGroup.value.department,
-        }).subscribe((data: any) => {
-            console.log(data);
-            this._dialogRef.close('login');
-            const _dialogRef = this._dialog.open(UniqueIdModal, {
-                width: "444px",
-                height: "350px",
-                data: {
-                    data: data.uniqueID,
-                }
-            })
+        if (this.data && this.data.editable) {
+            this._usersService.updateUser(this.data.data._id, {
+                firstName: this.usersGroup.value.firstName,
+                lastName: this.usersGroup.value.lastName,
+                title: this.usersGroup.value.title,
+                name: this.usersGroup.value.name,
+                password: this.usersGroup.value.password,
+                role: this.usersGroup.value.roles,
+                organization: this.usersGroup.value.organization,
+                department: this.usersGroup.value.department,
+            }).subscribe((data) => {
+                console.log(data);
+                this._dialogRef.close('update');
 
-        })
+            })
+        }
+        else {
+            this._usersService.postUsers({
+                firstName: this.usersGroup.value.firstName,
+                lastName: this.usersGroup.value.lastName,
+                title: this.usersGroup.value.title,
+                name: this.usersGroup.value.name,
+                password: this.usersGroup.value.password,
+                role: this.usersGroup.value.roles,
+                organization: this.usersGroup.value.organization,
+                department: this.usersGroup.value.department,
+            }).subscribe((data: any) => {
+                console.log(data);
+                this._dialogRef.close('login');
+                const _dialogRef = this._dialog.open(UniqueIdModal, {
+                    width: "444px",
+                    height: "350px",
+                    data: {
+                        data: data.uniqueID,
+                    }
+                })
+
+            })
+        }
     }
+
+
 }

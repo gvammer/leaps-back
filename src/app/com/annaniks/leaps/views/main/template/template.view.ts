@@ -27,7 +27,7 @@ export class TemplateView implements OnInit {
         dialogRef.afterClosed()
             .subscribe(data => {
                 if (data == "add") {
-                    console.log(data);
+                 //   console.log(data);
 
                     this._getTemplates();
                 }
@@ -57,7 +57,7 @@ export class TemplateView implements OnInit {
     private _getDoctemplatesTypes() {
         this._templateService.getDoctemplatesTypes()
             .subscribe((data) => {
-                console.log(data);
+              //  console.log(data);
 
             })
     }
@@ -66,7 +66,7 @@ export class TemplateView implements OnInit {
         this._templateService.getTemplates()
             .subscribe((data) => {
                 this.templateItems = data;
-                console.log(this.templateItems);
+              //  console.log(this.templateItems);
 
             })
     }
@@ -76,7 +76,7 @@ export class TemplateView implements OnInit {
         this._templateService.deleteTemplate(item._id)
             .subscribe((data) => {
                 this._getTemplates();
-                console.log(data);
+              //  console.log(data);
 
             })
 

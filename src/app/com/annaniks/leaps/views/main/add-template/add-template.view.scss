@@ -5,6 +5,10 @@
     }
     .add_conteiner {
         justify-content: center;
+        .templateForm{
+            max-width: 100%;
+            overflow-x: auto;
+        }
         .form_group,
         .form_group_tree {
             padding: 0.5em;

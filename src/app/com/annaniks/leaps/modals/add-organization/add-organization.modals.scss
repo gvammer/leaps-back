@@ -1,6 +1,9 @@
 .add_content {
+    
     .add_conteiner {
         margin-top: 20px;
+        min-width: 1293px; 
+        overflow-x: scroll;
         .name_content,
         .title_content,
         .item_content,

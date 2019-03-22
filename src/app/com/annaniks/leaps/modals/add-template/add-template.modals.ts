@@ -17,6 +17,7 @@ export class AddTemplateModals implements OnInit {
     public sections: Section[] = [];
     public filderItems: Fields[] = [];
     public addValue: boolean = false;
+    public selecValue: string;
     public fildType: FildType[] = [
         { type: "password" },
         { type: "text" },
@@ -27,9 +28,9 @@ export class AddTemplateModals implements OnInit {
         { type: "phone" },
         { type: "select" },
     ]
-    public widthType:WidthType[]=[
-        {type:50},
-        {type:100}
+    public widthType: WidthType[] = [
+        { type: 50 },
+        { type: 100 }
 
     ]
     public selector: any = { key: "", title: "", fields: [] }
@@ -51,86 +52,91 @@ export class AddTemplateModals implements OnInit {
 
     private _setpatchValue() {
         if (this.data && this.data.editable) {
+
             this.titleGroup.patchValue({
                 type: this.data.data.type,
             })
             this.sections = this.data.data.sections;
+          
+         
+            }
+
         }
 
-    }
+    
 
     public onChange($event, field) {
-        console.log($event);
-        if ($event == "select") {
-            this.addValue = true;
-        }
-        else {
-            field.values = []
-            this.addValue = false;
-        }
-
+    console.log($event);
+    if ($event == "select") {
+        this.addValue = true;
     }
+    else {
+        field.values = []
+        this.addValue = false;
+    }
+
+}
 
     public addValueItem(field) {
-        console.log(field);
-        field.values.push({ value: '' });
+    console.log(field);
+    field.values.push({ value: '' });
 
 
-    }
+}
 
 
     public addSection(): void {
-        this.sections.push({ key: "", title: "", fields: [] })
+    this.sections.push({ key: "", title: "", fields: [] })
 
-    }
+}
 
     public addField(item): void {
-        item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, values: [] });
-    }
+    item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, values: [] });
+}
 
 
     public addDoctemplates() {
-        if (this.data && this.data.editable) {
-            this._templateService.editTemplates(this.data.data._id, {
-                type: this.titleGroup.value.type,
-                sections: this.sections
-            }).subscribe((data) => {
-                console.log(data);
+    if (this.data && this.data.editable) {
+        this._templateService.editTemplates(this.data.data._id, {
+            type: this.titleGroup.value.type,
+            sections: this.sections
+        }).subscribe((data) => {
+            // console.log(data);
 
-                this._dialogRef.close('edit');
-            })
-
-        }
-        else {
-            console.log(this.sections);
-
-            this._templateService.addDoctemplates({
-                type: this.titleGroup.value.type,
-                sections: this.sections
-            }).subscribe((data) => {
-                this._dialogRef.close('add');
-                console.log(data);
-
-            })
-        }
+            this._dialogRef.close('edit');
+        })
 
     }
+    else {
+        console.log(this.sections);
+
+        this._templateService.addDoctemplates({
+            type: this.titleGroup.value.type,
+            sections: this.sections
+        }).subscribe((data) => {
+            this._dialogRef.close('add');
+            //  console.log(data);
+
+        })
+    }
+
+}
 
     public closeModal() {
-        this._dialogRef.close();
-    }
+    this._dialogRef.close();
+}
 
     public deleteSelector(index, item) {
-        this.sections.splice(index, 1)
-    }
+    this.sections.splice(index, 1)
+}
 
     public deleteField(index, item) {
-        item.fields.splice(index, 1)
-    }
+    item.fields.splice(index, 1)
+}
 
-    deleteValue(field, index) {
-        field.values.splice(index, 1);
+deleteValue(field, index) {
+    field.values.splice(index, 1);
 
-    }
+}
 
 }

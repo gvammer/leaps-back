@@ -1,7 +1,7 @@
 <div class="add_content" full-width full-height position-releative>
-    <div class="top_content" position-absolute>
-        <i class="material-icons" cursor-pointer (click)="closeModal()">
-            clear
+    <div class="top_contnent" position-absolute routerLink="/template">
+        <i class="material-icons" cursor-pointer>
+            reply
         </i>
     </div>
     <div class="add_conteiner" display-flex margin-auto>
@@ -101,8 +101,8 @@
                                                 <p-button icon="pi pi-check" label="Add Value"
                                                     (click)="addValueItem(field)"></p-button>
                                             </div>
-                                        
-                                            <div *ngFor="let fieldValue of  field.values;let ind=index" >
+
+                                            <div *ngFor="let fieldValue of  field.values;let ind=index">
                                                 <ul>
                                                     <li>
                                                         <div class="form_group_tree" full-width>
@@ -123,7 +123,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            
+
 
 
                                         </div>
@@ -175,7 +175,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="delete" display-flex>
+                                    <div class="delete">
                                         <i class="material-icons" margin-auto (click)="deleteField(ind,item)"
                                             cursor-pointer>
                                             delete

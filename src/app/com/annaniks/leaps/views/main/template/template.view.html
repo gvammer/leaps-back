@@ -1,5 +1,5 @@
 <div class="templste_contnet">
-    <i class="material-icons" cursor-pointer (click)="openAddTemplateModal()">
+    <i class="material-icons" cursor-pointer routerLink="/template/add">
         add
     </i>
 
@@ -20,7 +20,7 @@
                 *ngFor="let item of templateItems;let ind=index">
                 <td class="td-header">{{ind+1}}</td>
                 <td class="td-header">{{item.type}}</td>
-                <td class="td-header"><i class="material-icons" (click)="openEditTemplateModal(item)">
+                <td class="td-header"><i class="material-icons"  [routerLink]="'/template/'+item.type">
                         create
                     </i></td>
                 <td class="td-header"><i class="material-icons" (click)="deleteTemplate(item)">

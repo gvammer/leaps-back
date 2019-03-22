@@ -13,7 +13,9 @@ const mainRoutes: Routes = [
             { path: "organization", loadChildren: "src/app/com/annaniks/leaps/views/main/organization/organization.module#OrganizationModule" },
             { path: "statuses", loadChildren: "src/app/com/annaniks/leaps/views/main/statuses/statuses.module#StatusesModule" },
             { path: "users", loadChildren: "src/app/com/annaniks/leaps/views/main/users/users.module#UsersModule" },
-            { path: "template", loadChildren: "src/app/com/annaniks/leaps/views/main/template/template.module#TemplateModule" }
+            { path: "template", loadChildren: "src/app/com/annaniks/leaps/views/main/template/template.module#TemplateModule" },
+            { path: "template/add", loadChildren: "src/app/com/annaniks/leaps/views/main/add-template/add-template.module#AddTemplateModule" },
+            { path: "template/:type", loadChildren: "src/app/com/annaniks/leaps/views/main/add-template/add-template.module#AddTemplateModule" }
         ]
     },
 

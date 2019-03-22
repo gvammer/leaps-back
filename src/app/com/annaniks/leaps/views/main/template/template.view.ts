@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { TemplateService } from './template.service';
 import { AddTemplateModals } from '../../../modals';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: "app-template",
@@ -34,13 +35,16 @@ export class TemplateView implements OnInit {
             })
     }
 
-    public openEditTemplateModal(item) {
+    public openEditTemplateModal(item,ind) {
+    console.log(ind,"fields");
+    
         const dialogRef = this._matDialog.open(AddTemplateModals, {
             maxHeight: '80vh',
             maxWidth:'100vw',
             data: {
                 data: item,
                 editable: true,
+                ind:ind,
             }
         });
         dialogRef.afterClosed().subscribe((data) => {
@@ -48,7 +52,7 @@ export class TemplateView implements OnInit {
                 this._getTemplates();
             }
         })
-        console.log(item);
+     //   console.log(item);
 
     }
 
@@ -66,7 +70,7 @@ export class TemplateView implements OnInit {
         this._templateService.getTemplates()
             .subscribe((data) => {
                 this.templateItems = data;
-              //  console.log(this.templateItems);
+               console.log(this.templateItems);
 
             })
     }
@@ -81,5 +85,6 @@ export class TemplateView implements OnInit {
             })
 
     }
+
 
 }

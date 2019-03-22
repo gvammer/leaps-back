@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { TemplateService } from './template.service';
-import { AddTemplateModals } from '../../../modals';
+// import { AddTemplateModals } from '../../../modals';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,41 +20,41 @@ export class TemplateView implements OnInit {
         this._getTemplates();
     }
 
-    public openAddTemplateModal() {
-        const dialogRef = this._matDialog.open(AddTemplateModals, {
-            maxHeight: '100vh',
-            maxWidth: '100vw'
-        });
-        dialogRef.afterClosed()
-            .subscribe(data => {
-                if (data == "add") {
-                 //   console.log(data);
+    // public openAddTemplateModal() {
+    //     const dialogRef = this._matDialog.open(AddTemplateModals, {
+    //         maxHeight: '100vh',
+    //         maxWidth: '100vw'
+    //     });
+    //     dialogRef.afterClosed()
+    //         .subscribe(data => {
+    //             if (data == "add") {
+    //              //   console.log(data);
 
-                    this._getTemplates();
-                }
-            })
-    }
+    //                 this._getTemplates();
+    //             }
+    //         })
+    // }
 
-    public openEditTemplateModal(item,ind) {
-    console.log(ind,"fields");
+    // public openEditTemplateModal(item,ind) {
+    // console.log(ind,"fields");
     
-        const dialogRef = this._matDialog.open(AddTemplateModals, {
-            maxHeight: '80vh',
-            maxWidth:'100vw',
-            data: {
-                data: item,
-                editable: true,
-                ind:ind,
-            }
-        });
-        dialogRef.afterClosed().subscribe((data) => {
-            if (data == "edit") {
-                this._getTemplates();
-            }
-        })
-     //   console.log(item);
+    //     const dialogRef = this._matDialog.open(AddTemplateModals, {
+    //         maxHeight: '80vh',
+    //         maxWidth:'100vw',
+    //         data: {
+    //             data: item,
+    //             editable: true,
+    //             ind:ind,
+    //         }
+    //     });
+    //     dialogRef.afterClosed().subscribe((data) => {
+    //         if (data == "edit") {
+    //             this._getTemplates();
+    //         }
+    //     })
+    //  //   console.log(item);
 
-    }
+    // }
 
 
 

@@ -230,12 +230,14 @@ export interface Template {
     sections: Section[],
     type: string,
     _id: string,
+    statuses: Statuses[]
 }
 
 export interface Section {
     fields: Fields[];
     key: string,
     title: string,
+    // statuses: Statuses[]
 }
 
 
@@ -260,6 +262,6 @@ export interface FildType {
     type: string;
 }
 
-export interface WidthType{
-    type:number;
+export interface WidthType {
+    type: number;
 }

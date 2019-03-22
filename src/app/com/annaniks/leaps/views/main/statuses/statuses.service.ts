@@ -37,6 +37,7 @@ export class StatusesService {
                 throw (error);
             }));;
     }
+    
     public delete(_id:string){
         let token = this._cookieService.get('token');
         let headers = new HttpHeaders({

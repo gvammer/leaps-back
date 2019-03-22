@@ -6,7 +6,10 @@
     </div>
     <div class="add_conteiner" display-flex margin-auto>
         <form [formGroup]="titleGroup" class="templateForm">
-            <div class="form_group">
+            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="selectedStatuses" [ngModelOptions]="{standalone: true}"
+                optionLabel="name"></p-multiSelect>
+
+            <div class="form_group" style="margin:0px !important">
                 <span class="label">type:</span>
                 <div class="form_container" display-flex margin-auto>
                     <div class='icon' display-flex>
@@ -159,11 +162,37 @@
                                                 [ngModelOptions]="{standalone: true}" type="number">
                                         </div>
                                     </div>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">required Statuses:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="field.requiredStatuses"
+                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
+                                            </p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">hide Statuses:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="field.hideStatuses"
+                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
+                                            </p-multiSelect>
+                                        </div>
+                                    </div>
                                     <div class="form_group_tree">
                                         <span margin-auto class="label">field is required:</span>
                                         <div display-flex margin-auto>
                                             <input class="checkbox_input" type="checkbox" full-heigh margin-auto
-                                                [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
+                                                [(ngModel)]="field.required" [ngModelOptions]="{standalone: true}">
                                         </div>
 
                                     </div>

@@ -1,13 +1,17 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Statuses } from '../../../models/models';
 
 
 @Injectable()
 
 export class TemplateService {
 
-    constructor(@Inject("BASE_URL") private _baseUrl: string, private _httpClient: HttpClient, private _cookieService: CookieService) { }
+    constructor(@Inject("BASE_URL") private _baseUrl: string, private _httpClient: HttpClient, private _router: Router, private _cookieService: CookieService) { }
 
 
     public addDoctemplates(body) {
@@ -57,7 +61,25 @@ export class TemplateService {
             'Content-type': 'application/json',
             'token': token,
         });
-        return this._httpClient.get(this._baseUrl + "users/doctemplates/" + type,{headers});
+        return this._httpClient.get(this._baseUrl + "users/doctemplates/" + type, { headers });
+    }
+
+    public getStatuses(): Observable<Statuses[]> {
+        let token = this._cookieService.get('token');
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        });
+        return this._httpClient.get<Statuses[]>(this._baseUrl + "users/statuses?limit=1000", { headers }).pipe(
+            catchError((error) => {
+                this._navToLogin(error);
+                throw (error);
+            }));;
+    }
+    private _navToLogin(error) {
+        if (error.error == 'login_again') {
+            this._router.navigate(['/login'])
+        }
     }
 
 }

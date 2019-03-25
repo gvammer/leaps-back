@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { TemplateService } from './template.service';
-// import { AddTemplateModals } from '../../../modals';
-import { ActivatedRoute } from '@angular/router';
+import { DeletdModals } from '../../../modals';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { Section, Statuses } from '../../../models/models';
 
 @Component({
     selector: "app-template",
@@ -12,77 +13,60 @@ import { ActivatedRoute } from '@angular/router';
 
 export class TemplateView implements OnInit {
 
-    public templateItems: any;
+    public templateItems: Template[]=[];
+    public pageLength: number = 5;
+    public page: number = 1;
+    public template: Template[] = [];
 
-    constructor(private _matDialog: MatDialog, private _templateService: TemplateService) { }
+    constructor(private _matDialog: MatDialog, private _templateService: TemplateService) {
+
+     }
 
     ngOnInit() {
         this._getTemplates();
     }
 
-    // public openAddTemplateModal() {
-    //     const dialogRef = this._matDialog.open(AddTemplateModals, {
-    //         maxHeight: '100vh',
-    //         maxWidth: '100vw'
-    //     });
-    //     dialogRef.afterClosed()
-    //         .subscribe(data => {
-    //             if (data == "add") {
-    //              //   console.log(data);
-
-    //                 this._getTemplates();
-    //             }
-    //         })
-    // }
-
-    // public openEditTemplateModal(item,ind) {
-    // console.log(ind,"fields");
-    
-    //     const dialogRef = this._matDialog.open(AddTemplateModals, {
-    //         maxHeight: '80vh',
-    //         maxWidth:'100vw',
-    //         data: {
-    //             data: item,
-    //             editable: true,
-    //             ind:ind,
-    //         }
-    //     });
-    //     dialogRef.afterClosed().subscribe((data) => {
-    //         if (data == "edit") {
-    //             this._getTemplates();
-    //         }
-    //     })
-    //  //   console.log(item);
-
-    // }
-
-
+    public onPgeTemplateChange($event){
+        this.page=$event.pageNumber;
+        this.template = this.templateItems.slice((this.page - 1) * this.pageLength, this.page * this.pageLength);
+        console.log(this.template);
+        
+    }
 
     private _getDoctemplatesTypes() {
         this._templateService.getDoctemplatesTypes()
             .subscribe((data) => {
-              //  console.log(data);
 
             })
     }
     private _getTemplates() {
-
+   
         this._templateService.getTemplates()
-            .subscribe((data) => {
+            .subscribe((data: Template[]) => {
                 this.templateItems = data;
-               console.log(this.templateItems);
+                this.template = this.templateItems.slice((this.page - 1) * this.pageLength, this.page * this.pageLength);
+                console.log(this.template,"yujit");
 
             })
     }
 
     public deleteTemplate(item) {
-
-        this._templateService.deleteTemplate(item._id)
+        const dialogRef = this._matDialog.open(DeletdModals, {
+            width: "444px",
+            height: "400px",
+        })
+        dialogRef.afterClosed()
             .subscribe((data) => {
-                this._getTemplates();
-              //  console.log(data);
+                if (data == "yes") {
+                    this._templateService.deleteTemplate(item._id)
+                        .subscribe((data) => {
+                            this._getTemplates();
+                        })
 
+                }
             })
+
+
 
     }
 

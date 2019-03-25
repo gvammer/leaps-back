@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../views/main/users/users.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UniqueIdModal } from '..';
+import { UniqueIdModal } from '../uniqueId/uniqueId.modals';
+
 
 
 

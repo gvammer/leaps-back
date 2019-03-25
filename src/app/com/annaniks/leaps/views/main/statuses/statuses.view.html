@@ -20,7 +20,7 @@
 
             <tbody>
                 <collapsible-table-row class="collapsible" [detail]="detail1"
-                    *ngFor="let item of statusesItems;let ind=index">
+                    *ngFor="let item of statusesItem;let ind=index">
                     <td class="td-header">{{ind+1}}</td>
                     <td class="td-header">{{item.name}}</td>
                     <td class="td-header">{{item.description}}</td>
@@ -36,4 +36,5 @@
             </tbody>
         </collapsible-table>
     </div>
+    <app-paginator [pageLength]="pageLength" [count]="statusesData.length" (paginate)="onChangeStatuses($event)"></app-paginator>
 </div>

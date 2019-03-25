@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UsersService } from './users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'primeng/api';
-import { AddUserModal } from '../../../modals';
+import { AddUserModal, DeletdModals } from '../../../modals';
 import { Users } from '../../../models/models';
 
 
@@ -14,20 +14,27 @@ import { Users } from '../../../models/models';
 
 export class UsersView implements OnInit {
 
-    public usersInfo: Users[];
+    public usersInfo: Users[]=[];
+    public userItems:Users[]=[];
     private _messages;
+    pageLength:number=5;
+    page:number=1;
 
     constructor(private _usersService: UsersService, private _dialog: MatDialog, private _messageService: MessageService) { }
 
     ngOnInit() {
         this._getUsers();
     }
+    public onChangeUsers($event):void{
+        this.page=$event.pageNumber;
+        this.userItems=this.usersInfo.slice((this.page-1)*this.pageLength,this.page*this.pageLength);
+    }
 
     private _getUsers() {
         this._usersService.getUsers()
             .subscribe((data: Users[]) => {
                 this.usersInfo = data;
-           //     console.log(this.usersInfo);
+                this.userItems=this.usersInfo.slice((this.page-1)*this.pageLength,this.page*this.pageLength);
             })
 
     }
@@ -81,11 +88,21 @@ export class UsersView implements OnInit {
     }
 
     public deleteUsers(item): void {
-        this._usersService.deleteUsers(item._id)
-            .subscribe((data) => {
-             //   console.log(data);
-                this._getUsers();
-            })
+        const dialogRef=this._dialog.open(DeletdModals,{
+            width:"444px",
+            height:"400px"
+        });
+        dialogRef.afterClosed()
+        .subscribe((data)=>{
+            if(data=="yes"){
+                this._usersService.deleteUsers(item._id)
+                .subscribe((data) => {
+                    this._getUsers();
+                })
+            }
+        })
+
+      
 
     }
 }

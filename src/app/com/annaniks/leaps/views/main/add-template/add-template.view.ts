@@ -18,6 +18,7 @@ export class AddTemplateView implements OnInit {
     public addValue: boolean = false;
     public selecValue: string;
     public templateValue: Template;
+   public  fieldData:FildType;
     public fildType: FildType[] = [
         { type: "password" },
         { type: "text" },
@@ -66,6 +67,7 @@ export class AddTemplateView implements OnInit {
 
             this.sections = this.templateValue.sections;
             this.selectedStatuses = this.templateValue.statuses;
+          
             console.log(this.selectedStatuses)
 
         }

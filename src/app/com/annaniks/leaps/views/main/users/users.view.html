@@ -20,7 +20,7 @@
     </thead>
 
     <tbody>
-        <collapsible-table-row class="collapsible" [detail]="detail1" *ngFor="let item of usersInfo;let ind=index">
+        <collapsible-table-row class="collapsible" [detail]="detail1" *ngFor="let item of userItems;let ind=index">
             <td class="td-header">{{ind+1}}</td>
             <td class="td-header">{{item.uniqueID}}</td>
             <td class="td-header"><input type="checkbox"  [checked]="item.active" [disabled]="item.active" (click)="addUsersactive(ind)"></td>
@@ -38,4 +38,5 @@
 
 </collapsible-table>
 <p-toast></p-toast>
+<app-paginator [pageLength]="pageLength" [count]="usersInfo.length" (paginate)="onChangeUsers($event)"></app-paginator>
 </div>

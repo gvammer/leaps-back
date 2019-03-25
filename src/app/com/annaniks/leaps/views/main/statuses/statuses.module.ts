@@ -10,12 +10,22 @@ import { UpdateStatusesModals, AddStatusesModals } from '../../../modals';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
-
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
     declarations: [StausesView,AddStatusesModals,UpdateStatusesModals],
-    imports: [StatusesRoutingModule,MultiSelectModule,DropdownModule,ButtonModule,MatDialogModule,ReactiveFormsModule,FormsModule,CommonModule,CollapsibleModule],
+    imports: [StatusesRoutingModule,
+        MultiSelectModule,
+        DropdownModule,
+        ButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        CollapsibleModule,
+        SharedModule
+    ],
     providers: [StatusesService],
     entryComponents:[AddStatusesModals,UpdateStatusesModals]
 })

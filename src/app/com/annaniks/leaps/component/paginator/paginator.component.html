@@ -1,0 +1,19 @@
+<div class="paginator" display-flex align-items-center *ngIf="pages.length>0">
+        <i class="material-icons" cursor-pointer (click)="onClickPervious()">keyboard_arrow_left</i>
+        <div class="page_numbers" display-flex>
+            <div *ngIf="visiblePages[0]!=1" [ngClass]="{'active_page':currentPage==1}" (click)="onClickPageNumber(0)" class="item">
+                <span class="page">1</span>
+            </div>
+            <span *ngIf="visiblePages[0]!=1">...</span>
+            <div *ngFor="let page of visiblePages;let ind=index;" [ngClass]="{'active_page':currentPage==page}" (click)="onClickPageNumber(page-1)"
+                class="item">
+                <span class="page">{{page}}</span>
+            </div>
+            <span *ngIf="visiblePages[visiblePages.length-1]!==pages[pages.length-1]">...</span>
+            <div [ngClass]="{'active_page':currentPage==page}" (click)="onClickPageNumber(pages[pages.length-1]-1)" class="item" *ngIf="visiblePages[visiblePages.length-1]!==pages[pages.length-1]">
+    
+                <span class="page">{{pages[pages.length-1]}}</span>
+            </div>
+        </div>
+        <i class="material-icons" cursor-pointer (click)="onClickNext()">keyboard_arrow_right</i>
+    </div>

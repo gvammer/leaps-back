@@ -7,12 +7,13 @@ import { CollapsibleModule } from 'angular2-collapsible';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { AddOrganization } from '../../../modals';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 
 @NgModule({
     declarations: [OrganizationView,AddOrganization],
-    imports: [OrganizationRoutingModule,CommonModule,CollapsibleModule,MatDialogModule,ReactiveFormsModule,FormsModule],
+    imports: [OrganizationRoutingModule,CommonModule,CollapsibleModule,MatDialogModule,ReactiveFormsModule,FormsModule,SharedModule],
     providers:[OrganizationService],
     entryComponents:[AddOrganization]
 })

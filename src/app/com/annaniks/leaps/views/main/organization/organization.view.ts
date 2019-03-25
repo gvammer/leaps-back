@@ -12,19 +12,28 @@ import { Organization, Departments } from '../../../models/models';
 
 export class OrganizationView implements OnInit {
 
-    public organizationsData: Organization;
+    public organizationsData: Organization[]=[];
+    public organizationItem:Organization[]=[];
     public departments:Departments[];
+   public pageLength:number=5;
+    public page:number=1;
     constructor(private _organizationService: OrganizationService, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._gtusersOrganizations();
     }
 
+    public onChangeOrganization($event){
+        this.page=$event.pageNumber;
+        this.organizationItem=this.organizationsData.slice((this.page-1)*this.pageLength,this.page*this.pageLength)
+    }
+
 
     private _gtusersOrganizations() {
         this._organizationService.getusersOrganization()
-            .subscribe((data:Organization) => {
+            .subscribe((data:Organization[]) => {
                 this.organizationsData = data;
+                this.organizationItem=this.organizationsData.slice((this.page-1)*this.pageLength,this.page*this.pageLength)
                 console.log(data);
 
 

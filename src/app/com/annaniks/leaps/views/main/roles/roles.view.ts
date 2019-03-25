@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
 import { MatDialog } from '@angular/material/dialog';
-import {  AddRolesModals } from '../../../modals';
+import { AddRolesModals } from '../../../modals';
 import { Role, Permission } from '../../../models/models';
 
 
@@ -13,19 +13,29 @@ import { Role, Permission } from '../../../models/models';
 
 export class RolesView implements OnInit {
 
-    public rolesDada: Role;
+    public rolesData: Role[] = [];
+    public rolesItem: Role[] = [];
+    public pageLength: number = 5;
+    public page: number = 1;
+
+
     constructor(private _rolesService: RolesService, private _matDialog: MatDialog) { }
 
     ngOnInit() {
         this._getUsersRoles();
     }
 
+    public onChangeRoles($event) {
+        this.page = $event.pageNumber;
+        this.rolesItem = this.rolesData.slice((this.page - 1) * this.pageLength, this.page * this.pageLength)
+    }
+
 
     private _getUsersRoles() {
         this._rolesService.getUserRoles()
-            .subscribe((data: Role) => {
-                this.rolesDada = data;
-                console.log(this.rolesDada.name);
+            .subscribe((data: Role[]) => {
+                this.rolesData = data;
+                this.rolesItem = this.rolesData.slice((this.page - 1) * this.pageLength, this.page * this.pageLength);
 
             })
     }

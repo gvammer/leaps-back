@@ -1,17 +1,19 @@
 import { NgModule } from "@angular/core";
-import { ToolBarComponent,  LeftMenuComponent } from '../component';
+import { ToolBarComponent,  LeftMenuComponent, PaginatorComponent } from '../component';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import { MenuService } from '../service/menu.service';
 import { ApiService } from '../service/api.service';
+import { DeletdModals } from '../modals';
 
 
 
 @NgModule({
-    declarations: [ToolBarComponent,LeftMenuComponent],
+    declarations: [ToolBarComponent,LeftMenuComponent,DeletdModals,PaginatorComponent],
     imports: [CommonModule,RouterModule],
     providers:[ApiService,MenuService],
-    exports: [ToolBarComponent,LeftMenuComponent],
+    entryComponents:[DeletdModals],
+    exports: [ToolBarComponent,LeftMenuComponent,PaginatorComponent],
 })
 
 export class SharedModule { }

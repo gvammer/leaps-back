@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { StatusesService } from './statuses.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UpdateStatusesModals,AddStatusesModals } from '../../../modals';
+import { UpdateStatusesModals, AddStatusesModals, DeletdModals } from '../../../modals';
 import { Statuses } from '../../../models/models';
 
 
@@ -13,13 +13,20 @@ import { Statuses } from '../../../models/models';
 })
 
 export class StausesView implements OnInit {
-
-    public statusesItems: Statuses;
+   public  statusesData: Statuses[]=[];
+    public statusesItem: Statuses[]=[];
+    public pageLength:number=5;
+    public page:number=1;
 
     constructor(private _statusesService: StatusesService, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._getStatuses();
+    }
+    
+    public onChangeStatuses($event){
+        this.page=$event.pageNumber;
+        this.statusesItem=this.statusesData.slice((this.page-1)*this.pageLength,this.page*this.pageLength);
     }
 
 
@@ -28,33 +35,44 @@ export class StausesView implements OnInit {
             width: "686px",
             height: "444px",
             data: {
-                data: this.statusesItems,
+                data: this.statusesData,
             }
         });
         dialogRef.afterClosed()
-        .subscribe(data=>{
-            if(data=='add'){
-                this._getStatuses();
-            }
-        })
+            .subscribe(data => {
+                if (data == 'add') {
+                    this._getStatuses();
+                }
+            })
     }
 
     private _getStatuses() {
         this._statusesService.getStatuses()
-            .subscribe((data:Statuses) => {
-                this.statusesItems = data;
-                console.log(this.statusesItems);
-
+            .subscribe((data: Statuses[]) => {
+                this.statusesData = data;
+                this.statusesItem=this.statusesData.slice((this.page-1)*this.pageLength,this.page*this.pageLength);
+                console.log(this.statusesItem);
+                
             })
     }
 
-    public deleteStatus(item){
-        this._statusesService.delete(item._id).subscribe(
-            data=>{
-                console.log(data);
-                this._getStatuses();
+    public deleteStatus(item) {
+        const dialofRef = this._dialog.open(DeletdModals, {
+            width: "444px",
+            height: "400px",
+
+        })
+        dialofRef.afterClosed().subscribe((data) => {
+            if (data == "yes") {
+                this._statusesService.delete(item._id).subscribe(
+                    data => {
+                        console.log(data);
+                        this._getStatuses();
+                    })
             }
-        )
+        })
+
+
     }
     public openUpdateStatusModals(item): void {
         const dialogRef = this._dialog.open(UpdateStatusesModals, {

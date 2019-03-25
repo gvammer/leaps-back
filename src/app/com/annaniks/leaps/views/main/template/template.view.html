@@ -17,7 +17,7 @@
 
         <tbody>
             <collapsible-table-row class="collapsible" [detail]="detail1"
-                *ngFor="let item of templateItems;let ind=index">
+                *ngFor="let item of template;let ind=index">
                 <td class="td-header">{{ind+1}}</td>
                 <td class="td-header">{{item.type}}</td>
                 <td class="td-header"><i class="material-icons"  [routerLink]="'/template/'+item.type">
@@ -31,4 +31,7 @@
         </tbody>
 
     </collapsible-table>
+
+    <app-paginator [pageLength]="pageLength" [count]="templateItems.length" (paginate)="onPgeTemplateChange($event)"></app-paginator>
 </div>
+

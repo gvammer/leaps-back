@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TemplateService } from '../template/template.service';
 import { WidthType, FildType, Fields, Section, Template, Statuses } from '../../../models/models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveModals } from '../../../modals';
 
 @Component({
     selector: "add-template",
@@ -18,7 +20,7 @@ export class AddTemplateView implements OnInit {
     public addValue: boolean = false;
     public selecValue: string;
     public templateValue: Template;
-   public  fieldData:FildType;
+    public fieldData: FildType;
     public fildType: FildType[] = [
         { type: "password" },
         { type: "text" },
@@ -39,7 +41,7 @@ export class AddTemplateView implements OnInit {
     public typeValue: string;
     public selectedStatuses = [];
 
-    constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute, private _router: Router) {
+    constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute, private _router: Router, private _dialog: MatDialog) {
         this._activatedRoute.params.subscribe((params) => {
             this.typeValue = params.type;
         })
@@ -67,7 +69,7 @@ export class AddTemplateView implements OnInit {
 
             this.sections = this.templateValue.sections;
             this.selectedStatuses = this.templateValue.statuses;
-          
+
             console.log(this.selectedStatuses)
 
         }
@@ -102,15 +104,25 @@ export class AddTemplateView implements OnInit {
 
     public addDoctemplates() {
         if (this.typeValue) {
-            this._templateService.editTemplates(this.templateValue._id, {
-                type: this.titleGroup.value.type,
-                sections: this.sections,
-                statuses: this.selectedStatuses
-            }).subscribe((data) => {
-                this._router.navigate(["/template"]);
-                console.log(data);
-
+            const dialogRef = this._dialog.open(SaveModals, {
+                width: "444px",
+                height: "400px",
             })
+            dialogRef.afterClosed()
+                .subscribe((data) => {
+                    if (data == "save") {
+                        this._templateService.editTemplates(this.templateValue._id, {
+                            type: this.titleGroup.value.type,
+                            sections: this.sections,
+                            statuses: this.selectedStatuses
+                        }).subscribe((data) => {
+                            this._router.navigate(["/template"]);
+                            console.log(data);
+
+                        })
+                    }
+                })
+
 
         }
         else {

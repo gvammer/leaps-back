@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ButtonModule } from 'primeng/button';
 import { TemplateService } from '../template/template.service';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [AddTemplateView],
@@ -15,7 +16,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
         ReactiveFormsModule,
         FormsModule,
         ButtonModule,
-        MultiSelectModule
+        MultiSelectModule,
+        MatDialogModule
     ],
     exports: [],
     providers: [TemplateService]

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RolesService } from './roles.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddRolesModals } from '../../../modals';
-import { Role, Permission } from '../../../models/models';
+import { AddRolesModals} from '../../../modals';
+import { Role } from '../../../models/models';
 
 
 @Component({

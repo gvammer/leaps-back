@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from "@angular/forms"
 import { RolesService } from '../../views/main/roles/roles.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { SaveModals } from '../save/save.modals';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AddRolesModals implements OnInit {
     public rolseGroup: FormGroup;
     public permissionsData: any[];
     public itemsArray = [];
-    constructor(@Inject(MAT_DIALOG_DATA) public data, private _rolesService: RolesService, private _dialogRef: MatDialogRef<AddRolesModals>) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data, private _rolesService: RolesService, private _dialogRef: MatDialogRef<AddRolesModals>,private _dialog:MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -93,13 +94,23 @@ export class AddRolesModals implements OnInit {
 
     public addRoles() {
         if (this.data && this.data.editable) {
-            this._rolesService.updateRoles(this.data.data._id, {
-                name: this.rolseGroup.value.name,
-                title: this.rolseGroup.value.title,
-            }).subscribe((data) => {
-                this._dialogRef.close('update');
-    
+            const _dialogRef=this._dialog.open(SaveModals,{
+                width:"444px",
+                height:"400px"
+            });
+        _dialogRef.afterClosed()
+            .subscribe((data)=>{
+                if(data=="save"){
+                    this._rolesService.updateRoles(this.data.data._id, {
+                        name: this.rolseGroup.value.name,
+                        title: this.rolseGroup.value.title,
+                    }).subscribe((data) => {
+                        this._dialogRef.close('update');
+            
+                    })
+                }
             })
+        
 
         }
         else {

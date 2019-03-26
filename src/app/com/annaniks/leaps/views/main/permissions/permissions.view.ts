@@ -16,10 +16,12 @@ import { Role, Permission } from '../../../models/models';
 
 export class PermissionsView implements OnInit {
 
-    private _rolesInfo: Role[];
+    private _rolesInfo: Role[]=[];
     private _permissionsInfo: Permission[];
     private _rolesForm: FormGroup;
     public messages: string;
+    public pageLength: number = 5;
+    public page: number = 1;
 
     constructor(private _permissionsService: PermissionsService, private _fb: FormBuilder, private _messageService: MessageService) { }
 
@@ -39,7 +41,7 @@ export class PermissionsView implements OnInit {
             this._getUserPermissions()
         );
         combined.subscribe(() => {
-            
+
             this._setControls();
         })
     }

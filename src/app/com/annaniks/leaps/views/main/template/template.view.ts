@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { TemplateService } from './template.service';
 import { DeletdModals } from '../../../modals';
 import { Template } from '@angular/compiler/src/render3/r3_ast';
-import { Section, Statuses } from '../../../models/models';
 
 @Component({
     selector: "app-template",

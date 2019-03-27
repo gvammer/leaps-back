@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { OrganizationService } from '../../views/main/organization/organization.service';
 import { Validators, FormBuilder, FormGroup, FormControl, FormArray } from "@angular/forms"
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { SaveModals } from '../save/save.modals';
 
 @Component({
     selector: "add-organization",
@@ -12,7 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddOrganization implements OnInit {
     public organizationGroup: FormGroup;
     private _editable: boolean = false;
-    constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _organizationService: OrganizationService, private _dialogRef: MatDialogRef<AddOrganization>) { }
+    constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _organizationService: OrganizationService, private _dialogRef: MatDialogRef<AddOrganization>, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -35,6 +36,7 @@ export class AddOrganization implements OnInit {
             }
         })
         if (!this._editable) {
+
             this._organizationService.postOrganization({
                 name: this.organizationGroup.value.name,
                 title: this.organizationGroup.value.title,
@@ -45,16 +47,28 @@ export class AddOrganization implements OnInit {
                 window.location.reload();
             })
         }
+
         else {
-            this._organizationService.putOrganization(this._data.item._id, {
-                name: this.organizationGroup.value.name,
-                title: this.organizationGroup.value.title,
-                departments: items,
+            const dialogRef = this._dialog.open(SaveModals, {
+                width: "444px",
+                height: "400px",
             })
+            dialogRef.afterClosed()
                 .subscribe((data) => {
-                    this._dialogRef.close();
-                    window.location.reload();
+                    if (data == "save") {
+
+                        this._organizationService.putOrganization(this._data.item._id, {
+                            name: this.organizationGroup.value.name,
+                            title: this.organizationGroup.value.title,
+                            departments: items,
+                        })
+                            .subscribe((data) => {
+                                this._dialogRef.close();
+                                window.location.reload();
+                            })
+                    }
                 })
+
         }
     }
 
@@ -92,5 +106,5 @@ export class AddOrganization implements OnInit {
     public closeModal(): void {
         this._dialogRef.close();
     }
-    
+
 }

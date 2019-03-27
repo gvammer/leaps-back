@@ -6,8 +6,9 @@
     </div>
     <div class="add_conteiner" display-flex margin-auto>
         <form [formGroup]="titleGroup" class="templateForm">
-            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="selectedStatuses" [ngModelOptions]="{standalone: true}"
-                optionLabel="name"></p-multiSelect>
+            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="selectedStatuses"
+                [ngModelOptions]="{standalone: true}" optionLabel="name"></p-multiSelect>
+
 
             <div class="form_group" style="margin:0px !important">
                 <span class="label">type:</span>
@@ -20,6 +21,24 @@
                     <input class="form_input" full-height formControlName="type">
                 </div>
             </div>
+            <div display-flex>
+                <div> <label>Start:</label>
+                    <div class="form_container" display-flex margin-auto>
+
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" multiple="1" [(ngModel)]="startStatuses"
+                            [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
+                    </div>
+                </div>
+                <div style="margin-left:10px !important">
+                    <label>end:</label>
+                    <div class="form_container" display-flex margin-auto>
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="endStatuses"
+                            [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
+
+                    </div>
+                </div>
+            </div>
+
             <div class="tree">
                 <ul no-padding *ngFor="let item of sections;let ind=index">
                     <li>
@@ -170,7 +189,8 @@
                                                     person
                                                 </i>
                                             </div>
-                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="field.requiredStatuses"
+                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                                [(ngModel)]="field.requiredStatuses"
                                                 [ngModelOptions]="{standalone: true}" optionLabel="name">
                                             </p-multiSelect>
                                         </div>
@@ -183,11 +203,30 @@
                                                     person
                                                 </i>
                                             </div>
-                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="field.hideStatuses"
-                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
+                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                                [(ngModel)]="field.hideStatuses" [ngModelOptions]="{standalone: true}"
+                                                optionLabel="name">
                                             </p-multiSelect>
                                         </div>
                                     </div>
+                                    <div class="form_group_tree" full-width>
+                                        <span margin-auto class="label">editable Statuses:</span>
+                                        <div class="form_container" display-flex margin-auto>
+                                            <div class='icon' display-flex>
+                                                <i class="material-icons" margin-auto>
+                                                    person
+                                                </i>
+                                            </div>
+                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                                [(ngModel)]="field.editable" [ngModelOptions]="{standalone: true}"
+                                                optionLabel="name">
+                                            </p-multiSelect>
+                                        </div>
+                                    </div>
+
+
+
+
                                     <div class="form_group_tree">
                                         <span margin-auto class="label">field is required:</span>
                                         <div display-flex margin-auto>

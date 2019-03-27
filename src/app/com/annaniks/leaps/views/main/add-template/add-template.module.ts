@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TemplateService } from '../template/template.service';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
     declarations: [AddTemplateView],
     imports: [
@@ -17,7 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         FormsModule,
         ButtonModule,
         MultiSelectModule,
-        MatDialogModule
+        MatDialogModule,
+        DropdownModule
     ],
     exports: [],
     providers: [TemplateService]

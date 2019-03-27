@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { Validators, FormGroup, FormBuilder, FormArray, FormControl } from "@angular/forms"
 import { StatusesService } from '../../views/main/statuses/statuses.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { forkJoin, } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SaveModals } from '../save/save.modals';
 
 @Component({
     selector: "update-statuses",
@@ -26,7 +27,7 @@ export class UpdateStatusesModals implements OnInit {
         ]
 
 
-    constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<UpdateStatusesModals>) { }
+    constructor(@Inject(MAT_DIALOG_DATA) private _data: any, private _statusesService: StatusesService, private _dialogRef: MatDialogRef<UpdateStatusesModals>,private _dialog:MatDialog) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -61,29 +62,39 @@ export class UpdateStatusesModals implements OnInit {
         this.rolesData.push({ id: "", permissions: [] })
     }
     public updateStutuses() {
-        let rolecontrols = this.statusesGroup.get('roles')['controls'];
-        let statuscontrols = this.statusesGroup.get('statuses')['controls'];
-        let selectedRoles = [];
-        let selectedStatuses = [];
-        for (var i = 0; i < rolecontrols.length; i++) {
-            if (rolecontrols[i].value == true) {
-                selectedRoles.push({ id: this.rolesData[i].id, permisions: [] });
-            }
-        }
-        for (var i = 0; i < statuscontrols.length; i++) {
-            if (statuscontrols[i].value == true) {
-                selectedStatuses.push(this.statusData[i]._id);
-            }
-        }
-        this._statusesService.updateStutuses(this._data.data._id, {
-            name: this.statusesGroup.value.name,
-            description: this.statusesGroup.value.description,
-            allowRoles: this.rolesData,
-            canComeFrom: selectedStatuses,
-        }).subscribe((data) => {
-            //this.statusId=
-            this._dialogRef.close('update');
+        const dialogRef=this._dialog.open(SaveModals,{
+            width:"444px",
+            height:"400px",
         })
+        dialogRef.afterClosed()
+        .subscribe((data)=>{
+            if(data=="save"){
+                let rolecontrols = this.statusesGroup.get('roles')['controls'];
+                let statuscontrols = this.statusesGroup.get('statuses')['controls'];
+                let selectedRoles = [];
+                let selectedStatuses = [];
+                for (var i = 0; i < rolecontrols.length; i++) {
+                    if (rolecontrols[i].value == true) {
+                        selectedRoles.push({ id: this.rolesData[i].id, permisions: [] });
+                    }
+                }
+                for (var i = 0; i < statuscontrols.length; i++) {
+                    if (statuscontrols[i].value == true) {
+                        selectedStatuses.push(this.statusData[i]._id);
+                    }
+                }
+                this._statusesService.updateStutuses(this._data.data._id, {
+                    name: this.statusesGroup.value.name,
+                    description: this.statusesGroup.value.description,
+                    allowRoles: this.rolesData,
+                    canComeFrom: selectedStatuses,
+                }).subscribe((data) => {
+                    this._dialogRef.close('update');
+                })
+            }
+        })
+
+     
     }
 
     private _getUserRoles() {

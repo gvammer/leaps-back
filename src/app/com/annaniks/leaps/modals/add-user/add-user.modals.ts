@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../views/main/users/users.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UniqueIdModal } from '../uniqueId/uniqueId.modals';
+import { SaveModals } from '../save/save.modals';
 
 
 
@@ -82,20 +83,30 @@ export class AddUserModal implements OnInit {
 
     public postUsers() {
         if (this.data && this.data.editable) {
-            this._usersService.updateUser(this.data.data._id, {
-                firstName: this.usersGroup.value.firstName,
-                lastName: this.usersGroup.value.lastName,
-                title: this.usersGroup.value.title,
-                name: this.usersGroup.value.name,
-                password: this.usersGroup.value.password,
-                role: this.usersGroup.value.roles,
-                organization: this.usersGroup.value.organization,
-                department: this.usersGroup.value.department,
-            }).subscribe((data) => {
-                console.log(data);
-                this._dialogRef.close('update');
-
+            const dialogRef = this._dialog.open(SaveModals, {
+                width: "444px",
+                height: "400px",
             })
+            dialogRef.afterClosed()
+                .subscribe((data) => {
+                    if (data == "save") {
+                        this._usersService.updateUser(this.data.data._id, {
+                            firstName: this.usersGroup.value.firstName,
+                            lastName: this.usersGroup.value.lastName,
+                            title: this.usersGroup.value.title,
+                            name: this.usersGroup.value.name,
+                            password: this.usersGroup.value.password,
+                            role: this.usersGroup.value.roles,
+                            organization: this.usersGroup.value.organization,
+                            department: this.usersGroup.value.department,
+                        }).subscribe((data) => {
+                            console.log(data);
+                            this._dialogRef.close('update');
+
+                        })
+                    }
+                })
+
         }
         else {
             this._usersService.postUsers({

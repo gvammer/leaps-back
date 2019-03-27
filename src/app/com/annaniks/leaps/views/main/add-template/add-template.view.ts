@@ -30,11 +30,18 @@ export class AddTemplateView implements OnInit {
         { type: "email-address" },
         { type: "phone" },
         { type: "select" },
+        {type:"gender"},
+        {type:"bloogtype"},
+        {type:"radio button"}
     ]
     public widthType: WidthType[] = [
         { type: 50 },
         { type: 100 }
 
+    ]
+    public startItem=[
+        {type:"start"},
+        {type:"end"}
     ]
     public statuses: Statuses[] = []
     public selector: any = { key: "", title: "", fields: [] }
@@ -99,7 +106,7 @@ export class AddTemplateView implements OnInit {
     }
 
     public addField(item): void {
-        item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, requiredStatuses: [], hideStatuses: [], values: [] });
+        item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, requiredStatuses: [], hideStatuses: [], editable:[], values: [] });
     }
 
     public addDoctemplates() {

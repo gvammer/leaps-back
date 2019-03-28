@@ -44,6 +44,8 @@ export class AddTemplateView implements OnInit {
     public selector: any = { key: "", title: "", fields: [] }
     public typeValue: string;
     public selectedStatuses = [];
+    public startStatuses=[];
+    public endStatuses=[];
 
     constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute,
          private _router: Router,

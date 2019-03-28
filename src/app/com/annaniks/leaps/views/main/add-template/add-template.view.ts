@@ -39,16 +39,15 @@ export class AddTemplateView implements OnInit {
         { type: 100 }
 
     ]
-    public startItem=[
-        {type:"start"},
-        {type:"end"}
-    ]
+
     public statuses: Statuses[] = []
     public selector: any = { key: "", title: "", fields: [] }
     public typeValue: string;
     public selectedStatuses = [];
 
-    constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute, private _router: Router, private _dialog: MatDialog) {
+    constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute,
+         private _router: Router,
+         private _dialog: MatDialog) {
         this._activatedRoute.params.subscribe((params) => {
             this.typeValue = params.type;
         })
@@ -61,11 +60,15 @@ export class AddTemplateView implements OnInit {
         this._formBuilder();
 
     }
+    
 
     private _formBuilder(): void {
         this.titleGroup = new FormBuilder().group({
             type: ["", Validators.required],
-        })
+        },
+     
+        )
+       
     }
 
     private _setpatchValue() {

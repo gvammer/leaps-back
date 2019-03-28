@@ -184,12 +184,7 @@
                                     <div class="form_group_tree" full-width>
                                         <span margin-auto class="label">required Statuses:</span>
                                         <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
                                                 [(ngModel)]="field.requiredStatuses"
                                                 [ngModelOptions]="{standalone: true}" optionLabel="name">
                                             </p-multiSelect>
@@ -198,12 +193,7 @@
                                     <div class="form_group_tree" full-width>
                                         <span margin-auto class="label">hide Statuses:</span>
                                         <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
                                                 [(ngModel)]="field.hideStatuses" [ngModelOptions]="{standalone: true}"
                                                 optionLabel="name">
                                             </p-multiSelect>
@@ -212,12 +202,7 @@
                                     <div class="form_group_tree" full-width>
                                         <span margin-auto class="label">editable Statuses:</span>
                                         <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <p-multiSelect [options]="statuses" [dataKey]="'_id'"
+                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
                                                 [(ngModel)]="field.editable" [ngModelOptions]="{standalone: true}"
                                                 optionLabel="name">
                                             </p-multiSelect>

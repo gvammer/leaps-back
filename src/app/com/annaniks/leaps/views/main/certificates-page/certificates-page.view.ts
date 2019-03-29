@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
-import { HomeService } from '../home/home.service';
+import { ActivatedRoute } from '@angular/router'; 
 import { Certificates, Button } from '../../../models/models';
+import { CertificateService } from '../certificates/certificates.service';
 
 
 @Component({
-    selector: "app-human-page",
-    templateUrl: "human-page.view.html",
-    styleUrls: ["human-page.view.scss"]
+    selector: "app-certificates-page",
+    templateUrl: "certificates-page.view.html",
+    styleUrls: ["certificates-page.view.scss"]
 })
 
-export class HumanPangeView implements OnInit {
+export class CertificatesPangeView implements OnInit {
     public status: string;
     private _id: string;
     public listItemData: any[] = [];
@@ -18,7 +18,7 @@ export class HumanPangeView implements OnInit {
     public buttons: Button[];
     public ststuseId: string;
 
-    constructor(private _activeRouter: ActivatedRoute, private _homeService: HomeService) {
+    constructor(private _activeRouter: ActivatedRoute, private _certificateService: CertificateService) {
         this._activeRouter.params.subscribe((params) => {
             this._id = params.id;
         })
@@ -29,7 +29,7 @@ export class HumanPangeView implements OnInit {
     }
 
     private _userScertificatesById() {
-        this._homeService.getUserById(this._id)
+        this._certificateService.getUserById(this._id)
             .subscribe((data: Certificates) => {
                 let listItemData = data;
                 this.status = listItemData.information['status'];
@@ -62,7 +62,7 @@ export class HumanPangeView implements OnInit {
     }
 
     public certificatesStatuses(_id) {
-        this._homeService.certificatesStatuses(this._id, {
+        this._certificateService.certificatesStatuses(this._id, {
             status:_id,
         }).subscribe((data) => {
             console.log(data);

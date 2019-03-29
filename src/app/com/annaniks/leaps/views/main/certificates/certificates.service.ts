@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 
-export class HomeService {
+export class CertificateService {
 
     constructor(@Inject('BASE_URL') private _baseUrl: string, private _httpClient: HttpClient, private _cookieService: CookieService, private _router: Router) { }
 

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { BaseCookieOptions, CookieOptions } from 'angular2-cookie/services/base-cookie-options';
+import { AuthGuard } from './com/annaniks/leaps/guards/authguard.service';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { BaseCookieOptions, CookieOptions } from 'angular2-cookie/services/base-
   providers: [
     { provide: "BASE_URL", useValue: "http://annaniks.com:10328/" },
     CookieService,
+    AuthGuard,
+
     { provide: CookieOptions, useValue: BaseCookieOptions }
   ],
   bootstrap: [AppComponent]

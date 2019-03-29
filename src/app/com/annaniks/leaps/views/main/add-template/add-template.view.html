@@ -25,14 +25,14 @@
                 <div> <label>Start:</label>
                     <div class="form_container" display-flex margin-auto>
 
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" multiple="1" [(ngModel)]="startStatuses"
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="startStatus"
                             [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
                     </div>
                 </div>
                 <div style="margin-left:10px !important">
                     <label>end:</label>
                     <div class="form_container" display-flex margin-auto>
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="endStatuses"
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="endStatus"
                             [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
 
                     </div>
@@ -203,7 +203,7 @@
                                         <span margin-auto class="label">editable Statuses:</span>
                                         <div class="form_container" display-flex margin-auto>
                                             <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
-                                                [(ngModel)]="field.editable" [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="field.editableStatuses" [ngModelOptions]="{standalone: true}"
                                                 optionLabel="name">
                                             </p-multiSelect>
                                         </div>

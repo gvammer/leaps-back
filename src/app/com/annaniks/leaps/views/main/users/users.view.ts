@@ -34,14 +34,17 @@ export class UsersView implements OnInit {
         this._usersService.getUsers()
             .subscribe((data: Users[]) => {
                 this.usersInfo = data;
+
                 this.userItems=this.usersInfo.slice((this.page-1)*this.pageLength,this.page*this.pageLength);
+                console.log(data);
+                
             })
 
     }
 
     public addUsersactive(index) {
         for (var i = 0; i < this.usersInfo.length; i++) {
-            var userId = this.usersInfo[index]._id
+            var userId = this.userItems[index]._id
         }
    //     console.log(userId);
 

@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomeView } from "./home.view";
+import { CertificatesView } from './certificates.view';
+
 
 const homeRoutes: Routes = [
-    { path: "", component: HomeView },
+    { path: "", component: CertificatesView },
  
 ]
 @NgModule({
@@ -11,6 +12,6 @@ const homeRoutes: Routes = [
     exports: [RouterModule],
 })
 
-export class HomeViewRoutingModule {
+export class CertificatesRoutingModule {
 
 }

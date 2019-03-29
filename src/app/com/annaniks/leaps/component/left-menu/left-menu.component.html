@@ -1,7 +1,7 @@
 <div class="left_content"   [ngClass]="{'openMenu':menuService.getOpenMenu(),'closeMenu':!menuService.getOpenMenu()}">
     <div class="left_conteiner" dull-width>
         <div class="menu_items" full-width>
-            <div class="items" full-width cursor-pointer display-flex *ngFor="let item of menuItem" [routerLink]="item.routerLink"  routerLinkActive="activeRouter">
+            <div class="items" full-width cursor-pointer display-flex *ngFor="let item of menuItem" [routerLink]="item.routerLink"  routerLinkActive="activeRouter" (click)="logOut(item.title)">
 
                 <span class="item_title" font-family-Open-Sans font-weight-bold>{{item.title}}</span>
                 <i class="material-icons" color-white>

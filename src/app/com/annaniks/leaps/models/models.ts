@@ -230,7 +230,9 @@ export interface Template {
     sections: Section[],
     type: string,
     _id: string,
-    statuses: Statuses[]
+    statuses: Statuses[];
+    startStatus:Statuses;
+    endStatus:Statuses;
 }
 
 export interface Section {
@@ -239,6 +241,8 @@ export interface Section {
     title: string,
     // statuses: Statuses[]
 }
+
+
 
 
 export interface Fields {

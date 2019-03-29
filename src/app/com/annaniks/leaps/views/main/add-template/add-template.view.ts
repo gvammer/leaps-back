@@ -30,9 +30,9 @@ export class AddTemplateView implements OnInit {
         { type: "email-address" },
         { type: "phone" },
         { type: "select" },
-        {type:"gender"},
-        {type:"bloogtype"},
-        {type:"radio button"}
+        { type: "gender" },
+        { type: "bloogtype" },
+        { type: "radio button" }
     ]
     public widthType: WidthType[] = [
         { type: 50 },
@@ -44,12 +44,12 @@ export class AddTemplateView implements OnInit {
     public selector: any = { key: "", title: "", fields: [] }
     public typeValue: string;
     public selectedStatuses = [];
-    public startStatuses=[];
-    public endStatuses=[];
+    public startStatus = {};
+    public endStatus = {};
 
     constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute,
-         private _router: Router,
-         private _dialog: MatDialog) {
+        private _router: Router,
+        private _dialog: MatDialog) {
         this._activatedRoute.params.subscribe((params) => {
             this.typeValue = params.type;
         })
@@ -62,15 +62,15 @@ export class AddTemplateView implements OnInit {
         this._formBuilder();
 
     }
-    
+
 
     private _formBuilder(): void {
         this.titleGroup = new FormBuilder().group({
             type: ["", Validators.required],
         },
-     
+
         )
-       
+
     }
 
     private _setpatchValue() {
@@ -81,8 +81,9 @@ export class AddTemplateView implements OnInit {
 
             this.sections = this.templateValue.sections;
             this.selectedStatuses = this.templateValue.statuses;
-
-            console.log(this.selectedStatuses)
+            this.startStatus = this.templateValue.startStatus;
+            this.endStatus = this.templateValue.endStatus;
+            console.log(this.templateValue)
 
         }
     }
@@ -111,7 +112,7 @@ export class AddTemplateView implements OnInit {
     }
 
     public addField(item): void {
-        item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, requiredStatuses: [], hideStatuses: [], editable:[], values: [] });
+        item.fields.push({ key: "", title: "", type: "", _required: true, width: "", priority: "", rightSight: false, requiredStatuses: [], hideStatuses: [], editableStatuses: [], values: [] });
     }
 
     public addDoctemplates() {
@@ -126,7 +127,9 @@ export class AddTemplateView implements OnInit {
                         this._templateService.editTemplates(this.templateValue._id, {
                             type: this.titleGroup.value.type,
                             sections: this.sections,
-                            statuses: this.selectedStatuses
+                            statuses: this.selectedStatuses,
+                            startStatus: this.startStatus,
+                            endStatus: this.endStatus,
                         }).subscribe((data) => {
                             this._router.navigate(["/template"]);
                             console.log(data);
@@ -141,8 +144,11 @@ export class AddTemplateView implements OnInit {
             this._templateService.addDoctemplates({
                 type: this.titleGroup.value.type,
                 sections: this.sections,
-                statuses: this.selectedStatuses
+                statuses: this.selectedStatuses,
+                startStatus: this.startStatus,
+                endStatus: this.endStatus,
             }).subscribe((data) => {
+
                 this._router.navigate(["/template"]);
             })
 

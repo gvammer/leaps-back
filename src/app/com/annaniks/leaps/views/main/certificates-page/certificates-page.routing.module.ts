@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HumanPangeView } from './human-page.view';
+import { CertificatesPangeView } from './certificates-page.view';
 
 const humanPageRouter: Routes = [
-    { path: "", component: HumanPangeView }
+    { path: "", component: CertificatesPangeView }
 ]
 
 @NgModule({
@@ -12,6 +12,6 @@ const humanPageRouter: Routes = [
     exports: [RouterModule]
 })
 
-export class HumanPageRoutingModule {
+export class CertificatesPageRoutingModule {
 
 }

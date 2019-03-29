@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from '../../models/models';
 import { MenuService } from '../../service/menu.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: "app-left-menu",
@@ -24,9 +26,18 @@ export class LeftMenuComponent implements OnInit {
 
         ]
 
-    constructor(public menuService: MenuService) { }
+    constructor(public menuService: MenuService,private _cookieService:CookieService,private _router:Router) { }
 
     ngOnInit() { }
 
+
+    public logOut(item):void{
+        if(item=="logout"){
+            this._cookieService.remove('token');
+            this._router.navigate(["/login"]);
+        }
+
+
+    }
 
 }

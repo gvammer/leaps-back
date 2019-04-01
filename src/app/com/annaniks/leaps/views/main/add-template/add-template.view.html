@@ -24,15 +24,14 @@
             <div display-flex>
                 <div> <label>Start:</label>
                     <div class="form_container" display-flex margin-auto>
-
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="startStatus"
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="start"
                             [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
                     </div>
                 </div>
                 <div style="margin-left:10px !important">
                     <label>end:</label>
                     <div class="form_container" display-flex margin-auto>
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="endStatus"
+                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="end"
                             [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
 
                     </div>

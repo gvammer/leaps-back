@@ -44,8 +44,8 @@ export class AddTemplateView implements OnInit {
     public selector: any = { key: "", title: "", fields: [] }
     public typeValue: string;
     public selectedStatuses = [];
-    public startStatus = {};
-    public endStatus = {};
+    public start = {};
+    public end = {};
 
     constructor(private _templateService: TemplateService, private _activatedRoute: ActivatedRoute,
         private _router: Router,
@@ -74,24 +74,33 @@ export class AddTemplateView implements OnInit {
     }
 
     private _setpatchValue() {
+
         if (this.typeValue) {
             this.titleGroup.patchValue({
                 type: this.typeValue,
             })
-
             this.sections = this.templateValue.sections;
             this.selectedStatuses = this.templateValue.statuses;
-            this.startStatus = this.templateValue.startStatus;
-            this.endStatus = this.templateValue.endStatus;
-            console.log(this.templateValue)
+            // this.start =  this.templateValue.startStatus;
+          //  this.end = this.templateValue.endStatus;
+            this.statuses.forEach(element => {
 
+                if (element._id == this.templateValue.startStatus.toString()) {
+                    this.start = element;
+                }
+                if(element._id==this.templateValue.endStatus.toString()){
+                    this.end=element;
+                }
+            });
+            
         }
+
     }
 
     private _getStatuses(): void {
         this._templateService.getStatuses().subscribe((data) => {
-            console.log(data);
             this.statuses = data;
+            this._setpatchValue()
         })
     }
 
@@ -128,11 +137,10 @@ export class AddTemplateView implements OnInit {
                             type: this.titleGroup.value.type,
                             sections: this.sections,
                             statuses: this.selectedStatuses,
-                            startStatus: this.startStatus,
-                            endStatus: this.endStatus,
+                            startStatus: this.start,
+                            endStatus: this.end,
                         }).subscribe((data) => {
                             this._router.navigate(["/template"]);
-                            console.log(data);
 
                         })
                     }
@@ -145,8 +153,8 @@ export class AddTemplateView implements OnInit {
                 type: this.titleGroup.value.type,
                 sections: this.sections,
                 statuses: this.selectedStatuses,
-                startStatus: this.startStatus,
-                endStatus: this.endStatus,
+                startStatus: this.start,
+                endStatus: this.end,
             }).subscribe((data) => {
 
                 this._router.navigate(["/template"]);
@@ -183,8 +191,7 @@ export class AddTemplateView implements OnInit {
         this._templateService.getTmplateByType(this.typeValue)
             .subscribe((data: Template) => {
                 this.templateValue = data;
-                this._setpatchValue();
-                console.log(this.templateValue);
+              //  this._setpatchValue();
 
             })
     }

@@ -91,7 +91,7 @@ export class AddTemplateView implements OnInit {
     private _getStatuses(): void {
         this._templateService.getStatuses().subscribe((data) => {
             this.statuses = data;
-            this._setpatchValue()
+          //  this._setpatchValue()
         })
     }
 
@@ -182,7 +182,7 @@ export class AddTemplateView implements OnInit {
         this._templateService.getTmplateByType(this.typeValue)
             .subscribe((data: Template) => {
                 this.templateValue = data;
-              //  this._setpatchValue();
+               this._setpatchValue();
 
             })
     }

@@ -81,17 +81,8 @@ export class AddTemplateView implements OnInit {
             })
             this.sections = this.templateValue.sections;
             this.selectedStatuses = this.templateValue.statuses;
-            // this.start =  this.templateValue.startStatus;
-          //  this.end = this.templateValue.endStatus;
-            this.statuses.forEach(element => {
-
-                if (element._id == this.templateValue.startStatus.toString()) {
-                    this.start = element;
-                }
-                if(element._id==this.templateValue.endStatus.toString()){
-                    this.end=element;
-                }
-            });
+             this.start =  this.templateValue.startStatus;
+           this.end = this.templateValue.endStatus;
             
         }
 

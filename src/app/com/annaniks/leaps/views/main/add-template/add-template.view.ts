@@ -31,7 +31,7 @@ export class AddTemplateView implements OnInit {
         { type: "phone" },
         { type: "select" },
         { type: "gender" },
-        { type: "bloogtype" },
+        { type: "bloodtype" },
         { type: "radio button" }
     ]
     public widthType: WidthType[] = [
@@ -96,7 +96,7 @@ export class AddTemplateView implements OnInit {
     }
 
     public onChange($event, field) {
-        if ($event == "select") {
+        if ($event == "select" || $event=="radio button")  {
             this.addValue = true;
         }
         else {

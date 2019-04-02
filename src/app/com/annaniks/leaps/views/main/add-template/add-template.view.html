@@ -117,7 +117,7 @@
                                                 </option>
                                             </select>
                                         </div>
-                                        <div *ngIf="field.type=='select'">
+                                        <div *ngIf="field.type=='select' || field.type=='radio button' ">
                                             <div class="add_button">
                                                 <p-button icon="pi pi-check" label="Add Value"
                                                     (click)="addValueItem(field)"></p-button>
@@ -202,8 +202,8 @@
                                         <span margin-auto class="label">editable Statuses:</span>
                                         <div class="form_container" display-flex margin-auto>
                                             <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
-                                                [(ngModel)]="field.editableStatuses" [ngModelOptions]="{standalone: true}"
-                                                optionLabel="name">
+                                                [(ngModel)]="field.editableStatuses"
+                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
                                             </p-multiSelect>
                                         </div>
                                     </div>

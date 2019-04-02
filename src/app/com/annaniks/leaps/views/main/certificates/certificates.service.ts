@@ -26,6 +26,14 @@ export class CertificateService {
             }));;
     }
 
+    public getTemplateById(Id) {
+        let token = this._cookieService.get('token')
+        let headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'token': token,
+        })
+        return this._httpClient.get(this._baseUrl + "users/doctemplates/"+Id, { headers })
+    }
     public getUserById(id: string): Observable<object> {
         let token = this._cookieService.get('token');
         let headers = new HttpHeaders({

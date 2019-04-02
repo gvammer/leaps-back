@@ -95,7 +95,7 @@ export class AddUserModal implements OnInit {
                             lastName: this.usersGroup.value.lastName,
                             title: this.usersGroup.value.title,
                             name: this.usersGroup.value.name,
-                            password: this.usersGroup.value.password,
+                          //  password: this.usersGroup.value.password,
                             role: this.usersGroup.value.roles,
                             organization: this.usersGroup.value.organization,
                             department: this.usersGroup.value.department,

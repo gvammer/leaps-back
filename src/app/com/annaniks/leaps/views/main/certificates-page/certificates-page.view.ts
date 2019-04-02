@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router'; 
 import { Certificates, Button } from '../../../models/models';
 import { CertificateService } from '../certificates/certificates.service';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class CertificatesPangeView implements OnInit {
 
     public buttons: Button[];
     public ststuseId: string;
-
+    private values:any = null
     constructor(private _activeRouter: ActivatedRoute, private _certificateService: CertificateService) {
         this._activeRouter.params.subscribe((params) => {
             this._id = params.id;
@@ -25,13 +26,39 @@ export class CertificatesPangeView implements OnInit {
     }
 
     ngOnInit() {
-        this._userScertificatesById();
+        this._getTamplate()
+        
     }
-
+    date = new FormControl(new Date());
+    serializedDate = new FormControl((new Date()).toISOString());
+    
+    private _getTamplate(){
+        this._certificateService.getTemplateById("birth").subscribe((data:any)=>{
+            this._userScertificatesById();
+            this.listItemData = data.sections;
+        });
+    }
     private _userScertificatesById() {
         this._certificateService.getUserById(this._id)
             .subscribe((data: Certificates) => {
+                this.buttons=data.buttons;
+                console.log(this.buttons);
+                
+                this.values = data.information;
+                this.listItemData = this.listItemData.map(item=>{
+                    item.fields = item.fields.map(field=>{
+                        field.edit = field.editableStatuses.map(i=>i.name).indexOf(this.values.status)>-1;
+                        field.hide = field.hideStatuses.map(i=>i.name).indexOf(this.values.status)>-1;
+                        field.required = field.requiredStatuses.map(i=>i.name).indexOf(this.values.status)>-1;
+                        return field;
+                    })
+
+                        return item;
+                })
+                /*
                 let listItemData = data;
+                console.log(data);
+                
                 this.status = listItemData.information['status'];
                 this.ststuseId = data._id;
 
@@ -52,6 +79,7 @@ export class CertificatesPangeView implements OnInit {
                         this.listItemData.push(object);
                     }
                 }
+                */
             })
         console.log(this.listItemData);
 

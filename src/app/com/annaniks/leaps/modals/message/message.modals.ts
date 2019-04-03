@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Fields } from '../../models/models';
 
 @Component({
     selector: "app-message",
@@ -7,9 +9,14 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class MessageModals implements OnInit {
+public fildItem:Fields;
+    constructor(@Inject(MAT_DIALOG_DATA) private _data) {
+        this.fildItem=_data;
+     }
 
-    constructor() { }
-
-    ngOnInit() { }
+    ngOnInit() { 
+        console.log(this.fildItem);
+        
+    }
 
 }

@@ -1,36 +1,16 @@
 <div class="text_content" display-flex full-width full-height>
-        <mat-form-field *ngIf="inputType=='text'" class="example-full-width">
-                <input matInput [placeholder]="inputTitle" [value]="value" [disabled]="disable">
-            </mat-form-field>
+    <mat-form-field *ngIf="inputType=='text' || inputType=='password' ||  inputType=='numberic' ||  inputType=='email-address' || inputType=='time' || inputType=='phone' || inputType=='bloogtype' || inputType=='date' "
+        class="example-full-width">
+        <input matInput [placeholder]="inputTitle" [value]="value" [disabled]="disable" [type]="checkInputType()" (change)="onChange($event)"
+            (keyup)="onChange($event)">
+    </mat-form-field>
 </div>
 
-<mat-form-field *ngIf="inputType=='date'">
-    <input matInput [matDatepicker]="picker1" [placeholder]="inputTitle"  [value]="value" [disabled]="disable" >
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
+<mat-form-field *ngIf="inputType=='select'" class="example-full-width">
+    <input matInput [placeholder]="inputTitle" [disabled]="disable">
 </mat-form-field>
-<mat-form-field *ngIf="inputType=='numberic'" class="example-full-width">
-    <input matInput [placeholder]="inputTitle" type="number"  [value]="value" [disabled]="disable">
-</mat-form-field>
-<mat-form-field *ngIf="inputType=='password'" class="example-full-width" >
-    <input matInput [placeholder]="inputTitle" type="password" [disabled]="disable">
-</mat-form-field>
-<mat-form-field *ngIf="inputType=='time'" class="example-full-width">
-    <input matInput [placeholder]="inputTitle" type="time" [disabled]="disable">
-</mat-form-field>
-<mat-form-field *ngIf="inputType=='email-address'" class="example-full-width">
-    <input matInput [placeholder]="inputTitle" type="email" [disabled]="disable">
-</mat-form-field>
-<mat-form-field *ngIf="inputType=='phone'" class="example-full-width">
-        <input matInput [placeholder]="inputTitle" type="tel" [disabled]="disable">
-    </mat-form-field>
-    <mat-form-field *ngIf="inputType=='select'" class="example-full-width">
-            <input matInput [placeholder]="inputTitle" [disabled]="disable">
-        </mat-form-field>
-        <mat-form-field *ngIf="inputType=='bloodtype'" class="example-full-width">
-                <input matInput [placeholder]="inputTitle" [disabled]="disable">
-            </mat-form-field>
-          
+
+
 <mat-radio-group *ngIf="inputType=='radio button' " aria-label="Select an option">
     <mat-radio-button [value]="value">{{inputTitle}}</mat-radio-button>
 </mat-radio-group>

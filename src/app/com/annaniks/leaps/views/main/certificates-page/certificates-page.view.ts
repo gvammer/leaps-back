@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router'; 
 import { Certificates, Button } from '../../../models/models';
 import { CertificateService } from '../certificates/certificates.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageModals } from '../../../modals';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class CertificatesPangeView implements OnInit {
     public buttons: Button[];
     public ststuseId: string;
     private values:any = null
-    constructor(private _activeRouter: ActivatedRoute, private _certificateService: CertificateService) {
+    constructor(private _activeRouter: ActivatedRoute, private _certificateService: CertificateService,private _dialog:MatDialog) {
         this._activeRouter.params.subscribe((params) => {
             this._id = params.id;
         })
@@ -81,7 +83,7 @@ export class CertificatesPangeView implements OnInit {
                 }
                 */
             })
-        console.log(this.listItemData);
+   
 
     }
 
@@ -90,12 +92,20 @@ export class CertificatesPangeView implements OnInit {
     }
 
     public certificatesStatuses(_id) {
-        this._certificateService.certificatesStatuses(this._id, {
-            status:_id,
-        }).subscribe((data) => {
-            console.log(data);
+        console.log(this.listItemData);
+      
+            const dialogref=this._dialog.open(MessageModals,{
+                width:"444px",
+                height:"400px",
+            })
+    
 
-        })
-    }
+    //     this._certificateService.certificatesStatuses(this._id, {
+    //         status:_id,
+    //     }).subscribe((data) => {
+    //         console.log(data);
+
+    //     })
+     }
 
 }

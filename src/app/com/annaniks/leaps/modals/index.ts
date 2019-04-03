@@ -6,3 +6,4 @@ export * from "src/app/com/annaniks/leaps/modals/update-statuses/update-statuses
 export * from "src/app/com/annaniks/leaps/modals/uniqueId/uniqueId.modals";
 export * from "src/app/com/annaniks/leaps/modals/deleted/deleted.modals";
 export * from "src/app/com/annaniks/leaps/modals/save/save.modals";
+export * from "src/app/com/annaniks/leaps/modals/message/message.modals";

@@ -9,10 +9,24 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InputComponent } from '../../../component';
 import {MatRadioModule} from '@angular/material/radio';
+import { MessageModals } from '../../../modals';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
-    declarations: [CertificatesPangeView,InputComponent],
-    imports: [CertificatesPageRoutingModule, CommonModule,MatButtonModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,MatRadioModule],
-    providers: [CertificateService,MatDatepickerModule]
+    declarations: [CertificatesPangeView,InputComponent, MessageModals ],
+    imports: [CertificatesPageRoutingModule,
+         CommonModule,MatButtonModule,
+         MatInputModule,
+         MatDatepickerModule,
+         MatNativeDateModule,
+         MatRadioModule,
+         MatDialogModule,
+         ReactiveFormsModule
+        ],
+    providers: [CertificateService,MatDatepickerModule],
+    entryComponents:[MessageModals]
 })
 
 export class CerTificatesPageModule {

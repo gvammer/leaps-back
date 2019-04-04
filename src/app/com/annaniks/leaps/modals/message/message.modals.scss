@@ -1,3 +1,10 @@
-.requared_content{
-    justify-content: space-around;
+.table_content {
+    .top_content {
+        top: 0;
+        right: 0;
+    }
+
+    .requared_content {
+        justify-content: space-around;
+    }
 }

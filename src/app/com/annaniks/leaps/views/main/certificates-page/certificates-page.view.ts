@@ -50,9 +50,10 @@ export class CertificatesPangeView implements OnInit {
     private _userScertificatesById() {
         this._certificateService.getUserById(this._id)
             .subscribe((data: Certificates) => {
-                console.log(data);
+                console.log(data, "jtgfjftgjftgjftg");
                 this.buttons = data.buttons;
-                console.log(this.buttons);
+                this.status = data.information.status;
+                // console.log(this.buttons);
 
                 this.values = data.information;
                 this.listItemData = this.listItemData.map(item => {
@@ -100,7 +101,16 @@ export class CertificatesPangeView implements OnInit {
     }
 
     public certificatesStatuses(_id) {
-        console.log(this.values);
+        //console.log(this.values);
+        this._certificateService.certificatesStatuses(this._id, {
+            status: _id,
+        }).subscribe((data) => {
+            console.log(data, "33333333333333");
+
+        })
+    }
+
+    public updateCertificate(): void {
         let req = this.listItemData.map(item => {
 
             let tmp = item.fields.filter(filed => {
@@ -121,28 +131,25 @@ export class CertificatesPangeView implements OnInit {
             }
             else return null;
         }).filter(item => item != null)
-        console.log(req);
-
         if (req.length > 0) {
             const dialogref = this._dialog.open(MessageModals, {
-                width: "444px",
+                width: "500px",
                 height: "400px",
                 data: req,
-            })
+            });
+
+
         }
-
-
-
-        //     this._certificateService.certificatesStatuses(this._id, {
-        //         status:_id,
-        //     }).subscribe((data) => {
-        //         console.log(data);
-
-        //     })
+        else {
+            console.log(this.values.child.name);
+            
+            //this._userScertificatesById();
+            
+        }
     }
 
     change($event) {
-        console.log($event);
+        //console.log($event);
     }
 
 }

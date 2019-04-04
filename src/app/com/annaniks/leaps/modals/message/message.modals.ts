@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Fields } from '../../models/models';
 
 @Component({
@@ -9,14 +9,18 @@ import { Fields } from '../../models/models';
 })
 
 export class MessageModals implements OnInit {
-public fildItem:Fields;
-    constructor(@Inject(MAT_DIALOG_DATA) private _data) {
-        this.fildItem=_data;
-     }
+    public fildItem: Fields;
+    constructor(@Inject(MAT_DIALOG_DATA) private _data, private _dialogRef: MatDialogRef<MessageModals>) {
+        this.fildItem = _data;
+    }
 
-    ngOnInit() { 
+    ngOnInit() {
         console.log(this.fildItem);
-        
+
+    }
+
+    public closeDialog(): void {
+        this._dialogRef.close();
     }
 
 }

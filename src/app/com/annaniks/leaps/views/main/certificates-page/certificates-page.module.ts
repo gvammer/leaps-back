@@ -12,8 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MessageModals } from '../../../modals';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-
+import { CollapsibleModule } from 'angular2-collapsible';
 @NgModule({
     declarations: [CertificatesPangeView, InputComponent, MessageModals],
     imports: [CertificatesPageRoutingModule,
@@ -24,6 +23,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         MatRadioModule,
         MatDialogModule,
         ReactiveFormsModule,
+        CollapsibleModule,
         FormsModule
     ],
     providers: [CertificateService, MatDatepickerModule],

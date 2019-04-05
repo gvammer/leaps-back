@@ -14,11 +14,23 @@ body {
 
 body {
     margin: 0;
+    padding: 0;
+    background: #f9f9f9;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 thead {
-    background: #2196F3 !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #EEEEEE !important;
+}
+
+
+
+app-toolbar {
+    background-color: #2f4050;
+    color: #676a6c;
+    z-index: 100;
+    position: relative;
 }
 
 collapsible-table-row {
@@ -27,39 +39,84 @@ collapsible-table-row {
 }
 
 .collapsible {
-    background: #FAFAFA !important;
-    border-bottom: 1px solid #EEEEEE !important;
+    background: none !important;
+    border-bottom: 1px solid #e7eaec !important;
 }
 
 .th-head {
-    color: #fff !important;
+    font-weight: normal;
     text-align: left !important;
     padding: 0 20px !important;
+    text-transform: capitalize;
+    color: #888888;
+    font-size: 14px;
 }
 
 .td-header {
     text-align: left !important;
     padding: 0 20px !important;
 }
-
-.th-head:first-child {
-    text-align: center !important;
+.back,.add_contnet {
+    border-bottom: 1px solid #e7eaec;
+    color: #838790;
+    margin-bottom: 30px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    padding-top: 7px;
 }
-
-.th-head:last-child {
-    text-align: center !important;
-}
-
 .add_content .form_group {
     width: 391.3px !important;
     margin: 30px auto 0 !important;
 }
 
+.control-icon i {
+    font-size: 18px;
+    color: #838790;
+}
+
+.info-block {
+    background:#f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+    border: 1px solid rgba(24, 28, 33, 0.06);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.inner {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+    border: 1px solid rgba(24, 28, 33, 0.06);
+    margin-bottom: 30px;
+    text-align: center;
+}
+.info-block button {
+    margin: 0 5px;
+}
+.mat-form-field {
+    margin: 0 auto;
+}
+.mat-form-field-infix {
+    width: 400px !important;
+}
 .add_content .form_group .label {
     color: #616161 !important;
     margin: 10px 0 !important;
     display: block !important;
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: rgba(24, 28, 33, 0.06) !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #2196f3 !important;
+}
+
 
 .add_content .add_conteiner .item_congo .icon_contet,
 .add_content .add_conteiner .item_content .icon_contet,

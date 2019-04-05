@@ -3,34 +3,34 @@
       justify-content: center;
       .top_content {
         margin-top: 20px;
-        color: #0277bd;
-        font-size: 35px;
+        color: #2196f3;
+        font-size: 30px;
         text-align: center;
       }
       .data_content {
-        margin-top: 50px;
+        margin-top: 30px;
         .login_content,
         .password_content {
-          width: 391.3px;
+          width: 400px;
           height: 42px;
           object-fit: contain;
           border-radius: 4px;
-          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+          border: 1px solid rgba(24,28,33,0.06);
           background-color: white;
           .icon_contet {
-            // width: 47.3px;
-            // height: 42px;
-            // color: #0277bd;
-            width: 47.3px!important;
-            height: 42px!important;
-            color: #9E9E9E!important;
-            background: #F5F5F5!important;
-            border-radius: 3px 0 0 3px!important;
+            width: 48px!important;
+            height: 40px!important;
+            color: #9E9E9E !important;
+            background: #ffffff !important;
+            border-radius: 4px 0 0 4px !important;
+            border-right: 1px solid rgba(24, 28, 33, 0.06);
           }
           .login,
           .password {
-            width: calc(100% - 47.3px);
+            width: calc(100% - 48px);
             border: none;
+            padding: 0 10px;
           
           }
         }
@@ -39,7 +39,7 @@
         }
       }
       .buttton_items {
-          margin-top: 60px;
+          margin-top: 30px;
           justify-content: space-around;
           .save_button {
             //   width: 301.8px;

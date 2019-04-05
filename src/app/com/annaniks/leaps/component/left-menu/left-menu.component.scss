@@ -1,11 +1,10 @@
 .left_content {
-    width: 287px;
+    width: 300px;
     object-fit: contain;
-    border-radius: 4px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.26);
     position: fixed;
     z-index: 1;
     height: fit-content;
+    margin-top: 30px;
     .left_conteiner {
         .menu_items {
             .items {
@@ -17,10 +16,9 @@
                 // margin-top: 5px;
                 // align-items: center;
                 border: none!important;
-                background: #fafafa!important;
-                height: 40px!important;
+                height: 50px!important;
                 justify-content: space-between!important;
-                margin-top: 10px!important;
+                margin-top: 0px!important;
                 align-items: center!important;
                 box-shadow:none !important;
                 border-bottom: 1px solid #EEEEEE!important;
@@ -35,8 +33,9 @@
                     line-height: 1.33!important;
                     letter-spacing: normal!important;
                     text-align: left!important;
-                    padding: 10px 15px!important;
+                    padding: 0px 15px!important;
                     color: #616161;
+                    text-transform: capitalize;
                     font-weight: normal !important;
                     // color: #7283a7;
                     // font-size: 15px;
@@ -48,7 +47,7 @@
                     // padding: 10px 15px;
                 }
                 i {
-                    color: #7283a7;
+                    color: #838790;
                 }
             }
         }
@@ -61,7 +60,7 @@
 }
 
 .closeMenu {
-    left: -244px !important;
+    left: -260px !important;
     transition: all 0.5s;
 }
 

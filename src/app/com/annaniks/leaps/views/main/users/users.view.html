@@ -26,10 +26,10 @@
             <td class="td-header"><input type="checkbox"  [checked]="item.active" [disabled]="item.active" (click)="addUsersactive(ind)"></td>
             <td class="td-header">{{item.firstName}}</td>
             <td class="td-header">{{item.lastName}}</td>
-            <td class="td-header"><i class="material-icons" cursor-pointer (click)="editUserModal(item)">
+            <td class="td-header control-icon" align="center"><i class="material-icons" cursor-pointer (click)="editUserModal(item)">
                     edit
             </i></td>
-            <td class="td-header"><i class="material-icons" cursor-pointer (click)="deleteUsers(item)">
+            <td class="td-header control-icon" align="center"><i class="material-icons" cursor-pointer (click)="deleteUsers(item)">
                 delete
         </i></td>
         </collapsible-table-row>

@@ -5,11 +5,13 @@
     right: 0;
     .toolbar_contener {
         height: 50px;
-        background-color: white;
+        background-color: #2f4050;
         i {
             font-size: 40px;
-            padding: 7px 7px;
-            color: #0277bd;
+            padding: 0 7px;
+            color: #838790;
+            height: 50px;
+            line-height: 50px;
         }
     }
 }

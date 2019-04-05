@@ -1,4 +1,4 @@
-<div class="inner">
+<div class="inner info-block">
     <div class="back">
         <i class="material-icons" cursor-pointer routerLink="/home">
             reply
@@ -6,11 +6,12 @@
     </div>
 
     <div class="inner_content" *ngIf="values">
-        <p><b>Id: </b>{{id}}</p>
-        <p><b>Status: </b>{{status}}</p>
-        <div style="padding:15px">
-            <button mat-raised-button cursor-pointer color="primary" *ngFor="let item of  buttons"
-                style="margin-left: 20px" (click)="certificatesStatuses(item._id)">{{item.name}}</button>
+        <div class="info-block">
+            <p><b>Id: </b>{{id}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Status: </b>{{status}}</p>
+            <p>
+                <button mat-raised-button cursor-pointer color="primary" *ngFor="let item of  buttons"
+                        (click)="certificatesStatuses(item._id)">{{item.name}}</button>
+            </p>
         </div>
 
         <div class="container" *ngFor="let item of listItemData">
@@ -24,7 +25,7 @@
             </div>
             <div class="buttton_items" margin-auto>
                     <button class="save_button" cursor-pointer (click)="updateCertificate()"><span color-white>save</span></button>
-                </div>
-        </div>
+            </div>
         </div>
     </div>
+</div>

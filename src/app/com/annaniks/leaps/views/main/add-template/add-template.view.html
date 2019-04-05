@@ -1,259 +1,261 @@
-<div class="add_content" full-width full-height position-releative>
-    <div class="top_contnent" position-absolute routerLink="/template">
-        <i class="material-icons" cursor-pointer>
-            reply
-        </i>
-    </div>
-    <div class="add_conteiner" display-flex margin-auto>
-        <form [formGroup]="titleGroup" class="templateForm">
-            <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="selectedStatuses"
-                [ngModelOptions]="{standalone: true}" optionLabel="name"></p-multiSelect>
+<div class="back" routerLink="/template">
+    <i class="material-icons" cursor-pointer>
+        reply
+    </i>
+</div>
+<div class="inner">
+    <div class="add_content" full-width full-height position-releative>
+        <div class="add_conteiner" display-flex margin-auto>
+            <form [formGroup]="titleGroup" class="templateForm">
+                <p-multiSelect [options]="statuses" [dataKey]="'_id'" [(ngModel)]="selectedStatuses"
+                               [ngModelOptions]="{standalone: true}" optionLabel="name"></p-multiSelect>
 
 
-            <div class="form_group" style="margin:0px !important">
-                <span class="label">type:</span>
-                <div class="form_container" display-flex margin-auto>
-                    <div class='icon' display-flex>
-                        <i class="material-icons" margin-auto>
-                            person
-                        </i>
-                    </div>
-                    <input class="form_input" full-height formControlName="type">
-                </div>
-            </div>
-            <div display-flex>
-                <div> <label>Start:</label>
+                <div class="form_group" style="margin:0px !important">
+                    <span class="label">type:</span>
                     <div class="form_container" display-flex margin-auto>
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="start" required
-                            [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
-                    </div>
-                </div>
-                <div style="margin-left:10px !important">
-                    <label>end:</label>
-                    <div class="form_container" display-flex margin-auto>
-                        <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="end" required
-                            [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="tree">
-                <ul no-padding *ngFor="let item of sections;let ind=index">
-                    <li>
-                        <div class="section_group">
-                            <div class="form_group_tree" width-30>
-                                <span margin-auto class="label">key:</span>
-                                <div class="form_container" display-flex margin-auto>
-                                    <div class='icon' display-flex>
-                                        <i class="material-icons" margin-auto>
-                                            person
-                                        </i>
-                                    </div>
-                                    <input class="form_input" full-height [(ngModel)]="item.key"
-                                        [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                            <div class="form_group_tree" width-30>
-                                <span margin-auto class="label">title:</span>
-                                <div class="form_container" display-flex margin-auto>
-                                    <div class='icon' display-flex>
-                                        <i class="material-icons" margin-auto>
-                                            person
-                                        </i>
-                                    </div>
-                                    <input class="form_input" full-height [(ngModel)]="item.title"
-                                        [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                            <div class="delete_select">
-                                <i class="material-icons" (click)="deleteSelector(ind,item)" cursor-pointer>
-                                    delete
-                                </i>
-                            </div>
+                        <div class='icon' display-flex>
+                            <i class="material-icons" margin-auto>
+                                person
+                            </i>
                         </div>
-                        <!-- <div class="add_button">
-                            <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
-                        </div> -->
-                        <ul *ngFor="let field of item.fields;let ind=index">
-                            <li>
-                                <div class="form_box">
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">field key:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <input class="form_input" full-height [(ngModel)]="field.key"
-                                                [ngModelOptions]="{standalone: true}">
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">field title:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <input class="form_input" full-height [(ngModel)]="field.title"
-                                                [ngModelOptions]="{standalone: true}">
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">field type:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <select class="form_input" [(ngModel)]="field.type"
-                                                (ngModelChange)="onChange($event,field)"
-                                                [ngModelOptions]="{standalone: true}">
-                                                <option *ngFor="let item of fildType" [value]="item.type">{{item.type}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div *ngIf="field.type=='select' || field.type=='radio button' ">
-                                            <div class="add_button">
-                                                <p-button icon="pi pi-check" label="Add Value"
-                                                    (click)="addValueItem(field)"></p-button>
-                                            </div>
-
-                                            <div *ngFor="let fieldValue of  field.values;let ind=index">
-                                                <ul>
-                                                    <li>
-                                                        <div class="form_group_tree" full-width>
-                                                            <span margin-auto class="label">value:</span>
-                                                            <div class="form_container" display-flex margin-auto>
-                                                                <div class='icon' display-flex>
-                                                                    <i class="material-icons" margin-auto cursor-pointer
-                                                                        (click)="deleteValue(field,ind)">
-                                                                        delete
-                                                                    </i>
-                                                                </div>
-                                                                <input class="form_input" full-height
-                                                                    [(ngModel)]="fieldValue.value"
-                                                                    [ngModelOptions]="{standalone: true}">
-                                                            </div>
-                                                        </div>
-
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-
-
-                                        </div>
-
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">field width:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <!-- <input class="form_input" full-height [(ngModel)]="field.width"
-                                                [ngModelOptions]="{standalone: true}" minlength="0" maxlength="100" type="number"> -->
-
-                                            <select class="form_input" full-height [(ngModel)]="field.width"
-                                                [ngModelOptions]="{standalone: true}">
-                                                <option *ngFor="let item of widthType" [value]="item.type">{{item.type}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">field priority:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <div class='icon' display-flex>
-                                                <i class="material-icons" margin-auto>
-                                                    person
-                                                </i>
-                                            </div>
-                                            <input class="form_input" full-height [(ngModel)]="field.priority"
-                                                [ngModelOptions]="{standalone: true}" type="number">
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">required Statuses:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
-                                                [(ngModel)]="field.requiredStatuses"
-                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
-                                            </p-multiSelect>
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">hide Statuses:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
-                                                [(ngModel)]="field.hideStatuses" [ngModelOptions]="{standalone: true}"
-                                                optionLabel="name">
-                                            </p-multiSelect>
-                                        </div>
-                                    </div>
-                                    <div class="form_group_tree" full-width>
-                                        <span margin-auto class="label">editable Statuses:</span>
-                                        <div class="form_container" display-flex margin-auto>
-                                            <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
-                                                [(ngModel)]="field.editableStatuses"
-                                                [ngModelOptions]="{standalone: true}" optionLabel="name">
-                                            </p-multiSelect>
-                                        </div>
-                                    </div>
-
-
-
-
-                                    <div class="form_group_tree">
-                                        <span margin-auto class="label">field is required:</span>
-                                        <div display-flex margin-auto>
-                                            <input class="checkbox_input" type="checkbox" full-heigh margin-auto
-                                                [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
-                                        </div>
-
-                                    </div>
-                                    <div class="form_group_tree">
-                                        <span margin-auto class="label">field is right side:</span>
-                                        <div display-flex margin-auto>
-                                            <input class="checkbox_input" type="checkbox" full-heigh margin-auto
-                                                [(ngModel)]="field.rightSight" [ngModelOptions]="{standalone: true}">
-                                        </div>
-
-                                    </div>
-                                    <div class="delete">
-                                        <i class="material-icons" margin-auto (click)="deleteField(ind,item)"
-                                            cursor-pointer>
-                                            delete
-                                        </i>
-                                    </div>
-
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <div class="add_button">
-                        <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
+                        <input class="form_input" full-height formControlName="type">
                     </div>
-                </ul>
-            </div>
+                </div>
+                <div display-flex>
+                    <div> <label>Start:</label>
+                        <div class="form_container" display-flex margin-auto>
+                            <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="start" required
+                                        [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
+                        </div>
+                    </div>
+                    <div style="margin-left:10px !important">
+                        <label>end:</label>
+                        <div class="form_container" display-flex margin-auto>
+                            <p-dropdown [options]="statuses" [dataKey]="'_id'" [(ngModel)]="end" required
+                                        [ngModelOptions]="{standalone: true}" optionLabel="name"></p-dropdown>
 
-            <div class="add_button" margin-auto>
-                <p-button icon="pi pi-check" label="Add Section" (click)="addSection()"></p-button>
-            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="buttton_items" display-flex margin-auto>
-                <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
-                    (click)="addDoctemplates()"><span color-white>Save</span></button>
-            </div>
+                <div class="tree">
+                    <ul no-padding *ngFor="let item of sections;let ind=index">
+                        <li>
+                            <div class="section_group">
+                                <div class="form_group_tree" width-30>
+                                    <span margin-auto class="label">key:</span>
+                                    <div class="form_container" display-flex margin-auto>
+                                        <div class='icon' display-flex>
+                                            <i class="material-icons" margin-auto>
+                                                person
+                                            </i>
+                                        </div>
+                                        <input class="form_input" full-height [(ngModel)]="item.key"
+                                               [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                <div class="form_group_tree" width-30>
+                                    <span margin-auto class="label">title:</span>
+                                    <div class="form_container" display-flex margin-auto>
+                                        <div class='icon' display-flex>
+                                            <i class="material-icons" margin-auto>
+                                                person
+                                            </i>
+                                        </div>
+                                        <input class="form_input" full-height [(ngModel)]="item.title"
+                                               [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                <div class="delete_select">
+                                    <i class="material-icons" (click)="deleteSelector(ind,item)" cursor-pointer>
+                                        delete
+                                    </i>
+                                </div>
+                            </div>
+                            <!-- <div class="add_button">
+                                <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
+                            </div> -->
+                            <ul *ngFor="let field of item.fields;let ind=index">
+                                <li>
+                                    <div class="form_box">
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">field key:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <div class='icon' display-flex>
+                                                    <i class="material-icons" margin-auto>
+                                                        person
+                                                    </i>
+                                                </div>
+                                                <input class="form_input" full-height [(ngModel)]="field.key"
+                                                       [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">field title:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <div class='icon' display-flex>
+                                                    <i class="material-icons" margin-auto>
+                                                        person
+                                                    </i>
+                                                </div>
+                                                <input class="form_input" full-height [(ngModel)]="field.title"
+                                                       [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">field type:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <div class='icon' display-flex>
+                                                    <i class="material-icons" margin-auto>
+                                                        person
+                                                    </i>
+                                                </div>
+                                                <select class="form_input" [(ngModel)]="field.type"
+                                                        (ngModelChange)="onChange($event,field)"
+                                                        [ngModelOptions]="{standalone: true}">
+                                                    <option *ngFor="let item of fildType" [value]="item.type">{{item.type}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div *ngIf="field.type=='select' || field.type=='radio button' ">
+                                                <div class="add_button">
+                                                    <p-button icon="pi pi-check" label="Add Value"
+                                                              (click)="addValueItem(field)"></p-button>
+                                                </div>
 
-        </form>
+                                                <div *ngFor="let fieldValue of  field.values;let ind=index">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="form_group_tree" full-width>
+                                                                <span margin-auto class="label">value:</span>
+                                                                <div class="form_container" display-flex margin-auto>
+                                                                    <div class='icon' display-flex>
+                                                                        <i class="material-icons" margin-auto cursor-pointer
+                                                                           (click)="deleteValue(field,ind)">
+                                                                            delete
+                                                                        </i>
+                                                                    </div>
+                                                                    <input class="form_input" full-height
+                                                                           [(ngModel)]="fieldValue.value"
+                                                                           [ngModelOptions]="{standalone: true}">
+                                                                </div>
+                                                            </div>
 
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">field width:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <div class='icon' display-flex>
+                                                    <i class="material-icons" margin-auto>
+                                                        person
+                                                    </i>
+                                                </div>
+                                                <!-- <input class="form_input" full-height [(ngModel)]="field.width"
+                                                    [ngModelOptions]="{standalone: true}" minlength="0" maxlength="100" type="number"> -->
+
+                                                <select class="form_input" full-height [(ngModel)]="field.width"
+                                                        [ngModelOptions]="{standalone: true}">
+                                                    <option *ngFor="let item of widthType" [value]="item.type">{{item.type}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">field priority:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <div class='icon' display-flex>
+                                                    <i class="material-icons" margin-auto>
+                                                        person
+                                                    </i>
+                                                </div>
+                                                <input class="form_input" full-height [(ngModel)]="field.priority"
+                                                       [ngModelOptions]="{standalone: true}" type="number">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">required Statuses:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
+                                                               [(ngModel)]="field.requiredStatuses"
+                                                               [ngModelOptions]="{standalone: true}" optionLabel="name">
+                                                </p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">hide Statuses:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
+                                                               [(ngModel)]="field.hideStatuses" [ngModelOptions]="{standalone: true}"
+                                                               optionLabel="name">
+                                                </p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="form_group_tree" full-width>
+                                            <span margin-auto class="label">editable Statuses:</span>
+                                            <div class="form_container" display-flex margin-auto>
+                                                <p-multiSelect full-width [options]="statuses" [dataKey]="'_id'"
+                                                               [(ngModel)]="field.editableStatuses"
+                                                               [ngModelOptions]="{standalone: true}" optionLabel="name">
+                                                </p-multiSelect>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form_group_tree">
+                                            <span margin-auto class="label">field is required:</span>
+                                            <div display-flex margin-auto>
+                                                <input class="checkbox_input" type="checkbox" full-heigh margin-auto
+                                                       [(ngModel)]="field._required" [ngModelOptions]="{standalone: true}">
+                                            </div>
+
+                                        </div>
+                                        <div class="form_group_tree">
+                                            <span margin-auto class="label">field is right side:</span>
+                                            <div display-flex margin-auto>
+                                                <input class="checkbox_input" type="checkbox" full-heigh margin-auto
+                                                       [(ngModel)]="field.rightSight" [ngModelOptions]="{standalone: true}">
+                                            </div>
+
+                                        </div>
+                                        <div class="delete">
+                                            <i class="material-icons" margin-auto (click)="deleteField(ind,item)"
+                                               cursor-pointer>
+                                                delete
+                                            </i>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <div class="add_button">
+                            <p-button icon="pi pi-check" label="Add Field" (click)="addField(item)"></p-button>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class="add_button" margin-auto>
+                    <p-button icon="pi pi-check" label="Add Section" (click)="addSection()"></p-button>
+                </div>
+
+                <div class="buttton_items" display-flex margin-auto>
+                    <button class="save_button" cursor-pointer [ngClass]="{'opacity':titleGroup.invalid}"
+                            (click)="addDoctemplates()"><span color-white>Save</span></button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>

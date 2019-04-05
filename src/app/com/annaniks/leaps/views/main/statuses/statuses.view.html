@@ -1,7 +1,8 @@
-
-<i class="material-icons" (click)="openAddStatuses()" cursor-pointer>
-    add
-</i>
+<div class="add_contnet">
+    <i class="material-icons" (click)="openAddStatuses()" cursor-pointer>
+        add
+    </i>
+</div>
 
 
 <div>
@@ -24,10 +25,10 @@
                     <td class="td-header">{{ind+1}}</td>
                     <td class="td-header">{{item.name}}</td>
                     <td class="td-header">{{item.description}}</td>
-                    <td class="td-header"><i class="material-icons" cursor-pointer (click)="openUpdateStatusModals(item)">
+                    <td class="td-header control-icon" align="center"><i class="material-icons" cursor-pointer (click)="openUpdateStatusModals(item)">
                         create
                         </i></td>
-                    <td class="td-header"><i class="material-icons" cursor-pointer (click)="deleteStatus(item)">
+                    <td class="td-header control-icon" align="center"><i class="material-icons" cursor-pointer (click)="deleteStatus(item)">
                             delete
                     </i></td>
                 </collapsible-table-row>
